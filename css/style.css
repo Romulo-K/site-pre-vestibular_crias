@@ -1,0 +1,173 @@
+/* =====================================================================
+   style.css — ESTRUTURA BASE (Etapa 1)
+   Apenas o suficiente para a estrutura ficar legível e navegável.
+   O design definitivo (cores finais, tipografia, cards, sombras)
+   será definido na Etapa 2 (Design System).
+   ===================================================================== */
+
+:root {
+    /* Valores provisórios — serão refinados na Etapa 2 */
+    --cor-primaria: #0b8f55;
+    --cor-primaria-escura: #075f3a;
+    --cor-destaque: #f6b330;
+    --cor-fundo: #ffffff;
+    --cor-fundo-suave: #f5f1fb;
+    --cor-texto: #1f2a24;
+    --cor-texto-suave: #4a5750;
+
+    --container: 1120px;
+    --espaco: 1rem;
+    --raio: 16px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--cor-texto);
+    background: var(--cor-fundo);
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+a { color: var(--cor-primaria-escura); }
+
+h1, h2, h3 { line-height: 1.2; }
+
+.container {
+    width: 100%;
+    max-width: var(--container);
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+}
+
+.section { padding-block: 3rem; }
+.section--suave { background: var(--cor-fundo-suave); }
+.section--institucional { background: var(--cor-primaria-escura); color: #fff; }
+
+/* ---------- Acessibilidade ---------- */
+:focus-visible {
+    outline: 3px solid var(--cor-destaque);
+    outline-offset: 2px;
+}
+
+.skip-link {
+    position: absolute;
+    left: -999px;
+    top: 0;
+    background: var(--cor-primaria-escura);
+    color: #fff;
+    padding: .75rem 1rem;
+    z-index: 100;
+}
+.skip-link:focus { left: 0; }
+
+/* ---------- Botões ---------- */
+.btn {
+    display: inline-block;
+    padding: .75rem 1.5rem;
+    border-radius: 999px;
+    border: 2px solid var(--cor-primaria);
+    background: var(--cor-primaria);
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+}
+.btn--destaque { background: var(--cor-destaque); border-color: var(--cor-destaque); color: #1f2a24; }
+.btn--contorno { background: transparent; color: var(--cor-primaria-escura); }
+.btn.is-pending { opacity: .55; cursor: not-allowed; }
+.btn__externo { display: block; font-size: .8rem; font-weight: 400; }
+
+/* ---------- Cabeçalho ---------- */
+.site-header { border-bottom: 1px solid #e3e3e3; background: #fff; position: relative; }
+.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: .75rem; }
+
+.logo { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--cor-primaria-escura); }
+.logo__marca {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--cor-primaria); color: #fff;
+    display: grid; place-items: center; font-weight: 800;
+}
+.logo__texto { display: flex; flex-direction: column; line-height: 1.1; }
+.logo__texto small { font-weight: 400; }
+
+.nav-toggle {
+    display: inline-flex;
+    padding: .6rem 1rem;
+    border: 2px solid var(--cor-primaria);
+    border-radius: 999px;
+    background: #fff;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.nav-list {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 1rem 1.25rem;
+    position: absolute;
+    left: 0; right: 0; top: 100%;
+    background: #fff;
+    border-bottom: 1px solid #e3e3e3;
+    z-index: 50;
+}
+.nav-list.is-open { display: block; }
+.nav-list li + li { margin-top: .25rem; }
+.nav-list a { display: block; padding: .6rem .25rem; text-decoration: none; color: var(--cor-texto); font-weight: 500; }
+.nav-list a[aria-current="page"] { color: var(--cor-primaria); font-weight: 700; text-decoration: underline; }
+.nav-list .nav-cta a { margin-top: .5rem; text-align: center; }
+
+/* ---------- Páginas internas ---------- */
+.page-header { background: var(--cor-fundo-suave); padding-block: 2rem; }
+.breadcrumb ol { list-style: none; display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 1rem; padding: 0; font-size: .9rem; }
+.breadcrumb li + li::before { content: "/"; margin-right: .5rem; color: var(--cor-texto-suave); }
+.lead { font-size: 1.15rem; color: var(--cor-texto-suave); max-width: 60ch; }
+
+.indice-pagina ul { list-style: none; display: flex; flex-wrap: wrap; gap: .5rem 1rem; padding: 0; margin: 0 0 2rem; }
+
+/* ---------- Grades e cards (estrutura) ---------- */
+.grid { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.card { background: #fff; border: 1px solid #e3e3e3; border-radius: var(--raio); padding: 1.25rem; }
+
+/* ---------- Placeholders (conteúdo ainda não fornecido) ---------- */
+.placeholder {
+    background: #fff7dc;
+    border: 2px dashed var(--cor-destaque);
+    border-radius: 8px;
+    padding: .5rem .75rem;
+    color: #5b4300;
+}
+.img-placeholder {
+    aspect-ratio: 4 / 3;
+    display: grid; place-items: center; text-align: center;
+    background: #ece8f3; border: 2px dashed #b9afcf; border-radius: var(--raio);
+    color: #4d4560; padding: 1rem;
+}
+
+/* ---------- Rodapé ---------- */
+.site-footer { background: var(--cor-primaria-escura); color: #fff; padding-block: 2.5rem 1rem; }
+.site-footer a { color: #fff; }
+.footer-grid { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.footer-grid ul { list-style: none; margin: 0; padding: 0; }
+.footer-grid li + li { margin-top: .4rem; }
+.footer-titulo { font-size: 1.1rem; margin: 0 0 .75rem; }
+.footer-copy { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,.25); font-size: .9rem; }
+
+/* ---------- Tela grande: menu horizontal ---------- */
+@media (min-width: 900px) {
+    .nav-toggle { display: none; }
+    .nav-list {
+        display: flex; align-items: center; gap: 1.25rem;
+        position: static; padding: 0; border: 0; background: none;
+    }
+    .nav-list li + li { margin-top: 0; }
+    .nav-list .nav-cta a { margin-top: 0; }
+}
