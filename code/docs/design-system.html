@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Guia visual (uso interno) | Pré-Vestibular Social ONG Crias</title>
+  <link rel="icon" type="image/png" href="../assets/logo/favicon.png">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* Estilos SÓ desta página de documentação (não fazem parte do site) */
+    .amostra { border-radius: var(--raio-lg); overflow: hidden; border: var(--borda-card); background: var(--branco); box-shadow: var(--sombra-sm); }
+    .amostra__cor { height: 96px; display: flex; align-items: flex-end; padding: var(--espaco-3); font-family: var(--fonte-titulo); font-weight: 700; }
+    .amostra__info { padding: var(--espaco-3) var(--espaco-4); font-size: var(--texto-sm); }
+    .amostra__info code { display: block; font-size: var(--texto-xs); color: var(--texto-suave); }
+    .grupo-titulo { margin: var(--espaco-7) 0 var(--espaco-4); font-size: var(--titulo-3); }
+    .grupo-titulo:first-of-type { margin-top: 0; }
+    .linha-esp { display: flex; align-items: center; gap: var(--espaco-4); font-size: var(--texto-sm); margin-bottom: var(--espaco-2); }
+    .linha-esp i { display: block; height: 14px; background: var(--verde-500); border-radius: 4px; }
+    .linha-esp code { min-width: 7.5rem; }
+    .linha-esp span { color: var(--texto-suave); }
+    .demo-fundo { padding: var(--espaco-6); border-radius: var(--raio-lg); }
+    .aviso-interno { background: var(--amarelo-50); border-bottom: 2px solid var(--cor-destaque); padding: var(--espaco-3) 0; font-size: var(--texto-sm); color: var(--amarelo-900); text-align: center; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  </style>
+</head>
+<body>
+  <p class="aviso-interno"><strong>Documento interno da equipe</strong> — guia visual do site. Não faz parte da navegação pública (pode ser removido antes da entrega final).</p>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="../index.html" aria-label="Pré-Vestibular Social ONG Crias — página inicial">
+        <img class="logo__img" src="../assets/logo/logo-crias.png" alt="" width="224" height="256">
+        <span class="logo__texto"><strong>Pré-Vestibular Social</strong><small>ONG Crias</small></span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">Menu</button>
+      <nav aria-label="Principal">
+        <ul class="nav-list" id="menu-principal">
+          <li><a href="../index.html" aria-current="page">Início</a></li>
+          <li><a href="../projeto.html">O Projeto</a></li>
+          <li><a href="../atividades.html">Atividades</a></li>
+          <li><a href="../equipe.html">Equipe</a></li>
+          <li><a href="../alunos.html">Alunos</a></li>
+          <li><a href="../voluntarios.html">Voluntários</a></li>
+          <li><a href="../noticias.html">Notícias</a></li>
+          <li><a href="../contato.html">Contato</a></li>
+          <li class="nav-cta"><a href="../alunos.html#area-do-aluno">Área do aluno</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-header">
+      <div class="container">
+        <p class="eyebrow">Etapa 2 · Design system</p>
+        <h1>Guia visual do site</h1>
+        <p class="lead">Cores extraídas da logo da ONG, tipografia, espaçamentos e componentes que serão reutilizados em todas as páginas.</p>
+      </div>
+    </section>
+
+    <!-- ============ CORES ============ -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Identidade</p>
+          <h2>Paleta de cores</h2>
+          <p class="lead">Verde e amarelo vêm direto da logo. As demais cores são derivadas deles, com contraste conferido (WCAG AA).</p>
+        </div>
+
+        <div class="split" style="margin-bottom: var(--espaco-7)">
+          <div class="demo-fundo section--suave" style="display:grid;place-items:center;">
+            <img src="../assets/logo/logo-crias.png" alt="Logo da ONG Crias: um C verde envolvendo um círculo amarelo" width="224" height="256" style="height: 200px; width:auto;">
+          </div>
+          <div class="stack">
+            <h3>A logo manda</h3>
+            <p>O <strong>verde</strong> (<code>#069762</code>) e o <strong>amarelo</strong> (<code>#FCC601</code>) da logo são as duas cores de identidade. Tudo o mais é apoio.</p>
+            <p><strong>Atenção ao verde da logo:</strong> sobre branco ele tem contraste de 3,7:1, suficiente para formas e textos grandes, mas insuficiente para textos pequenos. Por isso, botões e links usam versões um pouco mais escuras (<code>verde-600</code> e <code>verde-700</code>), que passam de 5:1.</p>
+          </div>
+        </div>
+
+        <h3 class="grupo-titulo">Verde</h3>
+        <div class="grid grid--4">
+          <div class="amostra"><div class="amostra__cor" style="background:#e8f7f0;color:#034a31">Aa</div><div class="amostra__info"><strong>verde-50</strong><code>#E8F7F0</code>Fundo de ícones e selos</div></div>
+          <div class="amostra"><div class="amostra__cor" style="background:#c9ecda;color:#034a31">Aa</div><div class="amostra__info"><strong>verde-100</strong><code>#C9ECDA</code>Texto sobre verde escuro</div></div>
+          <div class="amostra"><div class="amostra__cor" style="background:#069762;color:#fff">Aa</div><div class="amostra__info"><strong>verde-500 · logo</strong><code>#069762</code>Decoração e textos grandes</div></div>
+          <div class="amostra"><div class="amostra__cor" style="background:#057a4f;color:#fff">Aa</div><div class="amostra__info"><strong>verde-600 · primária</strong><code>#057A4F</code>Botões (5,4:1 com branco)</div></div>
+          <div class="amostra"><div class="amostra__cor" style="background:#046a45;color:#fff">Aa</div><div class="amostra__info"><strong>verde-700</strong><code>#046A45</code>Títulos e links (6,7:1)</div></div>
+          <div class="amostra"><div class="amostra__cor" style="background:#04523a;color:#fff">Aa</div><div class="amostra__info"><strong>verde-800 · institucional</strong><code>#04523A</code>Seções escuras (9,2:1)</div></div>
+          <div class="amostra"><div class="amostra__cor" style="background:#034a31;color:#fff">Aa</div><div class="amostra__info"><strong>verde-900 · rodapé</strong><code>#034A31</code>Rodapé (10,4:1)</div></div>
+        </div>
+
+        <h3 class="grupo-titulo">Amarelo (destaques)</h3>
+        <div class="grid grid--4">
+          <div class="amostra"><div class="amostra__cor" style="background:#fff7d6;color:#6b4f00">Aa</div><div class="amostra__info"><strong>amarelo-50</strong><code>#FFF7D6</code>Avisos e placeholders</div></div>
+          <div class="amostra"><div class="amostra__cor" style="background:#fcc601;color:#1b2a22">Aa</div><div class="amostra__info"><strong>amarelo-500 · logo</strong><code>#FCC601</code>Botões e etiquetas (texto escuro 9,4:1)</div></div>
+          <div class="amostra"><div class="amostra__cor" style="background:#e5b200;color:#1b2a22">Aa</div><div class="amostra__info"><strong>amarelo-600</strong><code>#E5B200</code>Hover do amarelo</div></div>
+          <div class="amostra"><div class="amostra__cor" style="background:#6b4f00;color:#fff">Aa</div><div class="amostra__info"><strong>amarelo-900</strong><code>#6B4F00</code>Texto sobre aviso amarelo</div></div>
+        </div>
+
+        <h3 class="grupo-titulo">Lilás e neutros</h3>
+        <div class="grid grid--4">
+          <div class="amostra"><div class="amostra__cor" style="background:#f0eafa;color:#5a4a80">Aa</div><div class="amostra__info"><strong>lilás-100</strong><code>#F0EAFA</code>Fundo de seções suaves</div></div>
+          <div class="amostra"><div class="amostra__cor" style="background:#e2d8f3;color:#5a4a80">Aa</div><div class="amostra__info"><strong>lilás-200</strong><code>#E2D8F3</code>Bordas sobre lilás</div></div>
+          <div class="amostra"><div class="amostra__cor" style="background:#5a4a80;color:#fff">Aa</div><div class="amostra__info"><strong>lilás-700</strong><code>#5A4A80</code>Apoio sobre lilás (6,8:1)</div></div>
+          <div class="amostra"><div class="amostra__cor" style="background:#1b2a22;color:#fff">Aa</div><div class="amostra__info"><strong>texto</strong><code>#1B2A22</code>Texto principal (15:1)</div></div>
+          <div class="amostra"><div class="amostra__cor" style="background:#4b5a52;color:#fff">Aa</div><div class="amostra__info"><strong>texto-suave</strong><code>#4B5A52</code>Texto secundário (7,3:1)</div></div>
+          <div class="amostra"><div class="amostra__cor" style="background:#e3e8e5;color:#1b2a22">Aa</div><div class="amostra__info"><strong>borda</strong><code>#E3E8E5</code>Contornos de cards</div></div>
+        </div>
+
+        <h3 class="grupo-titulo">Como as cores se combinam</h3>
+        <div class="grid grid--2">
+          <div class="demo-fundo" style="background:#fff;border:var(--borda-card)"><p class="eyebrow">Fundo branco</p><h3>Título em verde-700</h3><p>Texto em <code>texto</code> e links em verde-700.</p><a class="btn btn--sm" href="#">Botão primário</a></div>
+          <div class="demo-fundo section--suave"><p class="eyebrow">Fundo lilás</p><h3>Seção suave</h3><p>Alterna com o branco para separar blocos sem pesar.</p><a class="btn btn--sm btn--destaque" href="#">Botão amarelo</a></div>
+          <div class="demo-fundo section--institucional"><p class="eyebrow">Verde escuro</p><h3>Área institucional</h3><p>Texto branco, destaques em amarelo.</p><a class="btn btn--sm btn--claro" href="#">Botão claro</a></div>
+          <div class="demo-fundo" style="background:var(--cor-destaque)"><p class="eyebrow" style="color:#1b2a22">Amarelo</p><h3 style="color:#1b2a22">Destaque pontual</h3><p>Usado com moderação: um card ou etiqueta por seção.</p><a class="btn btn--sm" href="#">Botão verde</a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TIPOGRAFIA ============ -->
+    <section class="section section--suave">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Tipografia</p>
+          <h2>Títulos fortes, texto confortável</h2>
+          <p class="lead"><strong>Outfit</strong> nos títulos (geométrica, amigável, peso 700–800) e <strong>Inter</strong> nos textos (alta legibilidade). Ambas hospedadas no próprio site.</p>
+        </div>
+        <div class="card" style="gap: var(--espaco-5)">
+          <div><span class="texto-pequeno">h1 · --titulo-1 · 36 a 64px · Outfit 800</span><h1 style="margin:0">Pré-Vestibular Social</h1></div>
+          <div><span class="texto-pequeno">h2 · --titulo-2 · 28 a 44px · Outfit 800</span><h2 style="margin:0">Você sonha em ingressar na universidade?</h2></div>
+          <div><span class="texto-pequeno">h3 · --titulo-3 · 20 a 26px · Outfit 700</span><h3 style="margin:0">Equipe pedagógica e apoio</h3></div>
+          <div><span class="texto-pequeno">h4 · --titulo-4 · 18 a 21px · Outfit 700 (títulos de cards)</span><h4 style="margin:0">Corpo docente engajado</h4></div>
+          <div><span class="texto-pequeno">.lead · --texto-lg · 17 a 20px · Inter 400</span><p class="lead" style="margin:0">Curso gratuito que prepara jovens para os principais vestibulares do país.</p></div>
+          <div><span class="texto-pequeno">texto · --texto-md · 16px · altura de linha 1,65</span><p style="margin:0;max-width:var(--largura-texto)">Parágrafos têm no máximo 65 caracteres por linha, o que facilita a leitura. No celular, o texto nunca fica menor que 16px.</p></div>
+          <div><span class="texto-pequeno">.eyebrow · --texto-xs · 13px · caixa alta</span><p class="eyebrow" style="margin:0">Sobre o projeto</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ESPAÇAMENTO / BORDAS / SOMBRAS ============ -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Ritmo</p>
+          <h2>Espaçamentos, bordas e sombras</h2>
+        </div>
+        <div class="grid grid--2" style="align-items:start">
+          <div>
+            <h3>Espaçamento (escala de 4px)</h3>
+            <div class="linha-esp"><code>--espaco-1</code><i style="width:4px"></i><span>4px</span></div>
+            <div class="linha-esp"><code>--espaco-2</code><i style="width:8px"></i><span>8px</span></div>
+            <div class="linha-esp"><code>--espaco-3</code><i style="width:12px"></i><span>12px</span></div>
+            <div class="linha-esp"><code>--espaco-4</code><i style="width:16px"></i><span>16px</span></div>
+            <div class="linha-esp"><code>--espaco-5</code><i style="width:24px"></i><span>24px · padding de cards</span></div>
+            <div class="linha-esp"><code>--espaco-6</code><i style="width:32px"></i><span>32px</span></div>
+            <div class="linha-esp"><code>--espaco-7</code><i style="width:48px"></i><span>48px</span></div>
+            <div class="linha-esp"><code>--espaco-8</code><i style="width:64px"></i><span>64px</span></div>
+            <div class="linha-esp"><code>--espaco-secao</code><i style="width:96px"></i><span>56 a 104px · entre seções</span></div>
+          </div>
+          <div>
+            <h3>Bordas arredondadas</h3>
+            <div class="cluster" style="margin-bottom:var(--espaco-6)">
+              <div style="width:84px;height:84px;background:var(--verde-100);border-radius:var(--raio-sm);display:grid;place-items:center;font-size:var(--texto-xs)">10px</div>
+              <div style="width:84px;height:84px;background:var(--verde-100);border-radius:var(--raio-md);display:grid;place-items:center;font-size:var(--texto-xs)">16px</div>
+              <div style="width:84px;height:84px;background:var(--verde-100);border-radius:var(--raio-lg);display:grid;place-items:center;font-size:var(--texto-xs)">24px</div>
+              <div style="width:84px;height:84px;background:var(--verde-100);border-radius:var(--raio-xl);display:grid;place-items:center;font-size:var(--texto-xs)">36px</div>
+              <div style="width:120px;height:48px;background:var(--verde-100);border-radius:var(--raio-pill);display:grid;place-items:center;font-size:var(--texto-xs)">pílula</div>
+            </div>
+            <h3>Sombras</h3>
+            <div class="cluster" style="gap:var(--espaco-5)">
+              <div style="width:110px;height:84px;background:#fff;border-radius:var(--raio-md);box-shadow:var(--sombra-sm);display:grid;place-items:center;font-size:var(--texto-xs)">sm · cards</div>
+              <div style="width:110px;height:84px;background:#fff;border-radius:var(--raio-md);box-shadow:var(--sombra-md);display:grid;place-items:center;font-size:var(--texto-xs)">md · hover</div>
+              <div style="width:110px;height:84px;background:#fff;border-radius:var(--raio-md);box-shadow:var(--sombra-lg);display:grid;place-items:center;font-size:var(--texto-xs)">lg · fotos</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BOTÕES ============ -->
+    <section class="section section--suave">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Componentes</p>
+          <h2>Botões</h2>
+          <p class="lead">Sempre arredondados, com pelo menos 48px de altura (bom para toque no celular) e foco visível ao navegar com o teclado.</p>
+        </div>
+        <div class="cluster" style="margin-bottom:var(--espaco-5)">
+          <a class="btn" href="#">Primário</a>
+          <a class="btn btn--destaque" href="#">Destaque (amarelo)</a>
+          <a class="btn btn--contorno" href="#">Contorno</a>
+          <a class="btn btn--sm" href="#">Pequeno</a>
+          <a class="btn btn--lg" href="#">Grande</a>
+        </div>
+        <div class="cluster" style="margin-bottom:var(--espaco-5)">
+          <a class="btn" href="#">Quero ser aluno<span class="btn__externo">Abre o formulário no Google Forms em nova aba</span></a>
+          <a class="btn is-pending" aria-disabled="true">Link ainda não configurado</a>
+          <a class="link-seta" href="#">Link com seta</a>
+        </div>
+        <div class="demo-fundo section--institucional cluster">
+          <a class="btn btn--destaque" href="#">Sobre fundo escuro</a>
+          <a class="btn btn--claro" href="#">Claro</a>
+          <a class="btn btn--contorno-claro" href="#">Contorno claro</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CARDS ============ -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Componentes</p>
+          <h2>Cards e destaques</h2>
+          <p class="lead">Cantos de 24px, borda leve e sombra discreta. O card amarelo é o destaque (um por seção, no máximo).</p>
+        </div>
+        <div class="grid" style="margin-bottom:var(--espaco-6)">
+          <article class="card card--destaque"><span class="icon-box" aria-hidden="true">★</span><h3>Card de destaque</h3><p>Fundo amarelo, como o "Corpo docente" do protótipo.</p></article>
+          <article class="card card--link"><span class="icon-box" aria-hidden="true">✓</span><h3>Card padrão</h3><p>Fundo branco, borda leve. Este sobe ao passar o mouse.</p><a class="link-seta" href="#">Conhecer</a></article>
+          <article class="card card--verde"><h3>Card verde escuro</h3><p>Usado para benefícios e instruções de inscrição.</p><a class="btn btn--sm btn--destaque" href="#">Ação</a></article>
+        </div>
+        <div class="grid grid--2" style="margin-bottom:var(--espaco-6)">
+          <figure class="card card--depoimento" style="margin:0">
+            <blockquote>Exemplo de card de depoimento (texto de teste, não é um depoimento real).</blockquote>
+            <figcaption><strong>Nome da pessoa</strong>Egresso(a) do Pré-Vestibular Social</figcaption>
+          </figure>
+          <div>
+            <p class="eyebrow">Selos</p>
+            <p class="cluster"><span class="selo">Inscrições abertas</span><span class="selo selo--verde">Aulas</span><span class="selo selo--lilas">Simulados</span></p>
+            <p class="eyebrow" style="margin-top:var(--espaco-5)">Avisos de conteúdo pendente</p>
+            <p class="placeholder">[TEXTO OFICIAL DA ONG SOBRE O CPOP]</p>
+            <div class="img-placeholder" style="aspect-ratio:16/6">[FOTO — substituir por foto real autorizada]</div>
+          </div>
+        </div>
+        <div class="split split--foto-esquerda">
+          <figure class="foto-destaque">
+            <div class="img-placeholder" style="aspect-ratio:4/3;border:0;border-radius:0">[MOLDURA GRANDE DE FOTO]</div>
+            <figcaption class="foto-destaque__etiqueta">Transformando trajetórias</figcaption>
+          </figure>
+          <div class="stack">
+            <p class="eyebrow">Sobre o projeto</p>
+            <h2>Ensino social de acesso a todos.</h2>
+            <p class="placeholder">[TEXTO OFICIAL DA ONG — SOBRE O PROJETO]</p>
+            <a class="btn" href="#">Saiba mais sobre o projeto</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="texto-centro texto-pequeno" style="padding-block: var(--espaco-5);">O cabeçalho (no topo) e o rodapé desta página são os mesmos usados em todo o site.</p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="logo logo--rodape" href="../index.html" aria-label="Pré-Vestibular Social ONG Crias — página inicial">
+            <span class="logo__selo"><img class="logo__img" src="../assets/logo/logo-crias.png" alt="" width="224" height="256"></span>
+            <span class="logo__texto"><strong>Pré-Vestibular Social</strong><small>ONG Crias</small></span>
+          </a>
+          <p class="placeholder">[TEXTO INSTITUCIONAL CURTO DA ONG PARA O RODAPÉ]</p>
+        </div>
+        <nav aria-label="Rodapé">
+          <h2 class="footer-titulo">Site</h2>
+          <ul><li><a href="../index.html">Início</a></li><li><a href="../projeto.html">O Projeto</a></li><li><a href="../atividades.html">Atividades</a></li></ul>
+        </nav>
+        <div>
+          <h2 class="footer-titulo">Fale conosco</h2>
+          <ul><li>E-mail: <span class="placeholder">[E-MAIL OFICIAL DA ONG]</span></li><li>Telefone: <span class="placeholder">[TELEFONE OFICIAL]</span></li></ul>
+        </div>
+      </div>
+      <p class="footer-copy">&copy; 2026 Pré-Vestibular Social ONG Crias. Projeto de extensão universitária.</p>
+    </div>
+  </footer>
+  <script src="../js/main.js" defer></script>
+</body>
+</html>

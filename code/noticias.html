@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Notícias | Pré-Vestibular Social ONG Crias</title>
   <meta name="description" content="Notícias do Pré-Vestibular Social ONG Crias.">
+  <meta name="theme-color" content="#046a45">
+  <link rel="icon" type="image/png" href="assets/logo/favicon.png">
+  <link rel="preload" href="assets/fonts/outfit-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -13,8 +17,7 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="logo" href="index.html" aria-label="Pré-Vestibular Social ONG Crias — página inicial">
-        <!-- Substituir por <img src="assets/logo/logo.svg" alt="..."> quando a logo oficial estiver disponível -->
-        <span class="logo__marca" aria-hidden="true">C</span>
+        <img class="logo__img" src="assets/logo/logo-crias.png" alt="" width="224" height="256">
         <span class="logo__texto"><strong>Pré-Vestibular Social</strong><small>ONG Crias</small></span>
       </a>
 
@@ -30,7 +33,7 @@
           <li><a href="voluntarios.html">Voluntários</a></li>
           <li><a href="noticias.html" aria-current="page">Notícias</a></li>
           <li><a href="contato.html">Contato</a></li>
-          <li class="nav-cta"><a class="btn btn--destaque" href="alunos.html#area-do-aluno">Área do aluno</a></li>
+          <li class="nav-cta"><a href="alunos.html#area-do-aluno">Área do aluno</a></li>
         </ul>
       </nav>
     </div>
@@ -62,7 +65,10 @@
     <div class="container">
       <div class="footer-grid">
         <div>
-          <p><strong>Pré-Vestibular Social</strong><br>ONG Crias</p>
+          <a class="logo logo--rodape" href="index.html" aria-label="Pré-Vestibular Social ONG Crias — página inicial">
+            <span class="logo__selo"><img class="logo__img" src="assets/logo/logo-crias.png" alt="" width="224" height="256"></span>
+            <span class="logo__texto"><strong>Pré-Vestibular Social</strong><small>ONG Crias</small></span>
+          </a>
           <p class="placeholder">[TEXTO INSTITUCIONAL CURTO DA ONG PARA O RODAPÉ]</p>
         </div>
 
