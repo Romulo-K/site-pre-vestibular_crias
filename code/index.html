@@ -3,15 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Início | Pré-Vestibular Social ONG Crias</title>
+  <title>Pré-Vestibular Social ONG Crias</title>
   <meta name="description" content="Site institucional do Pré-Vestibular Social ONG Crias.">
   <meta name="theme-color" content="#046a45">
   <link rel="icon" type="image/png" href="assets/logo/favicon.png">
-  <link rel="preload" href="assets/fonts/outfit-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <!-- Ícones do site. Uso: <svg class="icone" aria-hidden="true"><use href="#i-nome"/></svg> -->
+    <symbol id="i-seta" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-seta-baixo" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+    <symbol id="i-seta-diag" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+    <symbol id="i-aluno" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-4.5"/><path d="M22 9v6"/></symbol>
+    <symbol id="i-voluntario" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></symbol>
+    <symbol id="i-livro" viewBox="0 0 24 24"><path d="M12 6c-2-1.5-5-2-8-2v14c3 0 6 .5 8 2 2-1.5 5-2 8-2V4c-3 0-6 .5-8 2z"/><path d="M12 6v14"/></symbol>
+    <symbol id="i-docentes" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.5-3.5 3.2-5.5 6.5-5.5s6 2 6.5 5.5"/><circle cx="17.5" cy="9" r="2.5"/><path d="M17.5 14.5c2.4 0 4 1.5 4.5 4"/></symbol>
+    <symbol id="i-simulado" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4h6v3H9z"/><path d="M9 14l2 2 4-4"/></symbol>
+    <symbol id="i-projeto" viewBox="0 0 24 24"><path d="M5 21V4"/><path d="M5 5h12l-2 4 2 4H5"/></symbol>
+    <symbol id="i-usuario" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c.7-4 4-6 8-6s7.3 2 8 6"/></symbol>
+    <symbol id="i-camera" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></symbol>
+    <symbol id="i-jornal" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h8M8 17h5"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.5-6.5-11a6.5 6.5 0 0 1 13 0c0 5.5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+    <symbol id="i-sorriso" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 14c1 1.5 2.3 2 4 2s3-.5 4-2M9 9.5h.01M15 9.5h.01"/></symbol>
+    <symbol id="i-mensagem" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></symbol>
+  </svg>
   <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
 
   <header class="site-header">
@@ -40,89 +56,271 @@
   </header>
 
   <main id="conteudo">
-    <section class="section section--suave" id="inicio-hero" aria-labelledby="hero-titulo">
-      <div class="container">
-        <p>Parceria com a ONG CRIAS</p>
-        <h1 id="hero-titulo">Pré-Vestibular Social ONG Crias</h1>
-        <p class="placeholder">[TEXTO DE APRESENTAÇÃO — PREPARAÇÃO PARA O VESTIBULAR, EDUCAÇÃO E TRANSFORMAÇÃO SOCIAL]</p>
-        <p>
-          <a class="btn" href="projeto.html">Conheça o projeto</a>
-          <a class="btn btn--contorno" href="atividades.html">Ver atividades</a>
-        </p>
-        <div class="img-placeholder" role="img" aria-label="Espaço reservado para a foto principal do projeto">[FOTO PRINCIPAL — substituir por foto real autorizada]</div>
+    <!-- =================== 1. HERO =================== -->
+    <section class="hero" id="inicio" aria-labelledby="hero-titulo">
+      <div class="container hero__grid">
+        <div class="hero__texto">
+          <p class="selo">Parceria com a ONG CRIAS</p>
+          <h1 id="hero-titulo">Pré-Vestibular Social ONG Crias</h1>
+          <div class="hero__acoes">
+            <a class="btn btn--lg" href="projeto.html">Conheça o projeto <svg class="icone" aria-hidden="true"><use href="#i-seta"/></svg></a>
+            <a class="btn btn--lg btn--contorno" href="#atividades">Ver atividades <svg class="icone" aria-hidden="true"><use href="#i-seta-baixo"/></svg></a>
+          </div>
+        </div>
+        <div class="hero__foto">
+          <figure class="foto-destaque">
+            <!-- IMAGEM: hero. TROCAR src e alt por uma foto real e autorizada (ver assets/LEIA-ME.md) -->
+            <img src="assets/placeholders/foto-hero.svg" alt="Imagem ilustrativa de estudantes em sala de aula (substituir por foto real da ONG)" width="800" height="600" fetchpriority="high">
+            <figcaption class="foto-destaque__selo">Educação social</figcaption>
+          </figure>
+        </div>
       </div>
     </section>
 
-    <section class="section" id="acesso-rapido" aria-labelledby="acesso-rapido-titulo">
+    <!-- =================== 2. ACESSO RÁPIDO: ALUNO E VOLUNTÁRIO =================== -->
+    <!-- Os links reais dos formulários ficam em js/config.js (formularioAluno / formularioVoluntario). -->
+    <section class="acesso" id="acesso-rapido" aria-labelledby="acesso-titulo">
       <div class="container">
-        <h2 id="acesso-rapido-titulo">Como participar</h2>
-        <div class="grid"><article class="card"><h3>Quero ser aluno</h3><p class="placeholder">[TEXTO CURTO SOBRE INSCRIÇÃO DE ALUNOS]</p><p><a class="btn" href="contato.html" data-link="formularioAluno">Quero ser aluno<span class="btn__externo">Abre o formulário no Google Forms em nova aba</span></a></p><p><a href="alunos.html">Saiba mais sobre ser aluno</a></p></article><article class="card"><h3>Quero ser voluntário</h3><p class="placeholder">[TEXTO CURTO SOBRE VOLUNTARIADO]</p><p><a class="btn" href="contato.html" data-link="formularioVoluntario">Quero ser voluntário<span class="btn__externo">Abre o formulário no Google Forms em nova aba</span></a></p><p><a href="voluntarios.html">Saiba mais sobre ser voluntário</a></p></article></div>
+        <h2 class="sr-only" id="acesso-titulo">Como participar</h2>
+        <div class="grid grid--2">
+          <a class="acesso-card" href="alunos.html" data-link="formularioAluno">
+            <span class="icon-box icon-box--amarelo icon-box--redondo" aria-hidden="true"><svg class="icone"><use href="#i-aluno"/></svg></span>
+            <span class="acesso-card__texto">
+              <p class="acesso-card__rotulo">Inscrição de alunos</p>
+              <h3 class="acesso-card__titulo">Quero ser aluno</h3>
+              <p class="placeholder">[DESCRIÇÃO CURTA: QUEM PODE SER ALUNO]</p>
+              <p class="acesso-card__externo">Abre o formulário no Google Forms em nova aba</p>
+            </span>
+            <span class="acesso-card__seta" aria-hidden="true"><svg class="icone"><use href="#i-seta-diag"/></svg></span>
+          </a>
+          <a class="acesso-card" href="voluntarios.html" data-link="formularioVoluntario">
+            <span class="icon-box icon-box--amarelo icon-box--redondo" aria-hidden="true"><svg class="icone"><use href="#i-voluntario"/></svg></span>
+            <span class="acesso-card__texto">
+              <p class="acesso-card__rotulo">Inscrição de voluntários</p>
+              <h3 class="acesso-card__titulo">Quero ser voluntário</h3>
+              <p class="placeholder">[DESCRIÇÃO CURTA: COMO O VOLUNTÁRIO PODE AJUDAR]</p>
+              <p class="acesso-card__externo">Abre o formulário no Google Forms em nova aba</p>
+            </span>
+            <span class="acesso-card__seta" aria-hidden="true"><svg class="icone"><use href="#i-seta-diag"/></svg></span>
+          </a>
+        </div>
       </div>
     </section>
 
-    <section class="section section--suave" id="sobre-projeto" aria-labelledby="sobre-projeto-titulo">
-      <div class="container">
-        <h2 id="sobre-projeto-titulo">Sobre o projeto</h2>
-        <p class="placeholder">[RESUMO OFICIAL DO PROJETO: OBJETIVO, EDUCAÇÃO SOCIAL, ACESSO AO ENSINO SUPERIOR, PÚBLICO ATENDIDO]</p><p><a class="btn" href="projeto.html">Conheça o projeto</a></p>
+    <!-- =================== 3. APRESENTAÇÃO + COMO FUNCIONA / COMO SE INSCREVER =================== -->
+    <section class="section" id="apresentacao" aria-labelledby="apresentacao-titulo">
+      <div class="container split split--5-7">
+        <div class="apresentacao__texto">
+          <p class="eyebrow">Pré-Vestibular Social ONG Crias</p>
+          <h2 id="apresentacao-titulo">Você sonha em ingressar na universidade?</h2>
+          <!-- Rascunho do protótipo (confirmar com a ONG antes de usar): "A ONG Crias oferece um curso pré-vestibular social gratuito, com aulas presenciais, apoio pedagógico e atividades complementares para fortalecer o acesso ao ensino superior." -->
+          <p class="placeholder">[TEXTO OFICIAL DA ONG: APRESENTAÇÃO DO PROJETO PARA QUEM QUER ENTRAR NA UNIVERSIDADE]</p>
+          <p class="apresentacao__local"><svg class="icone" aria-hidden="true"><use href="#i-pin"/></svg> <span class="placeholder">[MODALIDADE E LOCAL DAS AULAS]</span></p>
+        </div>
+
+        <div class="card card--verde beneficios" id="como-funciona">
+          <div class="beneficios__lista-bloco">
+            <h3>Como funciona</h3>
+            <ul class="beneficios__lista">
+              <li class="beneficios__item">
+                <span class="icon-box" aria-hidden="true"><svg class="icone"><use href="#i-livro"/></svg></span>
+                <div>
+                  <h4>Aulas</h4>
+                  <p class="placeholder">[DESCRIÇÃO DAS AULAS]</p>
+                </div>
+              </li>
+              <li class="beneficios__item">
+                <span class="icon-box" aria-hidden="true"><svg class="icone"><use href="#i-simulado"/></svg></span>
+                <div>
+                  <h4>Simulados e palestras</h4>
+                  <p class="placeholder">[DESCRIÇÃO DOS SIMULADOS E PALESTRAS]</p>
+                </div>
+              </li>
+              <li class="beneficios__item">
+                <span class="icon-box" aria-hidden="true"><svg class="icone"><use href="#i-sorriso"/></svg></span>
+                <div>
+                  <h4>Convivência e passeios</h4>
+                  <p class="placeholder">[DESCRIÇÃO DA CONVIVÊNCIA E DOS PASSEIOS]</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="beneficios__inscricao" id="como-se-inscrever">
+            <h3>Como se inscrever</h3>
+            <p class="placeholder">[TEXTO OFICIAL: COMO FUNCIONA O PROCESSO DE INSCRIÇÃO]</p>
+            <a class="btn btn--destaque" href="alunos.html" data-link="formularioAluno">Quero ser aluno <svg class="icone" aria-hidden="true"><use href="#i-seta-diag"/></svg><span class="btn__externo">Abre o Google Forms em nova aba</span></a>
+            <a class="btn btn--claro" href="voluntarios.html" data-link="formularioVoluntario">Quero ser voluntário <svg class="icone" aria-hidden="true"><use href="#i-seta-diag"/></svg><span class="btn__externo">Abre o Google Forms em nova aba</span></a>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="section" id="como-funciona" aria-labelledby="como-funciona-titulo">
-      <div class="container">
-        <h2 id="como-funciona-titulo">Como funciona</h2>
-        <div class="grid"><article class="card"><h3>Aulas</h3><p class="placeholder">[DESCRIÇÃO]</p></article><article class="card"><h3>Simulados</h3><p class="placeholder">[DESCRIÇÃO]</p></article><article class="card"><h3>Palestras</h3><p class="placeholder">[DESCRIÇÃO]</p></article><article class="card"><h3>Convivência e passeios</h3><p class="placeholder">[DESCRIÇÃO]</p></article></div>
+    <!-- =================== 4. DESTAQUE DO CARÁTER SOCIAL =================== -->
+    <section class="section section--suave" id="sobre" aria-labelledby="sobre-titulo">
+      <div class="container split split--foto-esquerda">
+        <figure class="foto-destaque">
+          <!-- IMAGEM: sobre. TROCAR src e alt por uma foto real e autorizada (ver assets/LEIA-ME.md) -->
+          <img src="assets/placeholders/foto-hero.svg" alt="Imagem ilustrativa de estudantes e professores em atividade de grupo (substituir por foto real da ONG)" width="800" height="600" loading="lazy">
+          <figcaption class="foto-destaque__etiqueta">Transformando trajetórias</figcaption>
+        </figure>
+        <div class="stack">
+          <p class="eyebrow">Sobre o projeto</p>
+          <h2 id="sobre-titulo">Ensino social de acesso a todos.</h2>
+          <p class="placeholder">[TEXTO OFICIAL DA ONG: CARÁTER SOCIAL DO PROJETO, PÚBLICO ATENDIDO E COMPROMISSO COM A COMUNIDADE]</p>
+          <p><a class="btn" href="projeto.html">Saiba mais sobre o projeto <svg class="icone" aria-hidden="true"><use href="#i-seta"/></svg></a></p>
+        </div>
       </div>
     </section>
 
-    <section class="section section--institucional" id="destaque-social" aria-labelledby="destaque-social-titulo">
+    <!-- =================== 5. ATIVIDADES (dados em data/atividades.js) =================== -->
+    <section class="section" id="atividades" aria-labelledby="atividades-titulo">
       <div class="container">
-        <h2 id="destaque-social-titulo">Ensino social de acesso a todos</h2>
-        <p class="placeholder">[TEXTO OFICIAL SOBRE O CARÁTER SOCIAL DO PROJETO]</p>
+        <div class="section-head section-head--linha">
+          <div>
+            <p class="eyebrow">O que fazemos</p>
+            <h2 id="atividades-titulo">Atividades</h2>
+            <p class="lead">Aulas, palestras, simulados, momentos de convivência e passeios.</p>
+          </div>
+          <a class="btn btn--contorno" href="atividades.html">Ver todas as atividades <svg class="icone" aria-hidden="true"><use href="#i-seta"/></svg></a>
+        </div>
+        <div id="lista-atividades" data-render="atividades" data-grade="grid--5">
+          <p class="placeholder">[ATIVIDADES — cadastradas em data/atividades.js]</p>
+        </div>
       </div>
     </section>
 
-    <section class="section" id="atividades-resumo" aria-labelledby="atividades-resumo-titulo">
+    <!-- =================== 6. DEPOIMENTOS (dados em data/depoimentos.js) =================== -->
+    <section class="section section--institucional decor-circulo decor-circulo--esq" id="depoimentos" aria-labelledby="depoimentos-titulo">
       <div class="container">
-        <h2 id="atividades-resumo-titulo">Atividades</h2>
-        <p class="placeholder">[DESTAQUES DAS ATIVIDADES]</p><p><a href="atividades.html">Ver todas as atividades</a></p>
+        <div class="section-head">
+          <p class="eyebrow">Histórias</p>
+          <h2 id="depoimentos-titulo">Depoimentos de egressos</h2>
+          <p class="lead">Histórias de quem já passou pelo projeto.</p>
+        </div>
+        <div id="lista-depoimentos" data-render="depoimentos" data-grade="grid--2">
+          <p class="placeholder">[DEPOIMENTOS REAIS E AUTORIZADOS — cadastrados em data/depoimentos.js]</p>
+        </div>
       </div>
     </section>
 
-    <section class="section section--suave" id="depoimentos" aria-labelledby="depoimentos-titulo">
+    <!-- =================== 7. EQUIPE (dados em data/equipe.js) =================== -->
+    <section class="section" id="equipe" aria-labelledby="equipe-titulo">
       <div class="container">
-        <h2 id="depoimentos-titulo">Depoimentos de egressos</h2>
-        <div id="lista-depoimentos" data-render="depoimentos"><p class="placeholder">[DEPOIMENTOS REAIS E AUTORIZADOS — serão carregados de data/depoimentos.js]</p></div><p><a href="alunos.html">Saiba como ser aluno</a></p>
+        <div class="section-head section-head--linha">
+          <div>
+            <p class="eyebrow">Quem faz acontecer</p>
+            <h2 id="equipe-titulo">Equipe pedagógica e apoio</h2>
+            <p class="lead">Coordenação, professores e equipe de apoio.</p>
+          </div>
+          <a class="btn btn--contorno" href="equipe.html">Conheça a equipe <svg class="icone" aria-hidden="true"><use href="#i-seta"/></svg></a>
+        </div>
+        <div id="lista-equipe-home" data-render="equipe" data-limite="4" data-grade="grid--pessoas">
+          <p class="placeholder">[EQUIPE — cadastrada em data/equipe.js]</p>
+        </div>
       </div>
     </section>
 
-    <section class="section" id="equipe-resumo" aria-labelledby="equipe-resumo-titulo">
+    <!-- =================== 8. ESTRUTURA PEDAGÓGICA =================== -->
+    <section class="section section--suave" id="estrutura" aria-labelledby="estrutura-titulo">
       <div class="container">
-        <h2 id="equipe-resumo-titulo">Equipe pedagógica e apoio</h2>
-        <div id="lista-equipe-home" data-render="equipe" data-limite="4"><p class="placeholder">[INTEGRANTES DA EQUIPE — serão carregados de data/equipe.js]</p></div><p><a class="btn btn--contorno" href="equipe.html">Conheça nossa equipe</a></p>
+        <div class="section-head">
+          <p class="eyebrow">Como aprendemos</p>
+          <h2 id="estrutura-titulo">Estrutura pedagógica</h2>
+        </div>
+        <div class="grid">
+          <article class="card card--destaque card--link">
+            <span class="icon-box" aria-hidden="true"><svg class="icone"><use href="#i-docentes"/></svg></span>
+            <h3><a class="link-card" href="equipe.html">Corpo docente</a></h3>
+            <p class="placeholder">[TEXTO OFICIAL]</p>
+            <span class="link-seta">Conhecer</span>
+          </article>
+          <article class="card card--link">
+            <span class="icon-box" aria-hidden="true"><svg class="icone"><use href="#i-simulado"/></svg></span>
+            <h3><a class="link-card" href="atividades.html#simulados">Simulados</a></h3>
+            <p class="placeholder">[TEXTO OFICIAL]</p>
+            <span class="link-seta">Conhecer</span>
+          </article>
+          <article class="card card--link">
+            <span class="icon-box" aria-hidden="true"><svg class="icone"><use href="#i-livro"/></svg></span>
+            <h3><a class="link-card" href="projeto.html#enem">Aulas e preparação para o ENEM e vestibulares</a></h3>
+            <p class="placeholder">[TEXTO OFICIAL]</p>
+            <span class="link-seta">Conhecer</span>
+          </article>
+        </div>
       </div>
     </section>
 
-    <section class="section section--suave" id="estrutura-pedagogica" aria-labelledby="estrutura-pedagogica-titulo">
+    <!-- =================== 9. NOTÍCIAS (dados em data/noticias.js) =================== -->
+    <section class="section" id="noticias" aria-labelledby="noticias-titulo">
       <div class="container">
-        <h2 id="estrutura-pedagogica-titulo">Estrutura pedagógica</h2>
-        <div class="grid"><article class="card"><h3>Corpo docente</h3><p class="placeholder">[TEXTO OFICIAL]</p></article><article class="card"><h3>Simulados</h3><p class="placeholder">[TEXTO OFICIAL]</p></article><article class="card"><h3>Projetos e aulas extras</h3><p class="placeholder">[TEXTO OFICIAL]</p></article></div>
+        <div class="section-head section-head--linha">
+          <div>
+            <p class="eyebrow">Fique por dentro</p>
+            <h2 id="noticias-titulo">Notícias</h2>
+            <p class="lead">Acompanhe as novidades do projeto.</p>
+          </div>
+          <a class="btn btn--contorno" href="noticias.html">Todas as notícias <svg class="icone" aria-hidden="true"><use href="#i-seta"/></svg></a>
+        </div>
+        <div id="lista-noticias-home" data-render="noticias" data-limite="3">
+          <p class="placeholder">[NOTÍCIAS REAIS — cadastradas em data/noticias.js]</p>
+        </div>
       </div>
     </section>
 
-    <section class="section" id="noticias-resumo" aria-labelledby="noticias-resumo-titulo">
+    <!-- =================== EXPLORE: ATALHOS PARA O SITE =================== -->
+    <section class="section section--suave" id="explore" aria-labelledby="explore-titulo">
       <div class="container">
-        <h2 id="noticias-resumo-titulo">Notícias</h2>
-        <div id="lista-noticias-home" data-render="noticias" data-limite="3"><p class="placeholder">[NOTÍCIAS REAIS — serão carregadas de data/noticias.js]</p></div><p><a class="btn btn--contorno" href="noticias.html">Todas as notícias</a></p>
+        <div class="section-head">
+          <p class="eyebrow">Explore</p>
+          <h2 id="explore-titulo">Saiba mais sobre o Pré-Vestibular Social ONG Crias</h2>
+          <p class="lead">Acesse rapidamente as principais áreas do site.</p>
+        </div>
+        <div class="grid grid--4">
+          <article class="card card--link">
+            <span class="icon-box" aria-hidden="true"><svg class="icone"><use href="#i-docentes"/></svg></span>
+            <h3><a class="link-card" href="equipe.html">Corpo docente</a></h3>
+            <p>Conheça professores e equipe de apoio.</p>
+            <span class="link-seta">Acessar</span>
+          </article>
+          <article class="card card--link">
+            <span class="icon-box" aria-hidden="true"><svg class="icone"><use href="#i-camera"/></svg></span>
+            <h3><a class="link-card" href="atividades.html#galeria">Galeria</a></h3>
+            <p>Veja aulas, passeios e momentos do projeto.</p>
+            <span class="link-seta">Acessar</span>
+          </article>
+          <article class="card card--link">
+            <span class="icon-box" aria-hidden="true"><svg class="icone"><use href="#i-jornal"/></svg></span>
+            <h3><a class="link-card" href="noticias.html">Notícias</a></h3>
+            <p>Acompanhe as novidades do projeto.</p>
+            <span class="link-seta">Acessar</span>
+          </article>
+          <article class="card card--link">
+            <span class="icon-box" aria-hidden="true"><svg class="icone"><use href="#i-mensagem"/></svg></span>
+            <h3><a class="link-card" href="contato.html">Contato</a></h3>
+            <p>Fale com a coordenação do projeto.</p>
+            <span class="link-seta">Acessar</span>
+          </article>
+        </div>
       </div>
     </section>
 
-    <section class="section section--institucional" id="chamada-final" aria-labelledby="chamada-final-titulo">
+    <!-- =================== 10. CHAMADA FINAL =================== -->
+    <section class="section" id="participe" aria-labelledby="participe-titulo">
       <div class="container">
-        <h2 id="chamada-final-titulo">Quer fazer parte?</h2>
-        <p class="cluster"><a class="btn" href="contato.html" data-link="formularioAluno">Seja aluno<span class="btn__externo">Abre o formulário no Google Forms em nova aba</span></a> <a class="btn btn--destaque" href="contato.html" data-link="formularioVoluntario">Seja voluntário<span class="btn__externo">Abre o formulário no Google Forms em nova aba</span></a></p>
+        <div class="cta-final">
+          <div>
+            <p class="eyebrow">Participe</p>
+            <h2 id="participe-titulo">Quer fazer parte?</h2>
+            <p>Escolha como participar do Pré-Vestibular Social ONG Crias.</p>
+          </div>
+          <div class="cta-final__acoes">
+            <a class="btn btn--destaque btn--lg" href="alunos.html" data-link="formularioAluno">Quero ser aluno <svg class="icone" aria-hidden="true"><use href="#i-seta-diag"/></svg><span class="btn__externo">Abre o Google Forms em nova aba</span></a>
+            <a class="btn btn--claro btn--lg" href="voluntarios.html" data-link="formularioVoluntario">Quero ser voluntário <svg class="icone" aria-hidden="true"><use href="#i-seta-diag"/></svg><span class="btn__externo">Abre o Google Forms em nova aba</span></a>
+          </div>
+        </div>
       </div>
     </section>
-
   </main>
 
   <footer class="site-footer">
@@ -173,5 +371,6 @@
   <script src="data/noticias.js" defer></script>
   <script src="data/atividades.js" defer></script>
   <script src="js/main.js" defer></script>
+  <script src="js/render.js" defer></script>
 </body>
 </html>
