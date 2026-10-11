@@ -21,7 +21,6 @@ site-pre-vestibular_crias/
 ├── data/               Conteúdo que se repete (notícias, depoimentos, equipe, atividades)
 ├── assets/             logo, fonts, imagens, equipe, atividades, noticias, icones
 ├── docs/design-system.html   Guia visual interno (pode ser apagado na entrega)
-└── DESIGN-SYSTEM.md    Como usar cores, fontes e componentes
 ```
 
 ## Conteúdo pendente da ONG
