@@ -26,6 +26,12 @@
     <symbol id="i-jornal" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h8M8 17h5"/></symbol>
     <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.5-6.5-11a6.5 6.5 0 0 1 13 0c0 5.5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
     <symbol id="i-sorriso" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 14c1 1.5 2.3 2 4 2s3-.5 4-2M9 9.5h.01M15 9.5h.01"/></symbol>
+    <symbol id="i-telefone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
+    <symbol id="i-email" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3A4 4 0 0 0 11 18.7l1-1"/></symbol>
+    <symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="M15 10l6-3v10l-6-3z"/></symbol>
+    <symbol id="i-pasta" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+    <symbol id="i-quadro" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16v4"/></symbol>
     <symbol id="i-mensagem" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></symbol>
   </svg>
   <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
@@ -71,7 +77,6 @@
     <div class="container indice-pagina">
       <nav aria-label="Nesta página">
         <ul>
-          <li><a href="#quem-somos">Quem somos</a></li>
           <li><a href="#historia">História</a></li>
           <li><a href="#missao">Missão</a></li>
           <li><a href="#educacao-social">Educação social</a></li>
@@ -83,59 +88,106 @@
       </nav>
     </div>
 
-    <section class="section" id="quem-somos" aria-labelledby="quem-somos-titulo">
-      <div class="container">
-        <h2 id="quem-somos-titulo">Quem somos</h2>
-        <p class="placeholder">[TEXTO OFICIAL DA ONG — QUEM SOMOS]</p>
-      </div>
-    </section>
-
     <section class="section" id="historia" aria-labelledby="historia-titulo">
-      <div class="container">
-        <h2 id="historia-titulo">História</h2>
-        <p class="placeholder">[TEXTO OFICIAL DA ONG SOBRE A HISTÓRIA DA INSTITUIÇÃO]</p>
+      <div class="container split">
+        <div class="stack">
+          <p class="eyebrow">Quem somos</p>
+          <h2 id="historia-titulo">Nossa história</h2>
+          <p class="placeholder">[TEXTO OFICIAL DA ONG SOBRE A HISTÓRIA DO PROJETO: COMO SURGIU, QUANDO COMEÇOU E MARCOS IMPORTANTES]</p>
+        </div>
+        <figure class="foto-destaque">
+          <!-- IMAGEM: história. TROCAR src e alt por uma foto real e autorizada (ver assets/LEIA-ME.md) -->
+          <img src="assets/placeholders/foto-hero.svg" alt="Imagem ilustrativa de estudantes em sala de aula (substituir por foto real da ONG)" width="800" height="600" loading="lazy">
+          <figcaption class="foto-destaque__etiqueta">Nossa trajetória</figcaption>
+        </figure>
       </div>
     </section>
 
-    <section class="section" id="missao" aria-labelledby="missao-titulo">
+    <section class="section section--suave" id="missao" aria-labelledby="missao-titulo">
       <div class="container">
-        <h2 id="missao-titulo">Nossa missão</h2>
-        <p class="placeholder">[TEXTO OFICIAL DA ONG SOBRE A MISSÃO]</p>
+        <div class="missao">
+          <p class="eyebrow">O que nos move</p>
+          <h2 id="missao-titulo">Nossa missão</h2>
+          <p class="placeholder">[TEXTO OFICIAL DA ONG SOBRE A MISSÃO, VISÃO E VALORES]</p>
+        </div>
       </div>
     </section>
 
     <section class="section" id="educacao-social" aria-labelledby="educacao-social-titulo">
-      <div class="container">
-        <h2 id="educacao-social-titulo">Educação social</h2>
-        <p class="placeholder">[TEXTO OFICIAL DA ONG SOBRE EDUCAÇÃO SOCIAL]</p>
+      <div class="container split split--foto-esquerda">
+        <figure class="foto-destaque">
+          <!-- IMAGEM: educação social. TROCAR src e alt por uma foto real e autorizada -->
+          <img src="assets/placeholders/foto-paisagem.svg" alt="Imagem ilustrativa de atividade em grupo (substituir por foto real da ONG)" width="800" height="500" loading="lazy">
+          <figcaption class="foto-destaque__selo">Educação social</figcaption>
+        </figure>
+        <div class="stack">
+          <p class="eyebrow">Compromisso social</p>
+          <h2 id="educacao-social-titulo">Educação social</h2>
+          <p class="placeholder">[TEXTO OFICIAL DA ONG SOBRE EDUCAÇÃO SOCIAL: PÚBLICO ATENDIDO E COMO O PROJETO PROMOVE ACESSO À EDUCAÇÃO]</p>
+          <p><a class="link-seta" href="atividades.html">Veja as atividades do projeto</a></p>
+        </div>
       </div>
     </section>
 
-    <section class="section" id="parceria-crias" aria-labelledby="parceria-crias-titulo">
+    <section class="section section--suave" id="parceria-crias" aria-labelledby="parceria-crias-titulo">
       <div class="container">
-        <h2 id="parceria-crias-titulo">A parceria com a ONG CRIAS</h2>
-        <p class="placeholder">[TEXTO OFICIAL DA ONG SOBRE A PARCERIA COM A ONG CRIAS]</p>
+        <div class="section-head">
+          <p class="eyebrow">Parceria</p>
+          <h2 id="parceria-crias-titulo">Parceria com a ONG CRIAS</h2>
+        </div>
+        <article class="card">
+          <p class="placeholder">[TEXTO OFICIAL DA ONG SOBRE A PARCERIA COM A ONG CRIAS: QUEM É A CRIAS, COMO SURGIU A PARCERIA E O QUE CADA PARTE FAZ]</p>
+        </article>
       </div>
     </section>
 
     <section class="section" id="cpop" aria-labelledby="cpop-titulo">
-      <div class="container">
-        <h2 id="cpop-titulo">CPOP</h2>
-        <p class="placeholder">[TEXTO OFICIAL DA ONG SOBRE O CPOP]</p>
+      <div class="container split split--5-7">
+        <div class="stack">
+          <p class="eyebrow">Instituição parceira</p>
+          <h2 id="cpop-titulo">CPOP</h2>
+        </div>
+        <article class="card">
+          <p class="placeholder">[TEXTO OFICIAL DA ONG SOBRE O CPOP: O QUE É, QUAL A RELAÇÃO COM O PROJETO E COMO PARTICIPA]</p>
+        </article>
       </div>
     </section>
 
-    <section class="section" id="bncc" aria-labelledby="bncc-titulo">
+    <section class="section section--suave" id="curriculo" aria-labelledby="curriculo-titulo">
       <div class="container">
-        <h2 id="bncc-titulo">Alinhamento com a BNCC</h2>
-        <p class="placeholder">[TEXTO OFICIAL DA ONG SOBRE O ALINHAMENTO COM A BNCC]</p>
+        <div class="section-head">
+          <p class="eyebrow">Preparação</p>
+          <h2 id="curriculo-titulo">Currículo e preparação</h2>
+          <p class="lead">Como o projeto se relaciona com a base curricular e com as provas de acesso ao ensino superior.</p>
+        </div>
+        <div class="grid grid--2">
+          <article class="card" id="bncc">
+            <span class="icon-box"><svg class="icone" aria-hidden="true"><use href="#i-livro"/></svg></span>
+            <h3>BNCC</h3>
+            <p class="placeholder">[TEXTO OFICIAL DA ONG SOBRE O ALINHAMENTO COM A BNCC (BASE NACIONAL COMUM CURRICULAR)]</p>
+          </article>
+          <article class="card" id="enem">
+            <span class="icon-box"><svg class="icone" aria-hidden="true"><use href="#i-simulado"/></svg></span>
+            <h3>ENEM</h3>
+            <p class="placeholder">[TEXTO OFICIAL DA ONG SOBRE A PREPARAÇÃO PARA O ENEM E VESTIBULARES]</p>
+          </article>
+        </div>
       </div>
     </section>
 
-    <section class="section" id="enem" aria-labelledby="enem-titulo">
+    <section class="section" id="participe" aria-labelledby="participe-titulo">
       <div class="container">
-        <h2 id="enem-titulo">Preparação para o ENEM e vestibulares</h2>
-        <p class="placeholder">[TEXTO OFICIAL DA ONG SOBRE A PREPARAÇÃO PARA O ENEM E VESTIBULARES]</p>
+        <div class="cta-final">
+          <div>
+            <p class="eyebrow">Participe</p>
+            <h2 id="participe-titulo">Quer fazer parte?</h2>
+            <p>Escolha como participar do Pré-Vestibular Social ONG Crias.</p>
+          </div>
+          <div class="cta-final__acoes">
+            <a class="btn btn--destaque btn--lg" href="alunos.html" data-link="formularioAluno">Quero ser aluno <svg class="icone" aria-hidden="true"><use href="#i-seta-diag"/></svg><span class="btn__externo">Abre o Google Forms em nova aba</span></a>
+            <a class="btn btn--claro btn--lg" href="voluntarios.html" data-link="formularioVoluntario">Quero ser voluntário <svg class="icone" aria-hidden="true"><use href="#i-seta-diag"/></svg><span class="btn__externo">Abre o Google Forms em nova aba</span></a>
+          </div>
+        </div>
       </div>
     </section>
 

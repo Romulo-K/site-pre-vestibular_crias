@@ -9,6 +9,7 @@ Use somente fotos **reais e autorizadas** pela ONG e pelas pessoas fotografadas.
 |---|---|---|
 | Foto principal (topo da Home) | `index.html`, no `<img>` do bloco `<!-- IMAGEM: hero -->` | 1200 × 900 px |
 | Foto "Sobre o projeto" (Home) | `index.html`, no `<img>` do bloco `<!-- IMAGEM: sobre -->` | 1200 × 900 px |
+| Fotos de "História" e "Educação social" (O Projeto) | `projeto.html`, nos `<img>` dos blocos `<!-- IMAGEM: ... -->` | 1200 × 900 px |
 | Atividades (Aulas, Palestras…) | `data/atividades.js` → campo `imagem` e `alt` | 1200 × 750 px |
 | Equipe e depoimentos | `data/equipe.js` e `data/depoimentos.js` → campo `foto` e `alt` | 800 × 1000 px (equipe) |
 | Notícias | `data/noticias.js` → campo `imagem` e `alt` | 1200 × 750 px |

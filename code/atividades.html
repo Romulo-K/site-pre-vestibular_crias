@@ -26,6 +26,12 @@
     <symbol id="i-jornal" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h8M8 17h5"/></symbol>
     <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.5-6.5-11a6.5 6.5 0 0 1 13 0c0 5.5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
     <symbol id="i-sorriso" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 14c1 1.5 2.3 2 4 2s3-.5 4-2M9 9.5h.01M15 9.5h.01"/></symbol>
+    <symbol id="i-telefone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
+    <symbol id="i-email" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3A4 4 0 0 0 11 18.7l1-1"/></symbol>
+    <symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="M15 10l6-3v10l-6-3z"/></symbol>
+    <symbol id="i-pasta" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+    <symbol id="i-quadro" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16v4"/></symbol>
     <symbol id="i-mensagem" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></symbol>
   </svg>
   <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
@@ -68,48 +74,110 @@
         <p class="lead">A rotina do projeto: aulas, palestras, simulados, convivência e passeios.</p>
       </div>
     </section>
-    <section class="section" id="aulas" aria-labelledby="aulas-titulo">
-      <div class="container">
-        <h2 id="aulas-titulo">Aulas</h2>
-        <div class="img-placeholder" role="img" aria-label="Espaço reservado para foto de aulas">[FOTO — Aulas]</div><p class="placeholder">[DESCRIÇÃO OFICIAL — AULAS]</p>
+    <div class="container indice-pagina">
+      <nav aria-label="Nesta página">
+        <ul>
+          <li><a href="#aulas">Aulas</a></li>
+          <li><a href="#palestras">Palestras</a></li>
+          <li><a href="#simulados">Simulados</a></li>
+          <li><a href="#convivencia">Convivência</a></li>
+          <li><a href="#passeios">Passeios</a></li>
+          <li><a href="#galeria">Galeria</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <section class="section" id="aulas" data-atividade="aulas" aria-labelledby="aulas-titulo">
+      <div class="container split atividade">
+        <figure class="foto-destaque">
+          <!-- IMAGEM: aulas. Troque pela foto real em data/atividades.js (ver assets/LEIA-ME.md) -->
+          <img src="assets/placeholders/foto-hero.svg" alt="Imagem ilustrativa de aula (substituir por foto real da ONG)" width="800" height="600" loading="lazy" data-campo="imagem">
+        </figure>
+        <article class="card atividade__card">
+          <h2 id="aulas-titulo" data-campo="titulo">Aulas</h2>
+          <p class="placeholder" data-campo="descricao">[DESCRIÇÃO OFICIAL DAS AULAS: DISCIPLINAS, DIAS E HORÁRIOS]</p>
+        </article>
       </div>
     </section>
 
-    <section class="section section--suave" id="palestras" aria-labelledby="palestras-titulo">
-      <div class="container">
-        <h2 id="palestras-titulo">Palestras</h2>
-        <div class="img-placeholder" role="img" aria-label="Espaço reservado para foto de palestras">[FOTO — Palestras]</div><p class="placeholder">[DESCRIÇÃO OFICIAL — PALESTRAS]</p>
+    <section class="section section--suave" id="palestras" data-atividade="palestras" aria-labelledby="palestras-titulo">
+      <div class="container split atividade split--foto-esquerda">
+        <figure class="foto-destaque">
+          <!-- IMAGEM: palestras. Troque pela foto real em data/atividades.js (ver assets/LEIA-ME.md) -->
+          <img src="assets/placeholders/foto-paisagem.svg" alt="Imagem ilustrativa de palestra (substituir por foto real da ONG)" width="800" height="500" loading="lazy" data-campo="imagem">
+        </figure>
+        <article class="card atividade__card">
+          <h2 id="palestras-titulo" data-campo="titulo">Palestras</h2>
+          <p class="placeholder" data-campo="descricao">[DESCRIÇÃO OFICIAL DAS PALESTRAS]</p>
+        </article>
       </div>
     </section>
 
-    <section class="section" id="simulados" aria-labelledby="simulados-titulo">
-      <div class="container">
-        <h2 id="simulados-titulo">Simulados</h2>
-        <div class="img-placeholder" role="img" aria-label="Espaço reservado para foto de simulados">[FOTO — Simulados]</div><p class="placeholder">[DESCRIÇÃO OFICIAL — SIMULADOS]</p>
+    <section class="section" id="simulados" data-atividade="simulados" aria-labelledby="simulados-titulo">
+      <div class="container split atividade">
+        <figure class="foto-destaque">
+          <!-- IMAGEM: simulados. Troque pela foto real em data/atividades.js (ver assets/LEIA-ME.md) -->
+          <img src="assets/placeholders/foto-paisagem.svg" alt="Imagem ilustrativa de simulado (substituir por foto real da ONG)" width="800" height="500" loading="lazy" data-campo="imagem">
+        </figure>
+        <article class="card atividade__card">
+          <h2 id="simulados-titulo" data-campo="titulo">Simulados</h2>
+          <p class="placeholder" data-campo="descricao">[DESCRIÇÃO OFICIAL DOS SIMULADOS]</p>
+        </article>
       </div>
     </section>
 
-    <section class="section section--suave" id="convivencia" aria-labelledby="convivencia-titulo">
-      <div class="container">
-        <h2 id="convivencia-titulo">Momentos de convivência</h2>
-        <div class="img-placeholder" role="img" aria-label="Espaço reservado para foto de momentos de convivência">[FOTO — Momentos de convivência]</div><p class="placeholder">[DESCRIÇÃO OFICIAL — MOMENTOS DE CONVIVÊNCIA]</p>
+    <section class="section section--suave" id="convivencia" data-atividade="convivencia" aria-labelledby="convivencia-titulo">
+      <div class="container split atividade split--foto-esquerda">
+        <figure class="foto-destaque">
+          <!-- IMAGEM: convivencia. Troque pela foto real em data/atividades.js (ver assets/LEIA-ME.md) -->
+          <img src="assets/placeholders/foto-paisagem.svg" alt="Imagem ilustrativa de momento de convivência (substituir por foto real da ONG)" width="800" height="500" loading="lazy" data-campo="imagem">
+        </figure>
+        <article class="card atividade__card">
+          <h2 id="convivencia-titulo" data-campo="titulo">Convivência</h2>
+          <p class="placeholder" data-campo="descricao">[DESCRIÇÃO OFICIAL DOS MOMENTOS DE CONVIVÊNCIA]</p>
+        </article>
       </div>
     </section>
 
-    <section class="section" id="passeios" aria-labelledby="passeios-titulo">
-      <div class="container">
-        <h2 id="passeios-titulo">Passeios</h2>
-        <div class="img-placeholder" role="img" aria-label="Espaço reservado para foto de passeios">[FOTO — Passeios]</div><p class="placeholder">[DESCRIÇÃO OFICIAL — PASSEIOS]</p>
+    <section class="section" id="passeios" data-atividade="passeios" aria-labelledby="passeios-titulo">
+      <div class="container split atividade">
+        <figure class="foto-destaque">
+          <!-- IMAGEM: passeios. Troque pela foto real em data/atividades.js (ver assets/LEIA-ME.md) -->
+          <img src="assets/placeholders/foto-paisagem.svg" alt="Imagem ilustrativa de passeio (substituir por foto real da ONG)" width="800" height="500" loading="lazy" data-campo="imagem">
+        </figure>
+        <article class="card atividade__card">
+          <h2 id="passeios-titulo" data-campo="titulo">Passeios</h2>
+          <p class="placeholder" data-campo="descricao">[DESCRIÇÃO OFICIAL DOS PASSEIOS]</p>
+        </article>
       </div>
     </section>
 
     <section class="section" id="galeria" aria-labelledby="galeria-titulo">
       <div class="container">
-        <h2 id="galeria-titulo">Galeria</h2>
-        <div class="grid" id="galeria-lista" data-render="galeria"><figure><div class="img-placeholder" role="img" aria-label="Espaço reservado para a foto 1 da galeria">[FOTO 1]</div></figure><figure><div class="img-placeholder" role="img" aria-label="Espaço reservado para a foto 2 da galeria">[FOTO 2]</div></figure><figure><div class="img-placeholder" role="img" aria-label="Espaço reservado para a foto 3 da galeria">[FOTO 3]</div></figure><figure><div class="img-placeholder" role="img" aria-label="Espaço reservado para a foto 4 da galeria">[FOTO 4]</div></figure><figure><div class="img-placeholder" role="img" aria-label="Espaço reservado para a foto 5 da galeria">[FOTO 5]</div></figure><figure><div class="img-placeholder" role="img" aria-label="Espaço reservado para a foto 6 da galeria">[FOTO 6]</div></figure></div>
+        <div class="section-head">
+          <p class="eyebrow">Momentos do projeto</p>
+          <h2 id="galeria-titulo">Galeria</h2>
+          <p class="lead">Fotos reais e autorizadas, adicionadas em data/atividades.js.</p>
+        </div>
+        <div class="grid" id="galeria-lista" data-render="galeria"><figure class="galeria__item"><div class="img-placeholder" role="img" aria-label="Espaço reservado para a foto 1 da galeria">[FOTO 1]</div></figure><figure class="galeria__item"><div class="img-placeholder" role="img" aria-label="Espaço reservado para a foto 2 da galeria">[FOTO 2]</div></figure><figure class="galeria__item"><div class="img-placeholder" role="img" aria-label="Espaço reservado para a foto 3 da galeria">[FOTO 3]</div></figure><figure class="galeria__item"><div class="img-placeholder" role="img" aria-label="Espaço reservado para a foto 4 da galeria">[FOTO 4]</div></figure><figure class="galeria__item"><div class="img-placeholder" role="img" aria-label="Espaço reservado para a foto 5 da galeria">[FOTO 5]</div></figure><figure class="galeria__item"><div class="img-placeholder" role="img" aria-label="Espaço reservado para a foto 6 da galeria">[FOTO 6]</div></figure></div>
       </div>
     </section>
 
+    <section class="section" id="participe" aria-labelledby="participe-titulo">
+      <div class="container">
+        <div class="cta-final">
+          <div>
+            <p class="eyebrow">Participe</p>
+            <h2 id="participe-titulo">Quer fazer parte?</h2>
+            <p>Escolha como participar do Pré-Vestibular Social ONG Crias.</p>
+          </div>
+          <div class="cta-final__acoes">
+            <a class="btn btn--destaque btn--lg" href="alunos.html" data-link="formularioAluno">Quero ser aluno <svg class="icone" aria-hidden="true"><use href="#i-seta-diag"/></svg><span class="btn__externo">Abre o Google Forms em nova aba</span></a>
+            <a class="btn btn--claro btn--lg" href="voluntarios.html" data-link="formularioVoluntario">Quero ser voluntário <svg class="icone" aria-hidden="true"><use href="#i-seta-diag"/></svg><span class="btn__externo">Abre o Google Forms em nova aba</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">

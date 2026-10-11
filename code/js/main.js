@@ -3,7 +3,7 @@
    1) Menu mobile (abrir/fechar)
    2) Links externos configurados em SITE_CONFIG (js/config.js)
    3) Ano atual no rodapé
-   Etapa 1: apenas o essencial. Galeria e renderização de dados vêm depois.
+   (O conteúdo que vem de data/ é desenhado por js/render.js.)
    ===================================================================== */
 
 (function () {
@@ -82,13 +82,23 @@
             }
         });
 
-        // Telefone: apenas texto
+        // Textos simples (telefone, endereço, horário): escreve o valor e tira o aviso de pendência
         document.querySelectorAll("[data-text]").forEach(function (el) {
             var valor = (SITE_CONFIG[el.getAttribute("data-text")] || "").trim();
             if (valor) {
                 el.textContent = valor;
                 el.classList.remove("placeholder");
             }
+        });
+
+        // Avisos que somem quando QUALQUER uma das chaves listadas estiver preenchida
+        // Ex.: <p class="placeholder" data-placeholder-for="instagram facebook youtube">
+        document.querySelectorAll("[data-placeholder-for]").forEach(function (el) {
+            var chaves = el.getAttribute("data-placeholder-for").split(/\s+/);
+            var algumPreenchido = chaves.some(function (k) {
+                return (SITE_CONFIG[k] || "").trim() !== "";
+            });
+            if (algumPreenchido) el.hidden = true;
         });
     }
 
@@ -99,9 +109,17 @@
         });
     }
 
-    document.addEventListener("DOMContentLoaded", function () {
+    function iniciar() {
         iniciarMenu();
         iniciarLinks();
         iniciarAno();
-    });
+    }
+
+    // Os scripts usam "defer": quando rodam, a página já foi lida. Executar na hora evita
+    // um "piscar" de conteúdo provisório e deixa os links com #âncora funcionarem.
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", iniciar);
+    } else {
+        iniciar();
+    }
 })();

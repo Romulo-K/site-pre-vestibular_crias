@@ -21,6 +21,9 @@ const SITE_CONFIG = {
     email: "",                  // ex.: "contato@exemplo.org" (sem "mailto:")
     whatsapp: "",               // ex.: "https://wa.me/55DDDNUMERO"
     telefone: "",               // ex.: "(00) 00000-0000" (apenas texto)
+    endereco: "",               // ex.: "Rua Exemplo, 123 — Bairro, Cidade/UF" (só se a ONG autorizar divulgar)
+    horario: "",                // ex.: "Segunda a sexta, das 14h às 18h"
+    mapa: "",                   // link do Google Maps (opcional: se vazio, o botão "Ver no mapa" some)
 
     // Redes sociais (opcionais: se vazio, o link é escondido)
     instagram: "",

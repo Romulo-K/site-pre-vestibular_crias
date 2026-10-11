@@ -26,6 +26,12 @@
     <symbol id="i-jornal" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h8M8 17h5"/></symbol>
     <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.5-6.5-11a6.5 6.5 0 0 1 13 0c0 5.5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
     <symbol id="i-sorriso" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 14c1 1.5 2.3 2 4 2s3-.5 4-2M9 9.5h.01M15 9.5h.01"/></symbol>
+    <symbol id="i-telefone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
+    <symbol id="i-email" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3A4 4 0 0 0 11 18.7l1-1"/></symbol>
+    <symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="M15 10l6-3v10l-6-3z"/></symbol>
+    <symbol id="i-pasta" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+    <symbol id="i-quadro" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16v4"/></symbol>
     <symbol id="i-mensagem" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></symbol>
   </svg>
   <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
@@ -66,26 +72,109 @@
         </nav>
         <h1>Alunos</h1>
         <p class="lead">Informações para quem quer estudar com a gente e para quem já é aluno.</p>
+        <div class="page-header__acoes"><a class="btn btn--destaque" href="alunos.html" data-link="formularioAluno">Quero ser aluno <svg class="icone" aria-hidden="true"><use href="#i-seta-diag"/></svg><span class="btn__externo">Abre o Google Forms em nova aba</span></a>
+        <a class="btn btn--contorno" href="#area-do-aluno">Ir para a Área do Aluno <svg class="icone" aria-hidden="true"><use href="#i-seta-baixo"/></svg></a></div>
       </div>
     </section>
     <section class="section" id="como-funciona" aria-labelledby="como-funciona-titulo">
       <div class="container">
-        <h2 id="como-funciona-titulo">Como funciona</h2>
-        <p class="placeholder">[TEXTO OFICIAL: QUEM PODE PARTICIPAR, COMO FUNCIONA, ONDE ACONTECEM AS ATIVIDADES]</p>
+        <div class="section-head">
+          <p class="eyebrow">Para quem quer estudar</p>
+          <h2 id="como-funciona-titulo">Como funciona o projeto</h2>
+          <p class="placeholder">[TEXTO OFICIAL DA ONG: QUEM PODE PARTICIPAR, DIAS E HORÁRIOS, ONDE ACONTECEM AS ATIVIDADES]</p>
+        </div>
+        <div class="grid">
+          <article class="card card--link">
+            <span class="icon-box"><svg class="icone" aria-hidden="true"><use href="#i-livro"/></svg></span>
+            <h3><a class="link-card" href="atividades.html#aulas">Aulas</a></h3>
+            <p class="placeholder">[DESCRIÇÃO OFICIAL DAS AULAS]</p>
+            <span class="link-seta">Saiba mais</span>
+          </article>
+          <article class="card card--link">
+            <span class="icon-box"><svg class="icone" aria-hidden="true"><use href="#i-simulado"/></svg></span>
+            <h3><a class="link-card" href="atividades.html#simulados">Simulados e palestras</a></h3>
+            <p class="placeholder">[DESCRIÇÃO OFICIAL DOS SIMULADOS E PALESTRAS]</p>
+            <span class="link-seta">Saiba mais</span>
+          </article>
+          <article class="card card--link">
+            <span class="icon-box"><svg class="icone" aria-hidden="true"><use href="#i-sorriso"/></svg></span>
+            <h3><a class="link-card" href="atividades.html#convivencia">Convivência e passeios</a></h3>
+            <p class="placeholder">[DESCRIÇÃO OFICIAL DA CONVIVÊNCIA E DOS PASSEIOS]</p>
+            <span class="link-seta">Saiba mais</span>
+          </article>
+        </div>
       </div>
     </section>
 
     <section class="section section--suave" id="como-se-inscrever" aria-labelledby="como-se-inscrever-titulo">
       <div class="container">
-        <h2 id="como-se-inscrever-titulo">Como se inscrever</h2>
-        <p class="placeholder">[TEXTO OFICIAL SOBRE O PROCESSO DE INSCRIÇÃO]</p><p><a class="btn" href="contato.html" data-link="formularioAluno">Quero ser aluno<span class="btn__externo">Abre o formulário no Google Forms em nova aba</span></a></p>
+        <div class="section-head">
+          <p class="eyebrow">Inscrição</p>
+          <h2 id="como-se-inscrever-titulo">Como se inscrever</h2>
+          <p class="placeholder">[TEXTO OFICIAL DA ONG SOBRE O PROCESSO DE INSCRIÇÃO: PERÍODO, REQUISITOS E DOCUMENTOS]</p>
+        </div>
+        <ol class="passos">
+          <li class="passo">
+            <h3>Preencha o formulário</h3>
+            <p>A inscrição é feita por um formulário do Google Forms, em uma nova aba.</p>
+          </li>
+          <li class="passo">
+            <h3>[SEGUNDA ETAPA]</h3>
+            <p class="placeholder">[TEXTO OFICIAL: O QUE ACONTECE APÓS O ENVIO DO FORMULÁRIO]</p>
+          </li>
+          <li class="passo">
+            <h3>[TERCEIRA ETAPA]</h3>
+            <p class="placeholder">[TEXTO OFICIAL: COMO E QUANDO COMEÇAM AS AULAS]</p>
+          </li>
+        </ol>
+        <p class="mt-6"><a class="btn btn--destaque btn--lg" href="contato.html" data-link="formularioAluno">Quero ser aluno <svg class="icone" aria-hidden="true"><use href="#i-seta-diag"/></svg><span class="btn__externo">Abre o Google Forms em nova aba</span></a></p>
       </div>
     </section>
 
     <section class="section" id="area-do-aluno" aria-labelledby="area-do-aluno-titulo">
       <div class="container">
-        <h2 id="area-do-aluno-titulo">Área do aluno</h2>
-        <p>Acesse os espaços utilizados pelo projeto. Os botões abrem plataformas externas do Google em uma nova aba.</p><div class="grid"><article class="card"><h3>Google Classroom</h3><p>Aulas e atividades</p><p><a class="btn" href="contato.html" data-link="classroom">Acessar Classroom<span class="btn__externo">Abre o Google Classroom em nova aba</span></a></p></article><article class="card"><h3>Google Drive</h3><p>Materiais didáticos</p><p><a class="btn" href="contato.html" data-link="drive">Acessar Drive<span class="btn__externo">Abre o Google Drive em nova aba</span></a></p></article><article class="card"><h3>Google Meet</h3><p>Encontros virtuais</p><p><a class="btn" href="contato.html" data-link="meet">Acessar Meet<span class="btn__externo">Abre o Google Meet em nova aba</span></a></p></article></div>
+        <div class="section-head">
+          <p class="eyebrow">Para quem já é aluno</p>
+          <h2 id="area-do-aluno-titulo">Área do Aluno</h2>
+          <p class="lead">Atalhos para as plataformas do Google usadas nas aulas. Cada botão abre a plataforma em uma nova aba; este site não pede login nem senha.</p>
+        </div>
+        <div class="grid">
+          <article class="card card--plataforma">
+            <span class="icon-box"><svg class="icone" aria-hidden="true"><use href="#i-quadro"/></svg></span>
+            <h3>Google Classroom</h3>
+            <p>Acesse a turma no Google Classroom.</p>
+            <a class="btn" href="contato.html" data-link="classroom">Acessar Classroom <svg class="icone" aria-hidden="true"><use href="#i-seta-diag"/></svg><span class="btn__externo">Abre o Google Classroom em nova aba</span></a>
+          </article>
+          <article class="card card--plataforma">
+            <span class="icon-box"><svg class="icone" aria-hidden="true"><use href="#i-pasta"/></svg></span>
+            <h3>Google Drive</h3>
+            <p>Acesse a pasta de materiais no Google Drive.</p>
+            <a class="btn" href="contato.html" data-link="drive">Acessar Drive <svg class="icone" aria-hidden="true"><use href="#i-seta-diag"/></svg><span class="btn__externo">Abre o Google Drive em nova aba</span></a>
+          </article>
+          <article class="card card--plataforma">
+            <span class="icon-box"><svg class="icone" aria-hidden="true"><use href="#i-video"/></svg></span>
+            <h3>Google Meet</h3>
+            <p>Entre nos encontros online pelo Google Meet.</p>
+            <a class="btn" href="contato.html" data-link="meet">Acessar Meet <svg class="icone" aria-hidden="true"><use href="#i-seta-diag"/></svg><span class="btn__externo">Abre o Google Meet em nova aba</span></a>
+          </article>
+        </div>
+        <p class="placeholder mt-6">[ORIENTAÇÃO OFICIAL DE ACESSO: COMO ENTRAR NA TURMA, QUAL E-MAIL USAR E A QUEM PEDIR AJUDA]</p>
+      </div>
+    </section>
+
+    <section class="section" id="duvidas" aria-labelledby="duvidas-titulo">
+      <div class="container">
+        <div class="cta-final">
+          <div>
+            <p class="eyebrow">Fale conosco</p>
+            <h2 id="duvidas-titulo">Ficou com alguma dúvida?</h2>
+            <p>Fale com a coordenação do projeto.</p>
+          </div>
+          <div class="cta-final__acoes">
+            <a class="btn btn--destaque btn--lg" href="contato.html">Fale conosco</a>
+            <a class="btn btn--contorno-claro btn--lg" href="projeto.html">Conheça o projeto</a>
+          </div>
+        </div>
       </div>
     </section>
 

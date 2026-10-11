@@ -180,6 +180,7 @@ a:hover { color: var(--verde-900); }
 
 p { margin: 0 0 var(--espaco-4); }
 figure { margin: 0; }
+[hidden] { display: none !important; }
 ul, ol { padding-left: 1.25rem; }
 
 :focus-visible {
@@ -1014,3 +1015,114 @@ span.placeholder { display: inline-block; padding: 0 var(--espaco-2); margin: 0;
     .grid--pessoas .card__corpo { padding: var(--espaco-3) var(--espaco-3) var(--espaco-4); }
     .grid--pessoas .card__corpo h3 { font-size: var(--texto-md); }
 }
+
+
+/* ---------------------------------------------------------------------
+   12. PÁGINAS INTERNAS (projeto, atividades, equipe, alunos, voluntários, notícias, contato)
+   --------------------------------------------------------------------- */
+
+/* Botões de ação no topo da página */
+.page-header__acoes { display: flex; flex-wrap: wrap; gap: var(--espaco-3); margin-top: var(--espaco-5); }
+
+/* Texto corrido: largura confortável e espaço entre parágrafos */
+.texto-longo { max-width: var(--largura-texto); }
+.texto-longo > * + * { margin-top: var(--espaco-4); }
+.texto-longo > p { margin-bottom: 0; }
+
+/* ----- Bloco verde de destaque (ex.: Missão) ----- */
+.missao {
+    position: relative; overflow: hidden;
+    padding: clamp(2rem, 1rem + 4vw, 4rem);
+    border-radius: var(--raio-xl);
+    background: var(--cor-secao-institucional);
+    color: var(--branco);
+    box-shadow: var(--sombra-lg);
+}
+.missao::after {
+    content: ""; position: absolute; right: -6rem; bottom: -8rem;
+    width: 20rem; height: 20rem; border-radius: 50%;
+    background: var(--verde-500); opacity: 0.45; pointer-events: none;
+}
+.missao > * { position: relative; z-index: 1; }
+.missao h2 { color: var(--branco); }
+.missao .eyebrow { color: var(--verde-100); }
+.missao .placeholder { margin-bottom: 0; background: rgba(255, 255, 255, 0.10); border-color: var(--cor-destaque); color: var(--branco); }
+
+/* ----- Passos numerados (como se inscrever / como participar) ----- */
+.passos {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; gap: var(--espaco-5);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+    counter-reset: passo;
+}
+.passo {
+    display: flex; flex-direction: column; gap: var(--espaco-3);
+    counter-increment: passo;
+    padding: var(--espaco-5);
+    background: var(--branco);
+    border: var(--borda-card);
+    border-radius: var(--raio-lg);
+    box-shadow: var(--sombra-sm);
+    color: var(--texto);
+}
+.passo::before {
+    content: counter(passo);
+    display: grid; place-items: center;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--cor-destaque);
+    color: var(--texto);
+    font-family: var(--fonte-titulo);
+    font-size: var(--titulo-4);
+    font-weight: var(--peso-titulo-forte);
+}
+.passo h3 { margin: 0; font-size: var(--titulo-4); }
+.passo p { margin: 0; color: var(--texto-suave); }
+.passo .placeholder { margin: 0; }
+
+/* ----- Atividades: foto + card de descrição, alternando os lados ----- */
+.atividade { align-items: center; }
+.atividade .foto-destaque img { aspect-ratio: 4 / 3; }
+.atividade__card { padding: var(--espaco-6); gap: var(--espaco-3); box-shadow: var(--sombra-md); }
+.atividade__card h2 { margin: 0; }
+.atividade__card .placeholder { margin: 0; }
+.atividade__card .texto-longo { color: var(--texto-suave); }
+
+/* ----- Galeria ----- */
+.galeria__item .foto { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--raio-md); box-shadow: var(--sombra-sm); }
+
+/* ----- Área do aluno: cards das plataformas ----- */
+.card--plataforma .btn { margin-top: auto; align-self: stretch; }
+.card--plataforma > p { margin-bottom: var(--espaco-2); }
+
+/* ----- Contato ----- */
+.contato-card { gap: var(--espaco-2); }
+.contato-card .icon-box { margin-bottom: var(--espaco-2); }
+.contato-card h3 { margin: 0; font-size: var(--titulo-4); }
+.contato-card__valor { margin: 0; font-family: var(--fonte-titulo); font-size: var(--titulo-4); font-weight: var(--peso-titulo); color: var(--verde-700); overflow-wrap: anywhere; }
+.contato-card__valor a { color: inherit; }
+.contato-card .btn { align-self: flex-start; margin-top: var(--espaco-2); }
+.lista-links { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--espaco-2); }
+.lista-links a { font-weight: var(--peso-forte); }
+
+/* ----- Notícias: leitura completa ----- */
+.noticia { max-width: 46rem; margin-inline: auto; }
+.noticia__meta {
+    display: flex; gap: var(--espaco-4);
+    margin: var(--espaco-5) 0 var(--espaco-3);
+    font-size: var(--texto-xs); font-weight: var(--peso-titulo);
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--verde-700);
+}
+.noticia__titulo { margin-bottom: var(--espaco-5); }
+.noticia__imagem .foto { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--raio-lg); box-shadow: var(--sombra-md); }
+.noticia__texto { margin-top: var(--espaco-6); font-size: var(--texto-lg); }
+.noticia__texto p { max-width: var(--largura-texto); margin-bottom: var(--espaco-4); }
+.link-voltar { display: inline-flex; align-items: center; gap: var(--espaco-2); font-weight: var(--peso-forte); text-decoration: none; }
+.link-voltar::before { content: "←"; }
+.aviso-noticia { margin-bottom: var(--espaco-5); padding: var(--espaco-3) var(--espaco-4); background: var(--verde-50); border-radius: var(--raio-sm); color: var(--verde-800); }
+
+/* ----- Navegação entre âncoras: chips ficam logo abaixo do cabeçalho da página ----- */
+.indice-pagina { padding-block: var(--espaco-6) 0; }
+
+/* Utilitário de espaçamento */
+.mt-6 { margin-top: var(--espaco-6); }
