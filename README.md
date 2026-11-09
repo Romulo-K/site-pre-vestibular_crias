@@ -5,7 +5,7 @@ Projeto de extensão universitária.
 ## Estrutura
 
 ```
-site-pre-vestibular_crias/
+code/
 ├── index.html          Início
 ├── projeto.html        O Projeto
 ├── atividades.html     Atividades
@@ -20,7 +20,6 @@ site-pre-vestibular_crias/
 │   └── main.js         Menu mobile e ligação dos links
 ├── data/               Conteúdo que se repete (notícias, depoimentos, equipe, atividades)
 ├── assets/             logo, fonts, imagens, equipe, atividades, noticias, icones
-├── docs/design-system.html   Guia visual interno (pode ser apagado na entrega)
 ```
 
 ## Conteúdo pendente da ONG
