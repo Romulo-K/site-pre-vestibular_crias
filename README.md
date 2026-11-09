@@ -1,6 +1,6 @@
 # Pré-Vestibular Social ONG Crias — Site institucional
 
-Projeto de extensão universitária. Site estático (HTML5, CSS3 e JavaScript).
+Projeto de extensão universitária.
 
 ## Estrutura
 
@@ -29,7 +29,6 @@ site-pre-vestibular_crias/
 - [ ] Missão
 - [ ] Texto oficial sobre a ONG CRIAS e a parceria
 - [ ] Texto oficial sobre o CPOP
-- [ ] Textos sobre BNCC e ENEM
 - [ ] Lista de professores, funções e fotos autorizadas
 - [ ] Fotos das atividades
 - [ ] Notícias e depoimentos reais autorizados
@@ -37,4 +36,4 @@ site-pre-vestibular_crias/
 - [ ] Link público do formulário de voluntário
 - [ ] Links do Google Classroom, Drive e Meet
 - [ ] Redes sociais e contatos oficiais
-- [ ] Endereço, se a ONG quiser divulgar.
+- [ ] Banco de dados
