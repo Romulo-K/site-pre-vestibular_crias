@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block titulo %}Página não encontrada | {% endblock %}
+{% block descricao %}A página procurada não existe.{% endblock %}
+
+{% block conteudo %}
+    <section class="page-header">
+      <div class="container">
+        <h1>Página não encontrada</h1>
+        <p class="lead">O endereço pode ter mudado ou a página não existe mais.</p>
+        <div class="page-header__acoes">
+          <a class="btn btn--destaque" href="{% url 'paginas:inicio' %}">Voltar para o início</a>
+          <a class="btn btn--contorno" href="{% url 'paginas:contato' %}">Fale conosco</a>
+        </div>
+      </div>
+    </section>
+{% endblock %}

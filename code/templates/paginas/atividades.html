@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block titulo %}Atividades | {% endblock %}
+{% block descricao %}Aulas, palestras, simulados, convivência e passeios do Pré-Vestibular Social ONG Crias.{% endblock %}
+
+{% block conteudo %}
+    <section class="page-header">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Você está em">
+          <ol>
+            <li><a href="{% url 'paginas:inicio' %}">Início</a></li>
+            <li aria-current="page">Atividades</li>
+          </ol>
+        </nav>
+        <h1>Atividades</h1>
+        <p class="lead">A rotina do projeto: aulas, palestras, simulados, convivência e passeios.</p>
+      </div>
+    </section>
+    <div class="container indice-pagina">
+      <nav aria-label="Nesta página">
+        <ul>
+          <li><a href="#aulas">Aulas</a></li>
+          <li><a href="#palestras">Palestras</a></li>
+          <li><a href="#simulados">Simulados</a></li>
+          <li><a href="#convivencia">Convivência</a></li>
+          <li><a href="#passeios">Passeios</a></li>
+          <li><a href="#galeria">Galeria</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <section class="section" id="aulas" data-atividade="aulas" aria-labelledby="aulas-titulo">
+      <div class="container split atividade">
+        <figure class="foto-destaque">
+          <!-- IMAGEM: aulas. Troque pela foto real em data/atividades.js (ver assets/LEIA-ME.md) -->
+          <img src="{% static 'assets/placeholders/foto-hero.svg' %}" alt="Imagem ilustrativa de aula (substituir por foto real da ONG)" width="800" height="600" loading="lazy" data-campo="imagem">
+        </figure>
+        <article class="card atividade__card">
+          <h2 id="aulas-titulo" data-campo="titulo">Aulas</h2>
+          <p class="placeholder" data-campo="descricao">[DESCRIÇÃO OFICIAL DAS AULAS: DISCIPLINAS, DIAS E HORÁRIOS]</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section--suave" id="palestras" data-atividade="palestras" aria-labelledby="palestras-titulo">
+      <div class="container split atividade split--foto-esquerda">
+        <figure class="foto-destaque">
+          <!-- IMAGEM: palestras. Troque pela foto real em data/atividades.js (ver assets/LEIA-ME.md) -->
+          <img src="{% static 'assets/placeholders/foto-paisagem.svg' %}" alt="Imagem ilustrativa de palestra (substituir por foto real da ONG)" width="800" height="500" loading="lazy" data-campo="imagem">
+        </figure>
+        <article class="card atividade__card">
+          <h2 id="palestras-titulo" data-campo="titulo">Palestras</h2>
+          <p class="placeholder" data-campo="descricao">[DESCRIÇÃO OFICIAL DAS PALESTRAS]</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="simulados" data-atividade="simulados" aria-labelledby="simulados-titulo">
+      <div class="container split atividade">
+        <figure class="foto-destaque">
+          <!-- IMAGEM: simulados. Troque pela foto real em data/atividades.js (ver assets/LEIA-ME.md) -->
+          <img src="{% static 'assets/placeholders/foto-paisagem.svg' %}" alt="Imagem ilustrativa de simulado (substituir por foto real da ONG)" width="800" height="500" loading="lazy" data-campo="imagem">
+        </figure>
+        <article class="card atividade__card">
+          <h2 id="simulados-titulo" data-campo="titulo">Simulados</h2>
+          <p class="placeholder" data-campo="descricao">[DESCRIÇÃO OFICIAL DOS SIMULADOS]</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section--suave" id="convivencia" data-atividade="convivencia" aria-labelledby="convivencia-titulo">
+      <div class="container split atividade split--foto-esquerda">
+        <figure class="foto-destaque">
+          <!-- IMAGEM: convivencia. Troque pela foto real em data/atividades.js (ver assets/LEIA-ME.md) -->
+          <img src="{% static 'assets/placeholders/foto-paisagem.svg' %}" alt="Imagem ilustrativa de momento de convivência (substituir por foto real da ONG)" width="800" height="500" loading="lazy" data-campo="imagem">
+        </figure>
+        <article class="card atividade__card">
+          <h2 id="convivencia-titulo" data-campo="titulo">Convivência</h2>
+          <p class="placeholder" data-campo="descricao">[DESCRIÇÃO OFICIAL DOS MOMENTOS DE CONVIVÊNCIA]</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="passeios" data-atividade="passeios" aria-labelledby="passeios-titulo">
+      <div class="container split atividade">
+        <figure class="foto-destaque">
+          <!-- IMAGEM: passeios. Troque pela foto real em data/atividades.js (ver assets/LEIA-ME.md) -->
+          <img src="{% static 'assets/placeholders/foto-paisagem.svg' %}" alt="Imagem ilustrativa de passeio (substituir por foto real da ONG)" width="800" height="500" loading="lazy" data-campo="imagem">
+        </figure>
+        <article class="card atividade__card">
+          <h2 id="passeios-titulo" data-campo="titulo">Passeios</h2>
+          <p class="placeholder" data-campo="descricao">[DESCRIÇÃO OFICIAL DOS PASSEIOS]</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="galeria" aria-labelledby="galeria-titulo">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Momentos do projeto</p>
+          <h2 id="galeria-titulo">Galeria</h2>
+          <p class="lead">Fotos reais e autorizadas, adicionadas em data/atividades.js.</p>
+        </div>
+        <div class="grid" id="galeria-lista" data-render="galeria"><figure class="galeria__item"><div class="img-placeholder" role="img" aria-label="Espaço reservado para a foto 1 da galeria">[FOTO 1]</div></figure><figure class="galeria__item"><div class="img-placeholder" role="img" aria-label="Espaço reservado para a foto 2 da galeria">[FOTO 2]</div></figure><figure class="galeria__item"><div class="img-placeholder" role="img" aria-label="Espaço reservado para a foto 3 da galeria">[FOTO 3]</div></figure><figure class="galeria__item"><div class="img-placeholder" role="img" aria-label="Espaço reservado para a foto 4 da galeria">[FOTO 4]</div></figure><figure class="galeria__item"><div class="img-placeholder" role="img" aria-label="Espaço reservado para a foto 5 da galeria">[FOTO 5]</div></figure><figure class="galeria__item"><div class="img-placeholder" role="img" aria-label="Espaço reservado para a foto 6 da galeria">[FOTO 6]</div></figure></div>
+      </div>
+    </section>
+
+{% include "includes/cta_participe.html" %}
+{% endblock %}
+
+{% block dados %}
+  <script src="{% static 'data/atividades.js' %}" defer></script>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{% static 'js/render.js' %}" defer></script>
+  <script src="{% static 'js/galeria.js' %}" defer></script>
+{% endblock %}

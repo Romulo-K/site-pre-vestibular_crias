@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block titulo %}Contato | {% endblock %}
+{% block descricao %}Entre em contato com o Pré-Vestibular Social ONG Crias.{% endblock %}
+
+{% block conteudo %}
+    <section class="page-header">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Você está em">
+          <ol>
+            <li><a href="{% url 'paginas:inicio' %}">Início</a></li>
+            <li aria-current="page">Contato</li>
+          </ol>
+        </nav>
+        <h1>Contato</h1>
+        <p class="lead">Fale com a coordenação do projeto.</p>
+      </div>
+    </section>
+    <section class="section" id="canais" aria-labelledby="canais-titulo">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Canais oficiais</p>
+          <h2 id="canais-titulo">Fale com a coordenação</h2>
+        </div>
+        <div class="grid grid--2">
+          <article class="card contato-card">
+            <span class="icon-box"><svg class="icone" aria-hidden="true"><use href="#i-email"/></svg></span>
+            <h3>E-mail</h3>
+            <p class="contato-card__valor"><a href="{% url 'paginas:contato' %}" data-link="email" data-fill-text>[E-MAIL OFICIAL DA ONG]</a></p>
+          </article>
+          <article class="card contato-card">
+            <span class="icon-box"><svg class="icone" aria-hidden="true"><use href="#i-telefone"/></svg></span>
+            <h3>Telefone e WhatsApp</h3>
+            <p class="contato-card__valor placeholder" data-text="telefone">[TELEFONE OFICIAL DA ONG]</p>
+            <a class="btn btn--contorno" href="{% url 'paginas:contato' %}" data-link="whatsapp" data-optional>Chamar no WhatsApp <span class="btn__externo">Abre o WhatsApp em nova aba</span></a>
+          </article>
+          <article class="card contato-card">
+            <span class="icon-box"><svg class="icone" aria-hidden="true"><use href="#i-pin"/></svg></span>
+            <h3>Endereço e horário</h3>
+            <p class="contato-card__valor placeholder" data-text="endereco">[ENDEREÇO OFICIAL — somente se a ONG autorizar a divulgação]</p>
+            <p class="placeholder" data-text="horario">[HORÁRIO DE FUNCIONAMENTO]</p>
+            <a class="btn btn--contorno" href="{% url 'paginas:contato' %}" data-link="mapa" data-optional>Ver no mapa <span class="btn__externo">Abre o Google Maps em nova aba</span></a>
+          </article>
+          <article class="card contato-card">
+            <span class="icon-box"><svg class="icone" aria-hidden="true"><use href="#i-link"/></svg></span>
+            <h3>Redes sociais</h3>
+            <p class="placeholder" data-placeholder-for="instagram facebook youtube">[REDES SOCIAIS OFICIAIS DA ONG]</p>
+            <ul class="lista-links">
+              <li><a href="{% url 'paginas:contato' %}" data-link="instagram" data-optional>Instagram (abre em nova aba)</a></li>
+              <li><a href="{% url 'paginas:contato' %}" data-link="facebook" data-optional>Facebook (abre em nova aba)</a></li>
+              <li><a href="{% url 'paginas:contato' %}" data-link="youtube" data-optional>YouTube (abre em nova aba)</a></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+{% include "includes/cta_participe.html" %}
+{% endblock %}

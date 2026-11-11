@@ -1,0 +1,94 @@
+{% load static %}<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block titulo %}{% endblock %}Pré-Vestibular Social ONG Crias</title>
+  <meta name="description" content="{% block descricao %}{% endblock %}">
+  <meta name="theme-color" content="#046a45">
+  <link rel="icon" type="image/png" href="{% static 'assets/logo/favicon.png' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+{% include "includes/icones.html" %}
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="{% url 'paginas:inicio' %}" aria-label="Pré-Vestibular Social ONG Crias — página inicial">
+        <img class="logo__img" src="{% static 'assets/logo/logo-crias.png' %}" alt="" width="224" height="256">
+        <span class="logo__texto"><strong>Pré-Vestibular Social</strong><small>ONG Crias</small></span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">Menu</button>
+
+      <nav aria-label="Principal">
+        <ul class="nav-list" id="menu-principal">
+          <li><a href="{% url 'paginas:inicio' %}"{% if request.resolver_match.url_name == 'inicio' %} aria-current="page"{% endif %}>Início</a></li>
+          <li><a href="{% url 'paginas:projeto' %}"{% if request.resolver_match.url_name == 'projeto' %} aria-current="page"{% endif %}>O Projeto</a></li>
+          <li><a href="{% url 'paginas:atividades' %}"{% if request.resolver_match.url_name == 'atividades' %} aria-current="page"{% endif %}>Atividades</a></li>
+          <li><a href="{% url 'paginas:equipe' %}"{% if request.resolver_match.url_name == 'equipe' %} aria-current="page"{% endif %}>Equipe</a></li>
+          <li><a href="{% url 'paginas:alunos' %}"{% if request.resolver_match.url_name == 'alunos' %} aria-current="page"{% endif %}>Alunos</a></li>
+          <li><a href="{% url 'paginas:voluntarios' %}"{% if request.resolver_match.url_name == 'voluntarios' %} aria-current="page"{% endif %}>Voluntários</a></li>
+          <li><a href="{% url 'paginas:noticias' %}"{% if request.resolver_match.url_name == 'noticias' %} aria-current="page"{% endif %}>Notícias</a></li>
+          <li><a href="{% url 'paginas:contato' %}"{% if request.resolver_match.url_name == 'contato' %} aria-current="page"{% endif %}>Contato</a></li>
+          <li class="nav-cta"><a href="{% url 'paginas:alunos' %}#area-do-aluno">Área do aluno</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+{% block conteudo %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="logo logo--rodape" href="{% url 'paginas:inicio' %}" aria-label="Pré-Vestibular Social ONG Crias — página inicial">
+            <span class="logo__selo"><img class="logo__img" src="{% static 'assets/logo/logo-crias.png' %}" alt="" width="224" height="256"></span>
+            <span class="logo__texto"><strong>Pré-Vestibular Social</strong><small>ONG Crias</small></span>
+          </a>
+          <p class="placeholder">[TEXTO INSTITUCIONAL CURTO DA ONG PARA O RODAPÉ]</p>
+        </div>
+
+        <nav aria-label="Rodapé">
+          <h2 class="footer-titulo">Site</h2>
+          <ul>
+          <li><a href="{% url 'paginas:inicio' %}">Início</a></li>
+          <li><a href="{% url 'paginas:projeto' %}">O Projeto</a></li>
+          <li><a href="{% url 'paginas:atividades' %}">Atividades</a></li>
+          <li><a href="{% url 'paginas:equipe' %}">Equipe</a></li>
+          <li><a href="{% url 'paginas:alunos' %}">Alunos</a></li>
+          <li><a href="{% url 'paginas:voluntarios' %}">Voluntários</a></li>
+          <li><a href="{% url 'paginas:noticias' %}">Notícias</a></li>
+          <li><a href="{% url 'paginas:contato' %}">Contato</a></li>
+          </ul>
+        </nav>
+
+        <div>
+          <h2 class="footer-titulo">Fale conosco</h2>
+          <ul>
+            <li>E-mail: <a href="{% url 'paginas:contato' %}" data-link="email" data-fill-text>[E-MAIL OFICIAL DA ONG]</a></li>
+            <li>Telefone: <span class="placeholder" data-text="telefone">[TELEFONE OFICIAL]</span></li>
+            <li><a href="{% url 'paginas:contato' %}" data-link="whatsapp" data-optional>WhatsApp (abre em nova aba)</a></li>
+            <li><a href="{% url 'paginas:contato' %}" data-link="instagram" data-optional>Instagram (abre em nova aba)</a></li>
+            <li><a href="{% url 'paginas:contato' %}" data-link="facebook" data-optional>Facebook (abre em nova aba)</a></li>
+            <li><a href="{% url 'paginas:contato' %}" data-link="youtube" data-optional>YouTube (abre em nova aba)</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="footer-copy">&copy; <span data-ano>{% now "Y" %}</span> Pré-Vestibular Social ONG Crias. Projeto de extensão universitária.</p>
+    </div>
+  </footer>
+
+  {# Endereço da pasta de arquivos estáticos, usado pelo JavaScript para achar as imagens #}
+  <script>const STATIC_URL = "{% static '' %}";</script>
+  <script src="{% static 'js/config.js' %}" defer></script>
+  {% block dados %}{% endblock %}
+  <script src="{% static 'js/main.js' %}" defer></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

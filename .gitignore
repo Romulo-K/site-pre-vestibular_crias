@@ -1,0 +1,23 @@
+# ---- Segredos e arquivos locais: NUNCA vão para o GitHub ----
+.env
+.env.*
+!.env.example
+
+# Banco de dados local e fotos enviadas pelo Admin
+*.sqlite3
+code/media/
+
+# Ambiente virtual do Python
+.venv/
+venv/
+
+# Arquivos gerados pelo Python/Django
+__pycache__/
+*.pyc
+code/staticfiles/
+
+# Sistema / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

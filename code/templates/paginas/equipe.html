@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block titulo %}Equipe | {% endblock %}
+{% block descricao %}Conheça a coordenação, os professores e a equipe de apoio do Pré-Vestibular Social ONG Crias.{% endblock %}
+
+{% block conteudo %}
+    <section class="page-header">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Você está em">
+          <ol>
+            <li><a href="{% url 'paginas:inicio' %}">Início</a></li>
+            <li aria-current="page">Equipe</li>
+          </ol>
+        </nav>
+        <h1>Equipe</h1>
+        <p class="lead">Quem faz o projeto acontecer.</p>
+      </div>
+    </section>
+    <div class="container indice-pagina">
+      <nav aria-label="Nesta página">
+        <ul>
+          <li><a href="#coordenacao">Coordenação</a></li>
+          <li><a href="#professores">Professores</a></li>
+          <li><a href="#apoio">Equipe de apoio</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <section class="section" id="coordenacao" aria-labelledby="coordenacao-titulo">
+      <div class="container">
+        <div class="section-head"><h2 id="coordenacao-titulo">Coordenação</h2></div>
+        <div id="lista-coordenacao" data-render="equipe" data-grupo="coordenacao" data-grade="grid--pessoas">
+          <p class="placeholder">[INTEGRANTES DA COORDENAÇÃO — carregados de data/equipe.js]</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--suave" id="professores" aria-labelledby="professores-titulo">
+      <div class="container">
+        <div class="section-head"><h2 id="professores-titulo">Professores</h2></div>
+        <div id="lista-professores" data-render="equipe" data-grupo="professores" data-grade="grid--pessoas">
+          <p class="placeholder">[PROFESSORES — carregados de data/equipe.js]</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="apoio" aria-labelledby="apoio-titulo">
+      <div class="container">
+        <div class="section-head"><h2 id="apoio-titulo">Equipe de apoio</h2></div>
+        <div id="lista-apoio" data-render="equipe" data-grupo="apoio" data-grade="grid--pessoas">
+          <p class="placeholder">[EQUIPE DE APOIO — carregada de data/equipe.js]</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="participe" aria-labelledby="participe-titulo">
+      <div class="container">
+        <div class="cta-final">
+          <div>
+            <p class="eyebrow">Voluntariado</p>
+            <h2 id="participe-titulo">Quer fazer parte da equipe?</h2>
+            <p>Venha contribuir com o projeto como voluntário.</p>
+          </div>
+          <div class="cta-final__acoes">
+            <a class="btn btn--destaque btn--lg" href="{% url 'paginas:voluntarios' %}" data-link="formularioVoluntario">Quero ser voluntário <svg class="icone" aria-hidden="true"><use href="#i-seta-diag"/></svg><span class="btn__externo">Abre o Google Forms em nova aba</span></a>
+            <a class="btn btn--contorno-claro btn--lg" href="{% url 'paginas:contato' %}">Fale conosco</a>
+          </div>
+        </div>
+      </div>
+    </section>
+{% endblock %}
+
+{% block dados %}
+  <script src="{% static 'data/equipe.js' %}" defer></script>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{% static 'js/render.js' %}" defer></script>
+{% endblock %}

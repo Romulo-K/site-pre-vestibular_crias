@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block titulo %}Notícias | {% endblock %}
+{% block descricao %}Notícias do Pré-Vestibular Social ONG Crias.{% endblock %}
+
+{% block conteudo %}
+    <section class="page-header">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Você está em">
+          <ol>
+            <li><a href="{% url 'paginas:inicio' %}">Início</a></li>
+            <li aria-current="page">Notícias</li>
+          </ol>
+        </nav>
+        <h1>Notícias</h1>
+        <p class="lead">Acompanhe as novidades do projeto.</p>
+      </div>
+    </section>
+    <section class="section" id="noticias-lista" aria-labelledby="noticias-lista-titulo">
+      <div class="container">
+        <div class="section-head" id="noticias-cabecalho">
+          <h2 id="noticias-lista-titulo">Últimas notícias</h2>
+        </div>
+        <div id="lista-noticias" data-render="noticias-pagina">
+          <p class="placeholder">[NENHUMA NOTÍCIA PUBLICADA — adicione em data/noticias.js]</p>
+        </div>
+        <article id="noticia-detalhe" class="noticia" hidden></article>
+      </div>
+    </section>
+
+{% include "includes/cta_participe.html" %}
+{% endblock %}
+
+{% block dados %}
+  <script src="{% static 'data/noticias.js' %}" defer></script>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{% static 'js/render.js' %}" defer></script>
+{% endblock %}

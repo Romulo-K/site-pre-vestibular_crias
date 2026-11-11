@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block titulo %}Voluntários | {% endblock %}
+{% block descricao %}Saiba como ser voluntário no Pré-Vestibular Social ONG Crias.{% endblock %}
+
+{% block conteudo %}
+    <section class="page-header">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Você está em">
+          <ol>
+            <li><a href="{% url 'paginas:inicio' %}">Início</a></li>
+            <li aria-current="page">Voluntários</li>
+          </ol>
+        </nav>
+        <h1>Voluntários</h1>
+        <p class="lead">Venha contribuir com o projeto.</p>
+        <div class="page-header__acoes"><a class="btn btn--destaque" href="{% url 'paginas:voluntarios' %}" data-link="formularioVoluntario">Quero ser voluntário <svg class="icone" aria-hidden="true"><use href="#i-seta-diag"/></svg><span class="btn__externo">Abre o Google Forms em nova aba</span></a>
+        <a class="btn btn--contorno" href="#como-participar">Como participar <svg class="icone" aria-hidden="true"><use href="#i-seta-baixo"/></svg></a></div>
+      </div>
+    </section>
+    <section class="section" id="como-participar" aria-labelledby="como-participar-titulo">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Voluntariado</p>
+          <h2 id="como-participar-titulo">Como participar</h2>
+          <p class="placeholder">[TEXTO OFICIAL DA ONG SOBRE COMO FUNCIONA O VOLUNTARIADO: PERFIL, DISPONIBILIDADE E COMPROMISSO]</p>
+        </div>
+        <ol class="passos">
+          <li class="passo">
+            <h3>Preencha o formulário</h3>
+            <p>O cadastro de interesse é feito por um formulário do Google Forms, em uma nova aba.</p>
+          </li>
+          <li class="passo">
+            <h3>[SEGUNDA ETAPA]</h3>
+            <p class="placeholder">[TEXTO OFICIAL: COMO A COORDENAÇÃO ENTRA EM CONTATO]</p>
+          </li>
+          <li class="passo">
+            <h3>[TERCEIRA ETAPA]</h3>
+            <p class="placeholder">[TEXTO OFICIAL: INTEGRAÇÃO E INÍCIO DAS ATIVIDADES]</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section section--suave" id="areas-de-atuacao" aria-labelledby="areas-de-atuacao-titulo">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Onde você pode ajudar</p>
+          <h2 id="areas-de-atuacao-titulo">Áreas de atuação</h2>
+        </div>
+        <div class="grid">
+          <article class="card is-placeholder">
+            <span class="icon-box"><svg class="icone" aria-hidden="true"><use href="#i-livro"/></svg></span>
+            <h3>[ÁREA DE ATUAÇÃO]</h3>
+            <p class="placeholder">[DESCRIÇÃO OFICIAL DA ÁREA]</p>
+          </article>
+          <article class="card is-placeholder">
+            <span class="icon-box"><svg class="icone" aria-hidden="true"><use href="#i-docentes"/></svg></span>
+            <h3>[ÁREA DE ATUAÇÃO]</h3>
+            <p class="placeholder">[DESCRIÇÃO OFICIAL DA ÁREA]</p>
+          </article>
+          <article class="card is-placeholder">
+            <span class="icon-box"><svg class="icone" aria-hidden="true"><use href="#i-voluntario"/></svg></span>
+            <h3>[ÁREA DE ATUAÇÃO]</h3>
+            <p class="placeholder">[DESCRIÇÃO OFICIAL DA ÁREA]</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="formulario-voluntario" aria-labelledby="formulario-voluntario-titulo">
+      <div class="container">
+        <div class="cta-final">
+          <div>
+            <p class="eyebrow">Inscrição</p>
+            <h2 id="formulario-voluntario-titulo">Quero ser voluntário</h2>
+            <p>Preencha o formulário e a coordenação entrará em contato.</p>
+          </div>
+          <div class="cta-final__acoes">
+            <a class="btn btn--destaque btn--lg" href="{% url 'paginas:contato' %}" data-link="formularioVoluntario">Quero ser voluntário <svg class="icone" aria-hidden="true"><use href="#i-seta-diag"/></svg><span class="btn__externo">Abre o Google Forms em nova aba</span></a>
+            <a class="btn btn--contorno-claro" href="{% url 'paginas:contato' %}">Tirar dúvidas</a>
+          </div>
+        </div>
+      </div>
+    </section>
+{% endblock %}

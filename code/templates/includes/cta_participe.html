@@ -1,0 +1,16 @@
+{# Chamada final "Quer fazer parte?" — usada em várias páginas #}
+    <section class="section" id="participe" aria-labelledby="participe-titulo">
+      <div class="container">
+        <div class="cta-final">
+          <div>
+            <p class="eyebrow">Participe</p>
+            <h2 id="participe-titulo">Quer fazer parte?</h2>
+            <p>Escolha como participar do Pré-Vestibular Social ONG Crias.</p>
+          </div>
+          <div class="cta-final__acoes">
+            <a class="btn btn--destaque btn--lg" href="{% url 'paginas:alunos' %}" data-link="formularioAluno">Quero ser aluno <svg class="icone" aria-hidden="true"><use href="#i-seta-diag"/></svg><span class="btn__externo">Abre o Google Forms em nova aba</span></a>
+            <a class="btn btn--claro btn--lg" href="{% url 'paginas:voluntarios' %}" data-link="formularioVoluntario">Quero ser voluntário <svg class="icone" aria-hidden="true"><use href="#i-seta-diag"/></svg><span class="btn__externo">Abre o Google Forms em nova aba</span></a>
+          </div>
+        </div>
+      </div>
+    </section>

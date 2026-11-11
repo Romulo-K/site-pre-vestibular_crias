@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block titulo %}O Projeto | {% endblock %}
+{% block descricao %}Conheça a história, a missão e o caráter social do Pré-Vestibular Social ONG Crias.{% endblock %}
+
+{% block conteudo %}
+    <section class="page-header">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Você está em">
+          <ol>
+            <li><a href="{% url 'paginas:inicio' %}">Início</a></li>
+            <li aria-current="page">O Projeto</li>
+          </ol>
+        </nav>
+        <h1>O Projeto</h1>
+        <p class="lead">Conheça quem somos, nossa história e nosso compromisso social.</p>
+      </div>
+    </section>
+    <div class="container indice-pagina">
+      <nav aria-label="Nesta página">
+        <ul>
+          <li><a href="#historia">História</a></li>
+          <li><a href="#missao">Missão</a></li>
+          <li><a href="#educacao-social">Educação social</a></li>
+          <li><a href="#parceria-crias">Parceria com a ONG CRIAS</a></li>
+          <li><a href="#enem">ENEM</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <section class="section" id="historia" aria-labelledby="historia-titulo">
+      <div class="container split">
+        <div class="stack">
+          <p class="eyebrow">Quem somos</p>
+          <h2 id="historia-titulo">Nossa história</h2>
+          <p class="placeholder">[TEXTO OFICIAL DA ONG SOBRE A HISTÓRIA DO PROJETO: COMO SURGIU, QUANDO COMEÇOU E MARCOS IMPORTANTES]</p>
+        </div>
+        <figure class="foto-destaque">
+          <!-- IMAGEM: história. TROCAR src e alt por uma foto real e autorizada (ver assets/LEIA-ME.md) -->
+          <img src="{% static 'assets/placeholders/foto-hero.svg' %}" alt="Imagem ilustrativa de estudantes em sala de aula (substituir por foto real da ONG)" width="800" height="600" loading="lazy">
+          <figcaption class="foto-destaque__etiqueta">Nossa trajetória</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section section--suave" id="missao" aria-labelledby="missao-titulo">
+      <div class="container">
+        <div class="missao">
+          <p class="eyebrow">O que nos move</p>
+          <h2 id="missao-titulo">Nossa missão</h2>
+          <p class="placeholder">[TEXTO OFICIAL DA ONG SOBRE A MISSÃO, VISÃO E VALORES]</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="educacao-social" aria-labelledby="educacao-social-titulo">
+      <div class="container split split--foto-esquerda">
+        <figure class="foto-destaque">
+          <!-- IMAGEM: educação social. TROCAR src e alt por uma foto real e autorizada -->
+          <img src="{% static 'assets/placeholders/foto-paisagem.svg' %}" alt="Imagem ilustrativa de atividade em grupo (substituir por foto real da ONG)" width="800" height="500" loading="lazy">
+          <figcaption class="foto-destaque__selo">Educação social</figcaption>
+        </figure>
+        <div class="stack">
+          <p class="eyebrow">Compromisso social</p>
+          <h2 id="educacao-social-titulo">Educação social</h2>
+          <p class="placeholder">[TEXTO OFICIAL DA ONG SOBRE EDUCAÇÃO SOCIAL: PÚBLICO ATENDIDO E COMO O PROJETO PROMOVE ACESSO À EDUCAÇÃO]</p>
+          <p><a class="link-seta" href="{% url 'paginas:atividades' %}">Veja as atividades do projeto</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--suave" id="parceria-crias" aria-labelledby="parceria-crias-titulo">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Parceria</p>
+          <h2 id="parceria-crias-titulo">Parceria com a ONG CRIAS</h2>
+        </div>
+        <article class="card">
+          <p class="placeholder">[TEXTO OFICIAL DA ONG SOBRE A PARCERIA COM A ONG CRIAS: QUEM É A CRIAS, COMO SURGIU A PARCERIA E O QUE CADA PARTE FAZ]</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="enem" aria-labelledby="enem-titulo">
+      <div class="container split split--5-7">
+        <div class="stack">
+          <p class="eyebrow">Preparação</p>
+          <h2 id="enem-titulo">Preparação para o ENEM e vestibulares</h2>
+        </div>
+        <article class="card">
+          <p class="placeholder">[TEXTO OFICIAL DA ONG SOBRE A PREPARAÇÃO PARA O ENEM E VESTIBULARES]</p>
+        </article>
+      </div>
+    </section>
+
+{% include "includes/cta_participe.html" %}
+{% endblock %}
