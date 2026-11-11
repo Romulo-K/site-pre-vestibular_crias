@@ -14,9 +14,9 @@
 {% include "includes/icones.html" %}
   <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
   {% if site_em_teste %}
-  <div class="aviso-teste" role="note">
+  <aside class="aviso-teste" aria-label="Aviso de versão de teste">
     <div class="container"><strong>Versão de teste.</strong> Textos e imagens são provisórios e serão substituídos pelo conteúdo oficial da ONG.</div>
-  </div>
+  </aside>
   {% endif %}
 
   <header class="site-header">
@@ -44,7 +44,7 @@
     </div>
   </header>
 
-  <main id="conteudo">
+  <main id="conteudo" tabindex="-1">
 {% block conteudo %}{% endblock %}
   </main>
 

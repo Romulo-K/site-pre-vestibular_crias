@@ -36,7 +36,7 @@
 
         // Se a janela ficar larga (menu horizontal), garante o menu fechado
         window.addEventListener("resize", function () {
-            if (window.innerWidth >= 900 && botao.getAttribute("aria-expanded") === "true") abrir(false);
+            if (window.innerWidth >= 1180 && botao.getAttribute("aria-expanded") === "true") abrir(false);
         });
 
         // Fecha com a tecla Esc e devolve o foco ao botão

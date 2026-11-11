@@ -691,6 +691,9 @@ span.placeholder { display: inline-block; padding: 0 var(--espaco-2); margin: 0;
     cursor: pointer;
 }
 .nav-toggle[aria-expanded="true"] { background: var(--verde-50); }
+/* no celular e no tablet o botão Menu fica sempre encostado à direita */
+.nav-toggle { margin-left: auto; }
+.header-inner > nav { flex: 0 0 0; margin-left: calc(var(--espaco-4) * -1); }
 
 /* Lista de links (celular: painel abaixo do cabeçalho) */
 .nav-list {
@@ -809,8 +812,11 @@ span.placeholder { display: inline-block; padding: 0 var(--espaco-2); margin: 0;
 @media (min-width: 860px) {
     .split { grid-template-columns: 1fr 1fr; gap: var(--espaco-8); }
     .split--foto-esquerda > :first-child { order: -1; }
+}
 
-    /* Menu horizontal */
+/* menu horizontal só em tela grande (antes disso os 8 links + Área do aluno não cabem sem quebrar linha) */
+@media (min-width: 1180px) {
+    .header-inner > nav { flex: initial; margin-left: 0; }
     .nav-toggle { display: none; }
     .nav-list {
         display: flex;
@@ -823,7 +829,7 @@ span.placeholder { display: inline-block; padding: 0 var(--espaco-2); margin: 0;
         box-shadow: none;
     }
     .nav-list li + li { margin-top: 0; }
-    .nav-list a { padding: var(--espaco-2) var(--espaco-3); font-size: var(--texto-sm); }
+    .nav-list a { padding: var(--espaco-2) var(--espaco-3); font-size: var(--texto-sm); white-space: nowrap; }
     .nav-list a[aria-current="page"] { background: none; box-shadow: inset 0 -3px 0 var(--cor-destaque); border-radius: 0; }
     .nav-list .nav-cta { margin: 0 0 0 var(--espaco-3); }
     .nav-list .nav-cta a { padding: 0 var(--espaco-5); }
@@ -1192,3 +1198,7 @@ span.placeholder { display: inline-block; padding: 0 var(--espaco-2); margin: 0;
 
 /* Faixa "Versão de teste" (SITE_EM_TESTE=1 no .env) */
 .aviso-teste { background: var(--logo-amarelo); color: var(--texto); font-size: var(--texto-sm); text-align: center; padding: var(--espaco-2) 0; }
+
+/* revisão final (etapa 11) */
+.card--destaque .link-seta { color: var(--verde-900); }  /* contraste melhor no fundo amarelo */
+main:focus { outline: none; }  /* o "Ir para o conteúdo" leva o foco pro main sem desenhar borda nele */
