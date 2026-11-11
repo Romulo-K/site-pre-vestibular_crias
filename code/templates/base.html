@@ -56,7 +56,7 @@
             <span class="logo__selo"><img class="logo__img" src="{% static 'assets/logo/logo-crias.png' %}" alt="" width="224" height="256"></span>
             <span class="logo__texto"><strong>Pré-Vestibular Social</strong><small>ONG Crias</small></span>
           </a>
-          <p class="placeholder">[TEXTO INSTITUCIONAL CURTO DA ONG PARA O RODAPÉ]</p>
+          <p>Pré-vestibular social que prepara estudantes para o ENEM e os vestibulares. Ensino social, de acesso a todos.</p>
         </div>
 
         <nav aria-label="Rodapé">
@@ -76,12 +76,14 @@
         <div>
           <h2 class="footer-titulo">Fale conosco</h2>
           <ul>
-            <li>E-mail: <a href="{% url 'paginas:contato' %}" data-link="email" data-fill-text>[E-MAIL OFICIAL DA ONG]</a></li>
-            <li>Telefone: <span class="placeholder" data-text="telefone">[TELEFONE OFICIAL]</span></li>
-            <li><a href="{% url 'paginas:contato' %}" data-link="whatsapp" data-optional>WhatsApp (abre em nova aba)</a></li>
-            <li><a href="{% url 'paginas:contato' %}" data-link="instagram" data-optional>Instagram (abre em nova aba)</a></li>
-            <li><a href="{% url 'paginas:contato' %}" data-link="facebook" data-optional>Facebook (abre em nova aba)</a></li>
-            <li><a href="{% url 'paginas:contato' %}" data-link="youtube" data-optional>YouTube (abre em nova aba)</a></li>
+            {# os contatos vêm do painel (Links e contatos do site). só aparece o que estiver preenchido #}
+            {% if config.email %}<li>E-mail: <a href="mailto:{{ config.email }}">{{ config.email }}</a></li>{% endif %}
+            {% if config.telefone %}<li>Telefone: {{ config.telefone }}</li>{% endif %}
+            {% if config.whatsapp %}<li><a href="{{ config.link_whatsapp }}" target="_blank" rel="noopener">WhatsApp (abre em nova aba)</a></li>{% endif %}
+            {% if config.instagram %}<li><a href="{{ config.instagram }}" target="_blank" rel="noopener">Instagram (abre em nova aba)</a></li>{% endif %}
+            {% if config.facebook %}<li><a href="{{ config.facebook }}" target="_blank" rel="noopener">Facebook (abre em nova aba)</a></li>{% endif %}
+            {% if config.youtube %}<li><a href="{{ config.youtube }}" target="_blank" rel="noopener">YouTube (abre em nova aba)</a></li>{% endif %}
+            <li><a href="{% url 'paginas:contato' %}">Página de contato</a></li>
           </ul>
         </div>
       </div>
@@ -90,6 +92,8 @@
     </div>
   </footer>
 
+  {# links dos botões (formulários, classroom...) vindos do painel, pro javascript ler #}
+  {{ config_js|json_script:"site-config" }}
   <script src="{% static 'js/config.js' %}" defer></script>
   <script src="{% static 'js/main.js' %}" defer></script>
   {% block scripts %}{% endblock %}

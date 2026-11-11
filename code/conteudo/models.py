@@ -190,3 +190,71 @@ class Depoimento(models.Model):
     def clean(self):
         if not self.autorizado:
             raise ValidationError({"autorizado": "Só publique depoimentos autorizados pela pessoa."})
+
+
+# ---------------- links e contatos do site ----------------
+# tabela com uma linha só, onde a coordenação troca os links e contatos pelo painel
+
+class ConfiguracaoSite(models.Model):
+    # inscrições (google forms)
+    formulario_aluno = models.URLField("formulário de inscrição de aluno", blank=True,
+                                       help_text="Link de RESPOSTA do Google Forms (o do botão Enviar), nunca o de edição.")
+    formulario_voluntario = models.URLField("formulário de inscrição de voluntário", blank=True)
+
+    # área do aluno
+    classroom = models.URLField("Google Classroom", blank=True, help_text="Link da turma.")
+    drive = models.URLField("Google Drive", blank=True, help_text="Link da pasta de materiais.")
+    meet = models.URLField("Google Meet", blank=True, help_text="Link dos encontros online.")
+
+    # contatos
+    email = models.EmailField("e-mail", blank=True)
+    telefone = models.CharField("telefone", max_length=30, blank=True, help_text="Do jeito que deve aparecer. Ex.: (21) 99999-9999")
+    whatsapp = models.CharField("WhatsApp", max_length=20, blank=True,
+                                help_text="Só números, com DDD. Ex.: 21999999999")
+    endereco = models.CharField("endereço", max_length=200, blank=True, help_text="Só se a ONG quiser divulgar.")
+    horario = models.CharField("horário de atendimento", max_length=120, blank=True)
+    mapa = models.URLField("link do Google Maps", blank=True)
+
+    # redes sociais
+    instagram = models.URLField("Instagram", blank=True)
+    facebook = models.URLField("Facebook", blank=True)
+    youtube = models.URLField("YouTube", blank=True)
+
+    class Meta:
+        db_table = "configuracao_site"
+        verbose_name = "links e contatos do site"
+        verbose_name_plural = "links e contatos do site"
+
+    def __str__(self):
+        return "Links e contatos do site"
+
+    @classmethod
+    def carregar(cls):
+        # pega a única linha da tabela (se ainda não existir, cria vazia)
+        config, criada = cls.objects.get_or_create(pk=1)
+        return config
+
+    def link_whatsapp(self):
+        # transforma 21999999999 em https://wa.me/5521999999999
+        numeros = "".join(c for c in self.whatsapp if c.isdigit())
+        if not numeros:
+            return ""
+        if not numeros.startswith("55"):
+            numeros = "55" + numeros
+        return "https://wa.me/" + numeros
+
+    def para_javascript(self):
+        # os nomes que o static/js/main.js usa nos botões (data-link="...")
+        return {
+            "formularioAluno": self.formulario_aluno,
+            "formularioVoluntario": self.formulario_voluntario,
+            "classroom": self.classroom,
+            "drive": self.drive,
+            "meet": self.meet,
+            "email": self.email,
+            "whatsapp": self.link_whatsapp(),
+            "mapa": self.mapa,
+            "instagram": self.instagram,
+            "facebook": self.facebook,
+            "youtube": self.youtube,
+        }

@@ -36,7 +36,7 @@
             <span class="acesso-card__texto">
               <p class="acesso-card__rotulo">Inscrição de alunos</p>
               <h3 class="acesso-card__titulo">Quero ser aluno</h3>
-              <p class="placeholder">[DESCRIÇÃO CURTA: QUEM PODE SER ALUNO]</p>
+              <p>Para quem quer se preparar para o ENEM e os vestibulares.</p>
               <p class="acesso-card__externo">Abre o formulário no Google Forms em nova aba</p>
             </span>
             <span class="acesso-card__seta" aria-hidden="true"><svg class="icone"><use href="#i-seta-diag"/></svg></span>
@@ -46,7 +46,7 @@
             <span class="acesso-card__texto">
               <p class="acesso-card__rotulo">Inscrição de voluntários</p>
               <h3 class="acesso-card__titulo">Quero ser voluntário</h3>
-              <p class="placeholder">[DESCRIÇÃO CURTA: COMO O VOLUNTÁRIO PODE AJUDAR]</p>
+              <p>Para quem quer ajudar com aulas, orientação ou no apoio às atividades.</p>
               <p class="acesso-card__externo">Abre o formulário no Google Forms em nova aba</p>
             </span>
             <span class="acesso-card__seta" aria-hidden="true"><svg class="icone"><use href="#i-seta-diag"/></svg></span>
@@ -62,8 +62,8 @@
           <p class="eyebrow">Pré-Vestibular Social ONG Crias</p>
           <h2 id="apresentacao-titulo">Você sonha em ingressar na universidade?</h2>
           <!-- Rascunho do protótipo (confirmar com a ONG antes de usar): "A ONG Crias oferece um curso pré-vestibular social gratuito, com aulas presenciais, apoio pedagógico e atividades complementares para fortalecer o acesso ao ensino superior." -->
-          <p class="placeholder">[TEXTO OFICIAL DA ONG: APRESENTAÇÃO DO PROJETO PARA QUEM QUER ENTRAR NA UNIVERSIDADE]</p>
-          <p class="apresentacao__local"><svg class="icone" aria-hidden="true"><use href="#i-pin"/></svg> <span class="placeholder">[MODALIDADE E LOCAL DAS AULAS]</span></p>
+          <p>O Pré-Vestibular Social ONG Crias prepara estudantes para o ENEM e os vestibulares com aulas, simulados, palestras e atividades que vão além da sala de aula. A ideia é simples: um ensino social, de acesso a todos, para que mais jovens cheguem à universidade.</p>
+          <p class="apresentacao__local"><svg class="icone" aria-hidden="true"><use href="#i-pin"/></svg> <span class="placeholder">[LOCAL E MODALIDADE DAS AULAS — A ONG VAI INFORMAR]</span></p>
         </div>
 
         <div class="card card--verde beneficios" id="como-funciona">
@@ -74,21 +74,21 @@
                 <span class="icon-box" aria-hidden="true"><svg class="icone"><use href="#i-livro"/></svg></span>
                 <div>
                   <h4>Aulas</h4>
-                  <p class="placeholder">[DESCRIÇÃO DAS AULAS]</p>
+                  <p>Conteúdos cobrados no ENEM e nos vestibulares, com professores e materiais de apoio.</p>
                 </div>
               </li>
               <li class="beneficios__item">
                 <span class="icon-box" aria-hidden="true"><svg class="icone"><use href="#i-simulado"/></svg></span>
                 <div>
                   <h4>Simulados e palestras</h4>
-                  <p class="placeholder">[DESCRIÇÃO DOS SIMULADOS E PALESTRAS]</p>
+                  <p>Simulados para treinar a prova e palestras sobre universidade, carreira e futuro.</p>
                 </div>
               </li>
               <li class="beneficios__item">
                 <span class="icon-box" aria-hidden="true"><svg class="icone"><use href="#i-sorriso"/></svg></span>
                 <div>
                   <h4>Convivência e passeios</h4>
-                  <p class="placeholder">[DESCRIÇÃO DA CONVIVÊNCIA E DOS PASSEIOS]</p>
+                  <p>Momentos de integração da turma e passeios que ampliam o aprendizado.</p>
                 </div>
               </li>
             </ul>
@@ -96,7 +96,7 @@
 
           <div class="beneficios__inscricao" id="como-se-inscrever">
             <h3>Como se inscrever</h3>
-            <p class="placeholder">[TEXTO OFICIAL: COMO FUNCIONA O PROCESSO DE INSCRIÇÃO]</p>
+            <p>A inscrição é feita por um formulário online. Depois é só aguardar as orientações da coordenação.</p>
             <a class="btn btn--destaque" href="{% url 'paginas:alunos' %}" data-link="formularioAluno">Quero ser aluno <svg class="icone" aria-hidden="true"><use href="#i-seta-diag"/></svg><span class="btn__externo">Abre o Google Forms em nova aba</span></a>
             <a class="btn btn--claro" href="{% url 'paginas:voluntarios' %}" data-link="formularioVoluntario">Quero ser voluntário <svg class="icone" aria-hidden="true"><use href="#i-seta-diag"/></svg><span class="btn__externo">Abre o Google Forms em nova aba</span></a>
           </div>
@@ -115,7 +115,7 @@
         <div class="stack">
           <p class="eyebrow">Sobre o projeto</p>
           <h2 id="sobre-titulo">Ensino social de acesso a todos.</h2>
-          <p class="placeholder">[TEXTO OFICIAL DA ONG: CARÁTER SOCIAL DO PROJETO, PÚBLICO ATENDIDO E COMPROMISSO COM A COMUNIDADE]</p>
+          <p>Acreditamos que a educação abre portas. Por isso o projeto oferece preparação para o ENEM e os vestibulares com acolhimento e compromisso com cada estudante, para que chegar ao ensino superior seja possível para todos.</p>
           <p><a class="btn" href="{% url 'paginas:projeto' %}">Saiba mais sobre o projeto <svg class="icone" aria-hidden="true"><use href="#i-seta"/></svg></a></p>
         </div>
       </div>
@@ -188,19 +188,19 @@
           <article class="card card--destaque card--link">
             <span class="icon-box" aria-hidden="true"><svg class="icone"><use href="#i-docentes"/></svg></span>
             <h3><a class="link-card" href="{% url 'paginas:equipe' %}">Corpo docente</a></h3>
-            <p class="placeholder">[TEXTO OFICIAL]</p>
+            <p>Professores comprometidos com o aprendizado de cada aluno, com aulas e atividades criativas.</p>
             <span class="link-seta">Conhecer</span>
           </article>
           <article class="card card--link">
             <span class="icon-box" aria-hidden="true"><svg class="icone"><use href="#i-simulado"/></svg></span>
             <h3><a class="link-card" href="{% url 'paginas:atividades' %}#simulados">Simulados</a></h3>
-            <p class="placeholder">[TEXTO OFICIAL]</p>
+            <p>Provas no estilo do ENEM para treinar o tempo, a estratégia e acompanhar a evolução.</p>
             <span class="link-seta">Conhecer</span>
           </article>
           <article class="card card--link">
             <span class="icon-box" aria-hidden="true"><svg class="icone"><use href="#i-livro"/></svg></span>
             <h3><a class="link-card" href="{% url 'paginas:projeto' %}#enem">Aulas e preparação para o ENEM e vestibulares</a></h3>
-            <p class="placeholder">[TEXTO OFICIAL]</p>
+            <p>Aulas das áreas cobradas no ENEM, com materiais no Google Drive e atividades no Classroom.</p>
             <span class="link-seta">Conhecer</span>
           </article>
         </div>

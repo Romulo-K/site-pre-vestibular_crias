@@ -3,9 +3,10 @@
 # os formulários o django monta sozinho a partir do models.py
 
 from django.contrib import admin
+from django.shortcuts import redirect
 from django.utils.html import format_html
 
-from .models import Depoimento, FotoGaleria, Integrante, Noticia
+from .models import ConfiguracaoSite, Depoimento, FotoGaleria, Integrante, Noticia
 
 # títulos que aparecem no topo do painel
 admin.site.site_header = "Painel — Pré-Vestibular Social ONG Crias"
@@ -93,3 +94,27 @@ class DepoimentoAdmin(admin.ModelAdmin):
     list_filter = ["ativo"]
     search_fields = ["nome", "turma", "texto"]
     fields = ["nome", "turma", "texto", "foto", "autorizado", "ordem", "ativo"]
+
+
+# ---------------- links e contatos ----------------
+
+@admin.register(ConfiguracaoSite)
+class ConfiguracaoSiteAdmin(admin.ModelAdmin):
+    fieldsets = [
+        ("Inscrições (Google Forms)", {"fields": ["formulario_aluno", "formulario_voluntario"]}),
+        ("Área do aluno", {"fields": ["classroom", "drive", "meet"]}),
+        ("Contatos", {"fields": ["email", "telefone", "whatsapp", "endereco", "horario", "mapa"]}),
+        ("Redes sociais", {"fields": ["instagram", "facebook", "youtube"]}),
+    ]
+
+    # é uma linha só: não deixa criar outra nem apagar
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+    # clicando em "Links e contatos do site" já abre direto pra editar
+    def changelist_view(self, request, extra_context=None):
+        config = ConfiguracaoSite.carregar()
+        return redirect("admin:conteudo_configuracaosite_change", config.pk)

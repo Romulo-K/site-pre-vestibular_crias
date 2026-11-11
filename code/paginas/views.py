@@ -11,17 +11,17 @@ from conteudo.models import Depoimento, FotoGaleria, Integrante, Noticia
 NOTICIAS_POR_PAGINA = 9
 FOTOS_POR_PAGINA = 24
 
-# as 5 atividades dos cards da home (o texto oficial a ONG ainda vai mandar)
+# as 5 atividades dos cards da home
 ATIVIDADES = [
-    {"tipo": "aulas", "titulo": "Aulas", "descricao": "[DESCRIÇÃO OFICIAL DAS AULAS]",
+    {"tipo": "aulas", "titulo": "Aulas", "descricao": "Conteúdos do ENEM e dos vestibulares, com materiais de apoio.",
      "alt": "Imagem ilustrativa de aula (substituir por foto real da ONG)"},
-    {"tipo": "palestras", "titulo": "Palestras", "descricao": "[DESCRIÇÃO OFICIAL DAS PALESTRAS]",
+    {"tipo": "palestras", "titulo": "Palestras", "descricao": "Temas que ajudam na escolha do futuro e da carreira.",
      "alt": "Imagem ilustrativa de palestra (substituir por foto real da ONG)"},
-    {"tipo": "simulados", "titulo": "Simulados", "descricao": "[DESCRIÇÃO OFICIAL DOS SIMULADOS]",
+    {"tipo": "simulados", "titulo": "Simulados", "descricao": "Provas no formato do ENEM para treinar e acompanhar a evolução.",
      "alt": "Imagem ilustrativa de simulado (substituir por foto real da ONG)"},
-    {"tipo": "convivencia", "titulo": "Convivência", "descricao": "[DESCRIÇÃO OFICIAL DOS MOMENTOS DE CONVIVÊNCIA]",
+    {"tipo": "convivencia", "titulo": "Convivência", "descricao": "Integração entre a turma, os professores e a equipe.",
      "alt": "Imagem ilustrativa de momento de convivência (substituir por foto real da ONG)"},
-    {"tipo": "passeios", "titulo": "Passeios", "descricao": "[DESCRIÇÃO OFICIAL DOS PASSEIOS]",
+    {"tipo": "passeios", "titulo": "Passeios", "descricao": "Novos lugares e experiências que ampliam o repertório.",
      "alt": "Imagem ilustrativa de passeio (substituir por foto real da ONG)"},
 ]
 

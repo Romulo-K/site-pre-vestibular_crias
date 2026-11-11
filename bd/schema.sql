@@ -23,3 +23,11 @@ CREATE INDEX "integrantes_ativo_grupo_idx" ON "integrantes" ("ativo", "grupo", "
 CREATE INDEX "noticias_status_data_idx" ON "noticias" ("status", "publicada_em" DESC);
 COMMIT;
 
+-- migration 0002_configuracaosite
+BEGIN;
+--
+-- Create model ConfiguracaoSite
+--
+CREATE TABLE "configuracao_site" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "formulario_aluno" varchar(200) NOT NULL, "formulario_voluntario" varchar(200) NOT NULL, "classroom" varchar(200) NOT NULL, "drive" varchar(200) NOT NULL, "meet" varchar(200) NOT NULL, "email" varchar(254) NOT NULL, "telefone" varchar(30) NOT NULL, "whatsapp" varchar(20) NOT NULL, "endereco" varchar(200) NOT NULL, "horario" varchar(120) NOT NULL, "mapa" varchar(200) NOT NULL, "instagram" varchar(200) NOT NULL, "facebook" varchar(200) NOT NULL, "youtube" varchar(200) NOT NULL);
+COMMIT;
+

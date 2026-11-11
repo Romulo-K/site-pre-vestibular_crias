@@ -46,6 +46,12 @@ python bd/bd.py contar   # mostra quantos registros tem no banco
 - `nome`, `turma`, `texto`, `foto`
 - `autorizado` e `ativo` → só aparece no site se os dois estiverem marcados
 
+**configuracao_site** (links e contatos)
+- tabela com uma linha só, editada no painel em "Links e contatos do site"
+- links: `formulario_aluno`, `formulario_voluntario`, `classroom`, `drive`, `meet`
+- contatos: `email`, `telefone`, `whatsapp` (só números, o site monta o link), `endereco`, `horario`, `mapa`
+- redes: `instagram`, `facebook`, `youtube`
+
 Toda tabela tem um `id` e as datas de criação, que o Django preenche sozinho.
 O login e as senhas do painel ficam nas tabelas do próprio Django (`auth_user`), com a senha criptografada.
 

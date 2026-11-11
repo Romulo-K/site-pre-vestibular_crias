@@ -16,6 +16,7 @@ Site feito para o Pré-Vestibular Social ONG Crias, como projeto de extensão da
 
 - 8 páginas: Início, O Projeto, Atividades, Equipe, Alunos, Voluntários, Notícias e Contato
 - Painel em `/admin/` onde a coordenação publica notícias, equipe, fotos da galeria e depoimentos sem mexer no código
+- Os links dos formulários, do Classroom, Drive e Meet e os contatos também são trocados pelo painel ("Links e contatos do site")
 - Notícia em rascunho não aparece no site, só depois de publicada
 - Funciona no celular
 

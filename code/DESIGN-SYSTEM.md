@@ -34,7 +34,7 @@ Tudo fica no começo do `static/css/style.css` (parte 2, as variáveis). Trocand
 
 ## JavaScript
 
-- `static/js/config.js` → links dos formulários, classroom, drive, meet e contatos
+- `static/js/config.js` → lê os links que vêm do painel (Links e contatos do site) pros botões
 - `static/js/main.js` → menu do celular, links do config, ano do rodapé, foto quebrada
 - `static/js/galeria.js` → foto grande da galeria
 

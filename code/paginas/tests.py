@@ -82,3 +82,35 @@ class TestesPaginas(TestCase):
             self.assertContains(self.client.get("/robots.txt"), "Disallow: /\n")
         with self.settings(SITE_EM_TESTE=False):
             self.assertNotContains(self.client.get("/"), "Versão de teste.")
+
+
+class TestesLinksEContatos(TestCase):
+
+    def test_contato_sem_nada_preenchido(self):
+        self.assertContains(self.client.get(reverse("paginas:contato")), "Os contatos oficiais serão publicados em breve.")
+
+    def test_contatos_preenchidos_aparecem(self):
+        from conteudo.models import ConfiguracaoSite
+        config = ConfiguracaoSite.carregar()
+        config.email = "contato@exemplo.org"
+        config.whatsapp = "(21) 99999-9999"
+        config.save()
+        html = self.client.get(reverse("paginas:contato")).content.decode()
+        self.assertIn("mailto:contato@exemplo.org", html)
+        self.assertIn("https://wa.me/5521999999999", html)  # o número vira link do whatsapp
+
+    def test_link_do_formulario_vai_pro_javascript(self):
+        from conteudo.models import ConfiguracaoSite
+        config = ConfiguracaoSite.carregar()
+        config.formulario_aluno = "https://forms.gle/teste"
+        config.save()
+        html = self.client.get("/").content.decode()
+        self.assertIn('id="site-config"', html)
+        self.assertIn("https://forms.gle/teste", html)
+
+    def test_painel_abre_direto_a_tela_de_edicao(self):
+        User.objects.create_superuser("coord", "c@exemplo.org", "SenhaDeTeste2026")
+        self.client.login(username="coord", password="SenhaDeTeste2026")
+        resposta = self.client.get("/admin/conteudo/configuracaosite/")
+        self.assertEqual(resposta.status_code, 302)
+        self.assertIn("/admin/conteudo/configuracaosite/1/change/", resposta["Location"])
