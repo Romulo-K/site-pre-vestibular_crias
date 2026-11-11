@@ -1,0 +1,32 @@
+{% extends "admin/base.html" %}
+{% load static %}
+{# Personaliza o painel (/admin/) com as cores da ONG. O resto vem do próprio Django. #}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block extrastyle %}{{ block.super }}
+<link rel="icon" type="image/png" href="{% static 'assets/logo/favicon.png' %}">
+<style>
+  /* Só cores de fundo (cabeçalho, títulos e botões): funcionam no tema claro e no escuro */
+  :root, html[data-theme="light"], html[data-theme="dark"] {
+    --primary: #046A45;          /* verde da ONG */
+    --secondary: #04523A;
+    --accent: #FCC601;           /* amarelo */
+    --header-bg: #034A31;
+    --header-link-color: #ffffff;
+    --breadcrumbs-bg: #046A45;
+    --button-bg: #057A4F;
+    --button-hover-bg: #04523A;
+    --default-button-bg: #046A45;
+    --default-button-hover-bg: #034A31;
+  }
+  #site-name a { display: inline-flex; align-items: center; gap: .6rem; }
+  #site-name img { height: 34px; width: auto; }
+</style>
+{% endblock %}
+
+{% block branding %}
+<div id="site-name"><a href="{% url 'admin:index' %}"><img src="{% static 'assets/logo/logo-crias.png' %}" alt=""> {{ site_header|default:_('Django administration') }}</a></div>
+{% if user.is_anonymous %}{% include "admin/color_theme_toggle.html" %}{% endif %}
+{% endblock %}
+

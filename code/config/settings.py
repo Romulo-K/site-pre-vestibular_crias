@@ -70,7 +70,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Apps do projeto
     "paginas",    # páginas públicas do site
-    "conteudo",   # notícias, equipe, galeria e depoimentos (Etapa 7)
+    "conteudo",   # notícias, equipe, galeria e depoimentos + painel /admin/
 ]
 
 MIDDLEWARE = [
@@ -142,6 +142,6 @@ STATICFILES_DIRS = [BASE_DIR / "static"]   # onde você edita os arquivos
 STATIC_ROOT = BASE_DIR / "staticfiles"     # onde o "collectstatic" junta tudo no servidor
 
 MEDIA_URL = "media/"
-MEDIA_ROOT = BASE_DIR / "media"            # fotos enviadas pelo Admin (Etapa 7)
+MEDIA_ROOT = BASE_DIR / "media"            # fotos enviadas pelo painel /admin/
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

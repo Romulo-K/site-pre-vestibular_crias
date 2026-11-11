@@ -2,7 +2,7 @@
 Endereços (URLs) do projeto.
 
     /            → páginas públicas (app "paginas")
-    /admin/      → painel da coordenação (Django Admin, configurado na Etapa 7)
+    /admin/      → painel da coordenação (Django Admin)
 """
 from django.conf import settings
 from django.conf.urls.static import static
