@@ -60,4 +60,3 @@ O login e as senhas do painel ficam nas tabelas do próprio Django (`auth_user`)
 - As fotos não ficam dentro do banco, só o caminho delas. O arquivo fica em `code/media/`.
 - Fotos só em JPG, PNG ou WebP, até 3 MB.
 - Quando um registro é apagado (ou a foto é trocada), a foto antiga é apagada também (`code/conteudo/signals.py`).
-- Pra ver o banco por dentro dá pra usar o **DB Browser for SQLite** (tem na Pop!_Shop).
