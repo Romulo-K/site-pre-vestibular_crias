@@ -8,7 +8,7 @@ Projeto de extensão universitária. Site feito em Django.
 - **SQLite** — banco de dados (um arquivo, `code/db.sqlite3`, fora do GitHub)
 - HTML, CSS e JavaScript — visual e interações (menu, galeria)
 - Google Forms, Classroom, Drive e Meet — serviços externos (links em `code/static/js/config.js`)
-- Hospedagem prevista: PythonAnywhere
+- Hospedagem: PythonAnywhere — passo a passo em [`PUBLICACAO.md`](PUBLICACAO.md)
 
 ## Estrutura
 
@@ -32,6 +32,7 @@ site-pre-vestibular_crias/
 │       ├── css/style.css    Estilos + design system (variáveis no topo)
 │       ├── js/              config.js (links), main.js (menu), galeria.js (foto ampliada)
 │       └── assets/          logo, fontes, imagens
+├── PUBLICACAO.md            Como publicar e atualizar o site no PythonAnywhere
 └── evidences/
 ```
 

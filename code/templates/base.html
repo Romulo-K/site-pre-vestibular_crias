@@ -6,12 +6,18 @@
   <title>{% block titulo %}{% endblock %}Pré-Vestibular Social ONG Crias</title>
   <meta name="description" content="{% block descricao %}{% endblock %}">
   <meta name="theme-color" content="#046a45">
+  {% if site_em_teste %}<meta name="robots" content="noindex, nofollow">{% endif %}
   <link rel="icon" type="image/png" href="{% static 'assets/logo/favicon.png' %}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
 {% include "includes/icones.html" %}
   <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+  {% if site_em_teste %}
+  <div class="aviso-teste" role="note">
+    <div class="container"><strong>Versão de teste.</strong> Textos e imagens são provisórios e serão substituídos pelo conteúdo oficial da ONG.</div>
+  </div>
+  {% endif %}
 
   <header class="site-header">
     <div class="container header-inner">

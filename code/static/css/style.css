@@ -1189,3 +1189,6 @@ span.placeholder { display: inline-block; padding: 0 var(--espaco-2); margin: 0;
 
 /* Página da notícia: data e autor lado a lado, quebrando linha só se faltar espaço */
 .noticia__meta { justify-content: flex-start; flex-wrap: wrap; column-gap: var(--espaco-5); row-gap: var(--espaco-1); }
+
+/* Faixa "Versão de teste" (SITE_EM_TESTE=1 no .env) */
+.aviso-teste { background: var(--logo-amarelo); color: var(--texto); font-size: var(--texto-sm); text-align: center; padding: var(--espaco-2) 0; }

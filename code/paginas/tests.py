@@ -93,3 +93,19 @@ class EquipeEDepoimentosTest(TestCase):
         self.assertIn("Visivel", html)
         self.assertNotIn("Sem autorizacao", html)
         self.assertNotIn("Inativo", html)
+
+
+class PublicacaoTest(TestCase):
+    def test_aviso_de_teste_e_bloqueio_do_google(self):
+        with self.settings(SITE_EM_TESTE=True):
+            html = self.client.get(reverse("paginas:inicio")).content.decode()
+            self.assertIn("Versão de teste.", html)
+            self.assertIn('name="robots" content="noindex', html)
+            self.assertContains(self.client.get("/robots.txt"), "Disallow: /\n")
+
+    def test_lancamento_oficial(self):
+        with self.settings(SITE_EM_TESTE=False):
+            html = self.client.get(reverse("paginas:inicio")).content.decode()
+            self.assertNotIn("Versão de teste.", html)
+            self.assertNotIn('name="robots"', html)
+            self.assertContains(self.client.get("/robots.txt"), "Disallow: /admin/")

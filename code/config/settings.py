@@ -57,6 +57,21 @@ ALLOWED_HOSTS = [h.strip() for h in os.environ.get("ALLOWED_HOSTS", "").split(",
 if DEBUG:
     ALLOWED_HOSTS += ["127.0.0.1", "localhost"]
 
+# Formulários (como o login do painel) enviados pelo endereço HTTPS do site
+CSRF_TRUSTED_ORIGINS = [f"https://{h}" for h in ALLOWED_HOSTS if h not in ("127.0.0.1", "localhost")]
+
+# No servidor (DEBUG=0): cookies de login e de formulário só trafegam por HTTPS
+if not DEBUG:
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    # O redirecionamento para HTTPS é feito pelo próprio PythonAnywhere (opção "Force HTTPS"
+    # na aba Web). Por isso estes dois avisos do "check --deploy" podem ser ignorados.
+    SILENCED_SYSTEM_CHECKS = ["security.W004", "security.W008"]
+
+# Site em fase de testes: mostra o aviso "Versão de teste" e pede ao Google para não indexar.
+# Para lançar oficialmente: SITE_EM_TESTE=0 no .env do servidor (e clicar em Reload).
+SITE_EM_TESTE = env_bool("SITE_EM_TESTE", True)
+
 
 # ----------------------------------------------------------------------
 # Aplicativos
@@ -95,6 +110,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "paginas.context_processors.site",
             ],
         },
     },

@@ -6,7 +6,9 @@ preciso e devolve a página pronta (render). O público só vê:
   - notícias PUBLICADAS (rascunhos nunca aparecem);
   - integrantes e depoimentos marcados como "aparece no site".
 """
+from django.conf import settings
 from django.core.paginator import Paginator
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 
 from conteudo.models import Depoimento, FotoGaleria, Integrante, Noticia
@@ -93,3 +95,12 @@ def noticia_detalhe(request, slug):
 
 def contato(request):
     return render(request, "paginas/contato.html")
+
+
+def robots_txt(request):
+    """Instruções para buscadores (Google etc.). Em fase de testes, nada é indexado."""
+    if settings.SITE_EM_TESTE:
+        linhas = ["User-agent: *", "Disallow: /"]
+    else:
+        linhas = ["User-agent: *", "Disallow: /admin/"]
+    return HttpResponse("\n".join(linhas) + "\n", content_type="text/plain")
