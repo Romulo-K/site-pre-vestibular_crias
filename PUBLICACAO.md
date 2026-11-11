@@ -5,7 +5,7 @@ Serve pra mim e pra quem for mexer no site depois.
 
 - Usuário do PythonAnywhere: **PreVestibularCrias**
 - Endereço do site: **https://prevestibularcrias.pythonanywhere.com**
-- O site, o banco (`db.sqlite3`) e as fotos (`media/`) ficam no servidor deles, não no meu computador.
+- O site, o banco (`db.sqlite3`) e as fotos (`media/`) ficam no servidor.
 
 ---
 
