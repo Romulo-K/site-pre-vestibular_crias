@@ -1156,3 +1156,36 @@ span.placeholder { display: inline-block; padding: 0 var(--espaco-2); margin: 0;
 .lightbox button:hover { background: var(--branco); color: var(--verde-800); }
 .lightbox button:focus-visible { outline: 3px solid var(--cor-foco); outline-offset: 3px; }
 .lightbox__fechar { justify-self: end; }
+
+
+/* =====================================================================
+   13. CONTEÚDO DO BANCO (Etapa 8)
+   ===================================================================== */
+/* Mensagem discreta quando ainda não há conteúdo cadastrado */
+.estado-vazio {
+    padding: var(--espaco-5); border: 1px dashed var(--borda, #d6ded9); border-radius: var(--raio-md);
+    color: var(--texto-suave); text-align: center;
+}
+.estado-vazio--claro { border-color: rgba(255, 255, 255, 0.45); color: rgba(255, 255, 255, 0.9); }
+
+/* Integrante sem foto: ícone no lugar da imagem */
+.card--pessoa .foto--sem-imagem {
+    display: grid; place-items: center; background: var(--lilas-100); color: var(--verde-700);
+}
+.card--pessoa .foto--sem-imagem .icone { width: 30%; height: auto; }
+
+/* Legenda das fotos da galeria */
+.galeria__item { display: grid; gap: var(--espaco-2); }
+.galeria__legenda { display: grid; gap: 2px; font-size: var(--texto-sm); }
+.galeria__legenda span:first-child { font-weight: var(--peso-forte); color: var(--texto); }
+.galeria__legenda span + span { color: var(--texto-suave); font-size: var(--texto-xs); }
+
+/* Navegação entre páginas (notícias e galeria) */
+.paginacao {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+    gap: var(--espaco-3); margin-top: var(--espaco-6);
+}
+.paginacao__info { font-size: var(--texto-sm); color: var(--texto-suave); }
+
+/* Página da notícia: data e autor lado a lado, quebrando linha só se faltar espaço */
+.noticia__meta { justify-content: flex-start; flex-wrap: wrap; column-gap: var(--espaco-5); row-gap: var(--espaco-1); }

@@ -24,13 +24,13 @@ site-pre-vestibular_crias/
 │   ├── conteudo/            App do conteúdo: modelos (tabelas), painel /admin/, testes
 │   ├── templates/
 │   │   ├── base.html        Cabeçalho, menu, rodapé e scripts (comum a todas as páginas)
-│   │   ├── includes/        Pedaços reaproveitados (ícones, chamada "Quer fazer parte?")
+│   │   ├── includes/        Pedaços reaproveitados (ícones, cards, paginação, chamada final)
 │   │   ├── admin/           Cores da ONG no painel /admin/
-│   │   └── paginas/         inicio, projeto, atividades, equipe, alunos, voluntarios, noticias, contato
+│   │   └── paginas/         inicio, projeto, atividades, equipe, alunos, voluntarios, noticias,
+│   │                        noticia_detalhe, contato
 │   └── static/
 │       ├── css/style.css    Estilos + design system (variáveis no topo)
-│       ├── js/              config.js (links), main.js (menu), render.js (cards), galeria.js
-│       ├── data/            Conteúdo provisório (até a Etapa 8 trazer do banco)
+│       ├── js/              config.js (links), main.js (menu), galeria.js (foto ampliada)
 │       └── assets/          logo, fontes, imagens
 └── evidences/
 ```
@@ -67,7 +67,7 @@ Para parar o servidor: `Ctrl + C`. Para rodar os testes: `python manage.py test`
 |---|---|
 | `code/config/settings.py` | Configurações (banco, idioma, segurança, arquivos) |
 | `code/config/urls.py`, `code/paginas/urls.py` | Endereços do site |
-| `code/paginas/views.py` | Monta cada página |
+| `code/paginas/views.py` | Monta cada página buscando no banco o que é público (notícias publicadas, equipe ativa...) |
 | `code/conteudo/models.py` | Tabelas do banco (notícias, equipe, galeria, depoimentos) |
 | `code/conteudo/admin.py` | Painel da coordenação |
 | `code/conteudo/validators.py`, `uploads.py`, `signals.py` | Regras das fotos (formato, tamanho, nome, limpeza) |
@@ -86,6 +86,16 @@ Depois, com o servidor rodando, acesse `http://127.0.0.1:8000/admin/`. Pelo pain
 editar e excluir **notícias** (rascunho ou publicada), **equipe**, **galeria** e **depoimentos**, com fotos.
 A senha é guardada criptografada pelo Django e **nunca** vai para o código ou para o GitHub.
 
+O que é cadastrado no painel aparece no site na hora, sem mexer no código:
+
+| No painel | Onde aparece no site |
+|---|---|
+| Notícias **publicadas** | Home (as 3 mais recentes), página Notícias e a página de cada notícia |
+| Notícias em **rascunho** | Em lugar nenhum (a coordenação logada pode pré-visualizar pelo botão "Ver no site") |
+| Equipe marcada como "aparece no site" | Home (4 integrantes, coordenação primeiro) e página Equipe, por grupo |
+| Galeria | Página Atividades, seção Galeria (clique amplia a foto) |
+| Depoimentos ativos e autorizados | Home |
+
 ## Endereços do site
 
 | Página | Endereço |
@@ -97,6 +107,7 @@ A senha é guardada criptografada pelo Django e **nunca** vai para o código ou 
 | Alunos | `/alunos/` |
 | Voluntários | `/voluntarios/` |
 | Notícias | `/noticias/` |
+| Uma notícia | `/noticias/<endereço-da-notícia>/` |
 | Contato | `/contato/` |
 | Painel da coordenação | `/admin/` |
 

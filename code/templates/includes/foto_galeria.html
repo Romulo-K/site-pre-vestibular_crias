@@ -1,0 +1,11 @@
+{# Foto da galeria. Clique abre a foto ampliada (static/js/galeria.js). Recebe: foto #}
+<figure class="galeria__item">
+  <button type="button" class="galeria__abrir" aria-label="Ampliar foto: {{ foto.descricao }}">
+    <img class="foto" src="{{ foto.imagem.url }}" alt="{{ foto.descricao }}" loading="lazy" decoding="async"
+         data-legenda="{{ foto.legenda|default:foto.titulo }}{% if foto.data_atividade %} · {{ foto.data_atividade|date:'d/m/Y' }}{% endif %}">
+  </button>
+  <figcaption class="galeria__legenda">
+    <span>{{ foto.titulo }}</span>
+    <span>{{ foto.get_categoria_display }}{% if foto.data_atividade %} · <time datetime="{{ foto.data_atividade|date:'Y-m-d' }}">{{ foto.data_atividade|date:"d/m/Y" }}</time>{% endif %}</span>
+  </figcaption>
+</figure>

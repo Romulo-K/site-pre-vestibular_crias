@@ -1,0 +1,8 @@
+{# Navegação entre páginas de uma lista. Recebe: pagina (Paginator), ancora (opcional, ex.: "#galeria") #}
+{% if pagina.has_other_pages %}
+<nav class="paginacao" aria-label="Mais páginas">
+  {% if pagina.has_previous %}<a class="btn btn--contorno btn--sm" href="?pagina={{ pagina.previous_page_number }}{{ ancora }}" rel="prev">← Mais recentes</a>{% endif %}
+  <span class="paginacao__info">Página {{ pagina.number }} de {{ pagina.paginator.num_pages }}</span>
+  {% if pagina.has_next %}<a class="btn btn--contorno btn--sm" href="?pagina={{ pagina.next_page_number }}{{ ancora }}" rel="next">Mais antigas →</a>{% endif %}
+</nav>
+{% endif %}

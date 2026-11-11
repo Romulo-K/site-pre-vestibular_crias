@@ -10,10 +10,10 @@ Use somente fotos **reais e autorizadas** pela ONG e pelas pessoas fotografadas.
 | Foto principal (topo da Home) | `templates/paginas/inicio.html`, no `<img>` do bloco `<!-- IMAGEM: hero -->` | 1200 × 900 px |
 | Foto "Sobre o projeto" (Home) | `templates/paginas/inicio.html`, no `<img>` do bloco `<!-- IMAGEM: sobre -->` | 1200 × 900 px |
 | Fotos de "História" e "Educação social" (O Projeto) | `templates/paginas/projeto.html`, nos `<img>` dos blocos `<!-- IMAGEM: ... -->` | 1200 × 900 px |
-| Atividades (Aulas, Palestras…) | `data/atividades.js` → campo `imagem` e `alt` | 1200 × 750 px |
-| Equipe e depoimentos | `data/equipe.js` e `data/depoimentos.js` → campo `foto` e `alt` | 800 × 1000 px (equipe) |
-| Notícias | `data/noticias.js` → campo `imagem` e `alt` | 1200 × 750 px |
-| Galeria | `data/atividades.js` → lista `galeria` | 1200 × 900 px |
+| Atividades (Aulas, Palestras…) | `templates/paginas/atividades.html`, nos `<img>` de cada seção | 1200 × 750 px |
+| Equipe e depoimentos | **Painel /admin/** → Equipe / Depoimentos (campo foto) | 800 × 1000 px (equipe) |
+| Notícias | **Painel /admin/** → Notícias (imagem de capa + descrição) | 1200 × 750 px |
+| Galeria | **Painel /admin/** → Galeria | 1200 × 900 px |
 
 ## Passo a passo
 
@@ -22,5 +22,5 @@ Use somente fotos **reais e autorizadas** pela ONG e pelas pessoas fotografadas.
 3. Troque o caminho (`src` ou `imagem`/`foto`) para o novo arquivo.
 4. **Troque também o texto `alt`**: descreva o que a foto mostra (ex.: "Professora explicando matemática para uma turma de alunos").
 
-> Nos templates, use sempre `{% static 'assets/...' %}` no `src`. Nos arquivos de `data/`, escreva o caminho a partir de `static/` (ex.: `"assets/equipe/ana.jpg"`).
-> A partir da Etapa 7, notícias, equipe, galeria e depoimentos passam a ter as fotos enviadas pelo painel (/admin/).
+> Nos templates, use sempre `{% static 'assets/...' %}` no `src`.
+> Fotos enviadas pelo painel ficam em `code/media/` (fora do GitHub) e aparecem no site automaticamente.

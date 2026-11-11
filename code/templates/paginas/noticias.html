@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load static %}
 
 {% block titulo %}Notícias | {% endblock %}
 {% block descricao %}Notícias do Pré-Vestibular Social ONG Crias.{% endblock %}
@@ -19,23 +18,21 @@
     </section>
     <section class="section" id="noticias-lista" aria-labelledby="noticias-lista-titulo">
       <div class="container">
-        <div class="section-head" id="noticias-cabecalho">
+        <div class="section-head">
           <h2 id="noticias-lista-titulo">Últimas notícias</h2>
         </div>
-        <div id="lista-noticias" data-render="noticias-pagina">
-          <p class="placeholder">[NENHUMA NOTÍCIA PUBLICADA — adicione em data/noticias.js]</p>
+        {% if noticias %}
+        <div class="grid" id="lista-noticias">
+          {% for noticia in noticias %}{% include "includes/card_noticia.html" %}{% endfor %}
         </div>
-        <article id="noticia-detalhe" class="noticia" hidden></article>
+        {% include "includes/paginacao.html" with pagina=noticias %}
+        {% else %}
+        <p class="estado-vazio">Nenhuma notícia publicada ainda. Volte em breve!</p>
+        {% endif %}
       </div>
     </section>
 
 {% include "includes/cta_participe.html" %}
 {% endblock %}
 
-{% block dados %}
-  <script src="{% static 'data/noticias.js' %}" defer></script>
-{% endblock %}
 
-{% block scripts %}
-  <script src="{% static 'js/render.js' %}" defer></script>
-{% endblock %}

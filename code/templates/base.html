@@ -84,10 +84,7 @@
     </div>
   </footer>
 
-  {# Endereço da pasta de arquivos estáticos, usado pelo JavaScript para achar as imagens #}
-  <script>const STATIC_URL = "{% static '' %}";</script>
   <script src="{% static 'js/config.js' %}" defer></script>
-  {% block dados %}{% endblock %}
   <script src="{% static 'js/main.js' %}" defer></script>
   {% block scripts %}{% endblock %}
 </body>

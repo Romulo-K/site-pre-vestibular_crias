@@ -66,7 +66,7 @@ As duas cores de identidade vêm da logo: verde `#069762` e amarelo `#FCC601`.
 | Cards de acesso (Home) | `.acesso-card` (card inteiro clicável, com `data-link` para o Google Forms) |
 | Painel verde de benefícios | `.card.card--verde.beneficios` |
 | Card clicável por um só link | `.card--link` + `<a class="link-card">` no título (o link cobre o card todo) |
-| Cards com foto | `.card--noticia`, `.card--atividade`, `.card--pessoa` (desenhados por `js/render.js`) |
+| Cards com foto | `.card--noticia`, `.card--atividade`, `.card--pessoa` (templates `includes/card_*.html`) |
 | Chamada final | `.cta-final` |
 | Ícones | `<svg class="icone"><use href="#i-nome"/></svg>` (lista no sprite no topo de cada página) |
 | Grades extras | `.grid--5` (atividades), `.grid--pessoas` (equipe; 2 colunas no celular) |
@@ -89,17 +89,23 @@ As duas cores de identidade vêm da logo: verde `#069762` e amarelo `#FCC601`.
 - `.noticia`, `.link-voltar` — leitura completa de notícia (`/noticias/?noticia=ID`).
 - `.mt-6` — utilitário de espaçamento.
 
-Textos e links vêm de `js/config.js` (links, contatos) e `data/*.js` (equipe, atividades, notícias).
+Links e contatos vêm de `js/config.js`. Notícias, equipe, galeria e depoimentos vêm do banco (painel /admin/).
 
 ## JavaScript (Etapa 5)
 - `js/config.js` — todos os links e contatos (formulários, Classroom, Drive, Meet, WhatsApp, e-mail, redes). Único arquivo a editar para trocar links.
 - `js/main.js` — menu mobile (abre/fecha, Esc, clique fora), links do config, ano do rodapé.
-- `js/render.js` — desenha notícias, depoimentos, equipe, atividades e galeria a partir de `data/*.js`.
 - `js/galeria.js` — foto ampliada da galeria (`<dialog>`): fechar com botão, Esc ou clique fora; setas para navegar.
 
 ## Templates Django (Etapa 6)
 - `templates/base.html` — estrutura comum: `<head>`, cabeçalho, menu (o item ativo é marcado pelo Django), rodapé e scripts.
 - `templates/includes/icones.html` — os ícones SVG. `templates/includes/cta_participe.html` — chamada "Quer fazer parte?".
 - `templates/paginas/*.html` — uma página por arquivo. Cada uma começa com `{% extends "base.html" %}` e preenche os blocos
-  `titulo`, `descricao`, `conteudo`, `dados` (arquivos de data/) e `scripts` (render.js, galeria.js).
+  `titulo`, `descricao`, `conteudo` e `scripts` (ex.: galeria.js).
 - Links internos: `{% url 'paginas:equipe' %}`. Imagens/CSS/JS: `{% static 'assets/...' %}`.
+
+## Conteúdo do banco (Etapa 8)
+- Cards: `includes/card_noticia.html`, `card_pessoa.html`, `card_depoimento.html`, `card_atividade.html`, `foto_galeria.html`.
+- `includes/paginacao.html` — "Mais recentes / Mais antigas" (`.paginacao`).
+- `.estado-vazio` (e `.estado-vazio--claro` sobre fundo verde) — mensagem discreta quando não há conteúdo.
+- `.foto--sem-imagem` — integrante sem foto mostra um ícone.
+- Foto que não carrega é escondida por `main.js` (o card continua de pé).

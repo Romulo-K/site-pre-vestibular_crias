@@ -1,0 +1,10 @@
+{% load static %}
+{# Card de atividade da Home. Recebe: atividade (lista ATIVIDADES em paginas/views.py) #}
+<article class="card card--atividade card--link is-placeholder">
+  <img class="foto" src="{% static 'assets/placeholders/foto-paisagem.svg' %}" alt="{{ atividade.alt }}" loading="lazy" decoding="async">
+  <div class="card__corpo">
+    <h3><a class="link-card" href="{% url 'paginas:atividades' %}#{{ atividade.tipo }}">{{ atividade.titulo }}</a></h3>
+    <p class="card__descricao">{{ atividade.descricao }}</p>
+    <span class="link-seta">Saiba mais</span>
+  </div>
+</article>

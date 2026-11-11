@@ -3,8 +3,8 @@
    1) Menu mobile (abrir/fechar)
    2) Links externos configurados em SITE_CONFIG (js/config.js)
    3) Ano atual no rodapé
+   4) Foto que não carregou: esconde em vez de mostrar o ícone de imagem quebrada
    (O item ativo do menu é marcado pelo Django, em templates/base.html.)
-   (O conteúdo que vem de data/ é desenhado por js/render.js.)
    ===================================================================== */
 
 (function () {
@@ -121,8 +121,28 @@
         });
     }
 
+    /* ---------- 4) Foto que não carregou ----------
+       Se uma foto do banco sumir do servidor, o card continua de pé sem ela. */
+    function esconderImagemQuebrada(img) {
+        var itemGaleria = img.closest(".galeria__item");
+        if (itemGaleria) { itemGaleria.hidden = true; return; }
+        if (img.closest(".card, .noticia__imagem")) img.hidden = true;
+    }
+
+    function iniciarImagensQuebradas() {
+        // Fotos que falharem daqui para frente...
+        document.addEventListener("error", function (e) {
+            if (e.target && e.target.tagName === "IMG") esconderImagemQuebrada(e.target);
+        }, true);
+        // ...e as que já falharam antes deste script rodar.
+        document.querySelectorAll("img").forEach(function (img) {
+            if (img.complete && img.naturalWidth === 0 && img.getAttribute("src")) esconderImagemQuebrada(img);
+        });
+    }
+
     function iniciar() {
         iniciarMenu();
+        iniciarImagensQuebradas();
         iniciarLinks();
         iniciarAno();
     }

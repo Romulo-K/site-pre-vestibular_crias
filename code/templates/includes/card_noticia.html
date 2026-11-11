@@ -1,0 +1,13 @@
+{# Card de notícia. Recebe: noticia #}
+<article class="card card--noticia card--link">
+  {% if noticia.capa %}<img class="foto" src="{{ noticia.capa.url }}" alt="{{ noticia.capa_descricao }}" loading="lazy" decoding="async">{% endif %}
+  <div class="card__corpo">
+    <div class="card__meta">
+      <span>{{ noticia.autor|default:"Notícia" }}</span>
+      <span><time datetime="{{ noticia.publicada_em|date:'Y-m-d' }}">{{ noticia.publicada_em|date:"d/m/Y" }}</time></span>
+    </div>
+    <h3><a class="link-card" href="{{ noticia.get_absolute_url }}">{{ noticia.titulo }}</a></h3>
+    <p class="card__descricao">{{ noticia.resumo }}</p>
+    <span class="link-seta">Ler notícia</span>
+  </div>
+</article>

@@ -13,6 +13,7 @@ O SQL gerado fica documentado em bd/schema.sql (python bd/bd.py).
 """
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.text import slugify
 
@@ -73,6 +74,14 @@ class Noticia(models.Model):
 
     def __str__(self):
         return self.titulo
+
+    def get_absolute_url(self):
+        """Endereço público da notícia (o painel mostra o botão "Ver no site")."""
+        return reverse("paginas:noticia", args=[self.slug])
+
+    @property
+    def publicada(self):
+        return self.status == self.Status.PUBLICADA
 
     def clean(self):
         if self.capa and not self.capa_descricao.strip():

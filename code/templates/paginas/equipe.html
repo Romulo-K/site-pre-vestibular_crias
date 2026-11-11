@@ -27,33 +27,21 @@
       </nav>
     </div>
 
-    <section class="section" id="coordenacao" aria-labelledby="coordenacao-titulo">
+    {% for grupo in grupos %}
+    <section class="section{% cycle '' ' section--suave' %}" id="{{ grupo.id }}" aria-labelledby="{{ grupo.id }}-titulo">
       <div class="container">
-        <div class="section-head"><h2 id="coordenacao-titulo">Coordenação</h2></div>
-        <div id="lista-coordenacao" data-render="equipe" data-grupo="coordenacao" data-grade="grid--pessoas">
-          <p class="placeholder">[INTEGRANTES DA COORDENAÇÃO — carregados de data/equipe.js]</p>
+        <div class="section-head"><h2 id="{{ grupo.id }}-titulo">{{ grupo.titulo }}</h2></div>
+        {% if grupo.pessoas %}
+        <div class="grid grid--pessoas">
+          {% for pessoa in grupo.pessoas %}{% include "includes/card_pessoa.html" %}{% endfor %}
         </div>
+        {% else %}
+        <p class="estado-vazio">Em breve.</p>
+        {% endif %}
       </div>
     </section>
 
-    <section class="section section--suave" id="professores" aria-labelledby="professores-titulo">
-      <div class="container">
-        <div class="section-head"><h2 id="professores-titulo">Professores</h2></div>
-        <div id="lista-professores" data-render="equipe" data-grupo="professores" data-grade="grid--pessoas">
-          <p class="placeholder">[PROFESSORES — carregados de data/equipe.js]</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="apoio" aria-labelledby="apoio-titulo">
-      <div class="container">
-        <div class="section-head"><h2 id="apoio-titulo">Equipe de apoio</h2></div>
-        <div id="lista-apoio" data-render="equipe" data-grupo="apoio" data-grade="grid--pessoas">
-          <p class="placeholder">[EQUIPE DE APOIO — carregada de data/equipe.js]</p>
-        </div>
-      </div>
-    </section>
-
+    {% endfor %}
     <section class="section" id="participe" aria-labelledby="participe-titulo">
       <div class="container">
         <div class="cta-final">
@@ -71,10 +59,4 @@
     </section>
 {% endblock %}
 
-{% block dados %}
-  <script src="{% static 'data/equipe.js' %}" defer></script>
-{% endblock %}
 
-{% block scripts %}
-  <script src="{% static 'js/render.js' %}" defer></script>
-{% endblock %}

@@ -1,0 +1,12 @@
+{# Card de depoimento. Recebe: depoimento #}
+<figure class="card card--depoimento">
+  <blockquote>{{ depoimento.texto|linebreaks }}</blockquote>
+  <figcaption>
+    {% if depoimento.foto %}
+    <img class="avatar" src="{{ depoimento.foto.url }}" alt="" loading="lazy" decoding="async">
+    {% else %}
+    <span class="icon-box icon-box--redondo"><svg class="icone" aria-hidden="true"><use href="#i-usuario"/></svg></span>
+    {% endif %}
+    <span><strong>{{ depoimento.nome }}</strong>{{ depoimento.turma }}</span>
+  </figcaption>
+</figure>

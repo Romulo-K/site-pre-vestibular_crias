@@ -121,7 +121,7 @@
       </div>
     </section>
 
-    <!-- =================== 5. ATIVIDADES (dados em data/atividades.js) =================== -->
+    <!-- =================== 5. ATIVIDADES (lista ATIVIDADES em paginas/views.py) =================== -->
     <section class="section" id="atividades" aria-labelledby="atividades-titulo">
       <div class="container">
         <div class="section-head section-head--linha">
@@ -132,13 +132,13 @@
           </div>
           <a class="btn btn--contorno" href="{% url 'paginas:atividades' %}">Ver todas as atividades <svg class="icone" aria-hidden="true"><use href="#i-seta"/></svg></a>
         </div>
-        <div id="lista-atividades" data-render="atividades" data-grade="grid--5">
-          <p class="placeholder">[ATIVIDADES — cadastradas em data/atividades.js]</p>
+        <div class="grid grid--5" id="lista-atividades">
+          {% for atividade in atividades %}{% include "includes/card_atividade.html" %}{% endfor %}
         </div>
       </div>
     </section>
 
-    <!-- =================== 6. DEPOIMENTOS (dados em data/depoimentos.js) =================== -->
+    <!-- =================== 6. DEPOIMENTOS (cadastrados no painel /admin/) =================== -->
     <section class="section section--institucional decor-circulo decor-circulo--esq" id="depoimentos" aria-labelledby="depoimentos-titulo">
       <div class="container">
         <div class="section-head">
@@ -146,13 +146,17 @@
           <h2 id="depoimentos-titulo">Depoimentos de egressos</h2>
           <p class="lead">Histórias de quem já passou pelo projeto.</p>
         </div>
-        <div id="lista-depoimentos" data-render="depoimentos" data-grade="grid--2">
-          <p class="placeholder">[DEPOIMENTOS REAIS E AUTORIZADOS — cadastrados em data/depoimentos.js]</p>
+        {% if depoimentos %}
+        <div class="grid grid--2" id="lista-depoimentos">
+          {% for depoimento in depoimentos %}{% include "includes/card_depoimento.html" %}{% endfor %}
         </div>
+        {% else %}
+        <p class="estado-vazio estado-vazio--claro">Em breve, depoimentos de quem já passou pelo projeto.</p>
+        {% endif %}
       </div>
     </section>
 
-    <!-- =================== 7. EQUIPE (dados em data/equipe.js) =================== -->
+    <!-- =================== 7. EQUIPE (cadastrada no painel /admin/) =================== -->
     <section class="section" id="equipe" aria-labelledby="equipe-titulo">
       <div class="container">
         <div class="section-head section-head--linha">
@@ -163,9 +167,13 @@
           </div>
           <a class="btn btn--contorno" href="{% url 'paginas:equipe' %}">Conheça a equipe <svg class="icone" aria-hidden="true"><use href="#i-seta"/></svg></a>
         </div>
-        <div id="lista-equipe-home" data-render="equipe" data-limite="4" data-grade="grid--pessoas">
-          <p class="placeholder">[EQUIPE — cadastrada em data/equipe.js]</p>
+        {% if equipe %}
+        <div class="grid grid--pessoas" id="lista-equipe-home">
+          {% for pessoa in equipe %}{% include "includes/card_pessoa.html" %}{% endfor %}
         </div>
+        {% else %}
+        <p class="estado-vazio">Em breve, a apresentação da equipe.</p>
+        {% endif %}
       </div>
     </section>
 
@@ -199,7 +207,7 @@
       </div>
     </section>
 
-    <!-- =================== 9. NOTÍCIAS (dados em data/noticias.js) =================== -->
+    <!-- =================== 9. NOTÍCIAS (publicadas pelo painel /admin/) =================== -->
     <section class="section" id="noticias" aria-labelledby="noticias-titulo">
       <div class="container">
         <div class="section-head section-head--linha">
@@ -210,9 +218,13 @@
           </div>
           <a class="btn btn--contorno" href="{% url 'paginas:noticias' %}">Todas as notícias <svg class="icone" aria-hidden="true"><use href="#i-seta"/></svg></a>
         </div>
-        <div id="lista-noticias-home" data-render="noticias" data-limite="3">
-          <p class="placeholder">[NOTÍCIAS REAIS — cadastradas em data/noticias.js]</p>
+        {% if noticias %}
+        <div class="grid" id="lista-noticias-home">
+          {% for noticia in noticias %}{% include "includes/card_noticia.html" %}{% endfor %}
         </div>
+        {% else %}
+        <p class="estado-vazio">Nenhuma notícia publicada ainda.</p>
+        {% endif %}
       </div>
     </section>
 
@@ -257,13 +269,4 @@
 {% include "includes/cta_participe.html" %}
 {% endblock %}
 
-{% block dados %}
-  <script src="{% static 'data/depoimentos.js' %}" defer></script>
-  <script src="{% static 'data/equipe.js' %}" defer></script>
-  <script src="{% static 'data/noticias.js' %}" defer></script>
-  <script src="{% static 'data/atividades.js' %}" defer></script>
-{% endblock %}
 
-{% block scripts %}
-  <script src="{% static 'js/render.js' %}" defer></script>
-{% endblock %}

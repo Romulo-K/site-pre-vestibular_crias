@@ -55,7 +55,7 @@
         var foto = lista[indice];
         imgGrande.src = foto.src;
         imgGrande.alt = foto.alt;
-        legenda.textContent = foto.alt;
+        legenda.textContent = foto.legenda;
         var varias = lista.length > 1;
         btnAnterior.hidden = btnProxima.hidden = contador.hidden = !varias;
         contador.textContent = (indice + 1) + " de " + lista.length;
@@ -70,7 +70,7 @@
     function abrir(botao) {
         if (!dialogo) criar();
         lista = Array.prototype.map.call(document.querySelectorAll(".galeria__item img"), function (i) {
-            return { src: i.currentSrc || i.src, alt: i.alt || "" };
+            return { src: i.currentSrc || i.src, alt: i.alt || "", legenda: i.getAttribute("data-legenda") || i.alt || "" };
         });
         var imgs = document.querySelectorAll(".galeria__item img");
         indice = Array.prototype.indexOf.call(imgs, botao.querySelector("img"));
@@ -87,7 +87,7 @@
         else { dialogo.removeAttribute("open"); document.documentElement.classList.remove("lightbox-aberto"); if (origem) origem.focus(); }
     }
 
-    // A galeria é desenhada por render.js (depois deste script); por isso usamos delegação de eventos.
+    // Um único "ouvinte" na página serve para todas as fotos da galeria (delegação de eventos).
     document.addEventListener("click", function (e) {
         var botao = e.target.closest(".galeria__abrir");
         if (botao) abrir(botao);

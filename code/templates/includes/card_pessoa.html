@@ -1,0 +1,13 @@
+{# Card de integrante da equipe. Recebe: pessoa #}
+<article class="card card--pessoa">
+  {% if pessoa.foto %}
+  <img class="foto" src="{{ pessoa.foto.url }}" alt="Foto de {{ pessoa.nome }}" loading="lazy" decoding="async">
+  {% else %}
+  <div class="foto foto--sem-imagem" aria-hidden="true"><svg class="icone"><use href="#i-usuario"/></svg></div>
+  {% endif %}
+  <div class="card__corpo">
+    <h3>{{ pessoa.nome }}</h3>
+    <p class="card__funcao">{{ pessoa.funcao }}{% if pessoa.disciplina %} · {{ pessoa.disciplina }}{% endif %}</p>
+    {% if pessoa.biografia %}<p class="card__descricao">{{ pessoa.biografia }}</p>{% endif %}
+  </div>
+</article>
