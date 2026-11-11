@@ -1,14 +1,7 @@
--- =================================================================
--- schema.sql — SQL das tabelas do site Pré-Vestibular Social ONG Crias
--- Gerado por bd/bd.py em 10/11/2026 22:53 (Django 5.2.19, banco sqlite).
--- NÃO edite à mão: mude code/conteudo/models.py e gere de novo.
--- Tabelas: noticias, integrantes, galeria, depoimentos.
--- (As tabelas de login/usuários são do próprio Django: auth_*, django_*.)
--- =================================================================
+-- SQL das tabelas do site (gerado pelo bd/bd.py, não editar na mão)
+-- tabelas: noticias, integrantes, galeria, depoimentos
 
--- ---------------------------------------------------------------
--- Migration conteudo.0001_initial
--- ---------------------------------------------------------------
+-- migration 0001_initial
 BEGIN;
 --
 -- Create model Depoimento
@@ -29,3 +22,4 @@ CREATE TABLE "noticias" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "titul
 CREATE INDEX "integrantes_ativo_grupo_idx" ON "integrantes" ("ativo", "grupo", "ordem");
 CREATE INDEX "noticias_status_data_idx" ON "noticias" ("status", "publicada_em" DESC);
 COMMIT;
+

@@ -1,11 +1,6 @@
-"""
-Views das páginas públicas.
+# views = funções que montam cada página
+# cada uma pega o que precisa no banco e manda pro template
 
-Cada função recebe o pedido do navegador (request), busca no banco o que for
-preciso e devolve a página pronta (render). O público só vê:
-  - notícias PUBLICADAS (rascunhos nunca aparecem);
-  - integrantes e depoimentos marcados como "aparece no site".
-"""
 from django.conf import settings
 from django.core.paginator import Paginator
 from django.http import HttpResponse
@@ -16,7 +11,7 @@ from conteudo.models import Depoimento, FotoGaleria, Integrante, Noticia
 NOTICIAS_POR_PAGINA = 9
 FOTOS_POR_PAGINA = 24
 
-# As 5 atividades do projeto (cards da Home). O texto oficial entra na Etapa 9.
+# as 5 atividades dos cards da home (o texto oficial a ONG ainda vai mandar)
 ATIVIDADES = [
     {"tipo": "aulas", "titulo": "Aulas", "descricao": "[DESCRIÇÃO OFICIAL DAS AULAS]",
      "alt": "Imagem ilustrativa de aula (substituir por foto real da ONG)"},
@@ -30,44 +25,59 @@ ATIVIDADES = [
      "alt": "Imagem ilustrativa de passeio (substituir por foto real da ONG)"},
 ]
 
-# Ordem dos grupos da equipe na Home: coordenação primeiro
-ORDEM_GRUPOS = [Integrante.Grupo.COORDENACAO, Integrante.Grupo.PROFESSORES, Integrante.Grupo.APOIO]
 
-
-def equipe_visivel():
-    return Integrante.objects.filter(ativo=True)
-
-
-def depoimentos_visiveis():
-    return Depoimento.objects.filter(ativo=True, autorizado=True)
-
+# ---------------- páginas com dados do banco ----------------
 
 def inicio(request):
-    equipe = sorted(equipe_visivel(), key=lambda i: (ORDEM_GRUPOS.index(i.grupo), i.ordem, i.nome))
+    # na home a equipe aparece com a coordenação primeiro, depois professores e apoio
+    ordem_grupos = ["coordenacao", "professores", "apoio"]
+    equipe = Integrante.objects.filter(ativo=True)
+    equipe = sorted(equipe, key=lambda pessoa: (ordem_grupos.index(pessoa.grupo), pessoa.ordem, pessoa.nome))
+
     contexto = {
-        "noticias": Noticia.objects.publicadas()[:3],
-        "depoimentos": depoimentos_visiveis()[:4],
+        "noticias": Noticia.objects.filter(status="publicada")[:3],  # só as 3 mais recentes
+        "depoimentos": Depoimento.objects.filter(ativo=True, autorizado=True)[:4],
         "equipe": equipe[:4],
         "atividades": ATIVIDADES,
     }
     return render(request, "paginas/inicio.html", contexto)
 
 
-def projeto(request):
-    return render(request, "paginas/projeto.html")
-
-
 def atividades(request):
+    # galeria dividida em páginas de 24 fotos (?pagina=2 na url)
     fotos = Paginator(FotoGaleria.objects.all(), FOTOS_POR_PAGINA).get_page(request.GET.get("pagina"))
     return render(request, "paginas/atividades.html", {"fotos": fotos})
 
 
 def equipe(request):
-    grupos = [
-        {"id": valor, "titulo": rotulo, "pessoas": equipe_visivel().filter(grupo=valor)}
-        for valor, rotulo in Integrante.Grupo.choices
-    ]
+    # uma lista pra cada grupo (coordenação, professores, apoio)
+    grupos = []
+    for valor, nome in Integrante.GRUPOS:
+        pessoas = Integrante.objects.filter(ativo=True, grupo=valor)
+        grupos.append({"id": valor, "titulo": nome, "pessoas": pessoas})
     return render(request, "paginas/equipe.html", {"grupos": grupos})
+
+
+def noticias(request):
+    publicadas = Noticia.objects.filter(status="publicada")
+    pagina = Paginator(publicadas, NOTICIAS_POR_PAGINA).get_page(request.GET.get("pagina"))
+    return render(request, "paginas/noticias.html", {"noticias": pagina})
+
+
+def noticia_detalhe(request, slug):
+    # visitante só vê notícia publicada (rascunho dá erro 404)
+    # quem tá logado no painel consegue ver o rascunho pra conferir antes de publicar
+    if request.user.is_staff:
+        noticia = get_object_or_404(Noticia, slug=slug)
+    else:
+        noticia = get_object_or_404(Noticia, slug=slug, status="publicada")
+    return render(request, "paginas/noticia_detalhe.html", {"noticia": noticia})
+
+
+# ---------------- páginas só com texto fixo ----------------
+
+def projeto(request):
+    return render(request, "paginas/projeto.html")
 
 
 def alunos(request):
@@ -78,29 +88,14 @@ def voluntarios(request):
     return render(request, "paginas/voluntarios.html")
 
 
-def noticias(request):
-    pagina = Paginator(Noticia.objects.publicadas(), NOTICIAS_POR_PAGINA).get_page(request.GET.get("pagina"))
-    return render(request, "paginas/noticias.html", {"noticias": pagina})
-
-
-def noticia_detalhe(request, slug):
-    # Visitantes: só publicadas (rascunho dá "página não encontrada").
-    # A coordenação logada no painel pode pré-visualizar rascunhos.
-    if request.user.is_staff:
-        noticia = get_object_or_404(Noticia, slug=slug)
-    else:
-        noticia = get_object_or_404(Noticia.objects.publicadas(), slug=slug)
-    return render(request, "paginas/noticia_detalhe.html", {"noticia": noticia})
-
-
 def contato(request):
     return render(request, "paginas/contato.html")
 
 
 def robots_txt(request):
-    """Instruções para buscadores (Google etc.). Em fase de testes, nada é indexado."""
+    # avisa o google se pode ou não mostrar o site nas buscas
     if settings.SITE_EM_TESTE:
-        linhas = ["User-agent: *", "Disallow: /"]
+        texto = "User-agent: *\nDisallow: /\n"
     else:
-        linhas = ["User-agent: *", "Disallow: /admin/"]
-    return HttpResponse("\n".join(linhas) + "\n", content_type="text/plain")
+        texto = "User-agent: *\nDisallow: /admin/\n"
+    return HttpResponse(texto, content_type="text/plain")

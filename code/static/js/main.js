@@ -1,11 +1,9 @@
-/* =====================================================================
-   main.js — comportamentos básicos compartilhados por todas as páginas
-   1) Menu mobile (abrir/fechar)
-   2) Links externos configurados em SITE_CONFIG (js/config.js)
-   3) Ano atual no rodapé
-   4) Foto que não carregou: esconde em vez de mostrar o ícone de imagem quebrada
-   (O item ativo do menu é marcado pelo Django, em templates/base.html.)
-   ===================================================================== */
+// main.js - coisas que todas as páginas usam
+// parte 1: menu do celular (abrir e fechar)
+// parte 2: links externos que vêm do config.js (formulários, classroom...)
+// parte 3: ano atual no rodapé
+// parte 4: se uma foto não carregar, esconde ela em vez de mostrar a imagem quebrada
+// (o item do menu da página atual quem marca é o django, no base.html)
 
 (function () {
     "use strict";

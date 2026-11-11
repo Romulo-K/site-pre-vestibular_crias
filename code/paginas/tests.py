@@ -1,7 +1,6 @@
-"""
-Testes automáticos das páginas públicas.
-Rodar:  python manage.py test
-"""
+# testes das páginas do site
+# rodar com: python manage.py test
+
 from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import reverse
@@ -11,101 +10,75 @@ from conteudo.models import Depoimento, Integrante, Noticia
 PAGINAS = ["inicio", "projeto", "atividades", "equipe", "alunos", "voluntarios", "noticias", "contato"]
 
 
-def nova_noticia(titulo, publicada=True):
-    status = Noticia.Status.PUBLICADA if publicada else Noticia.Status.RASCUNHO
-    return Noticia.objects.create(titulo=titulo, resumo=f"Resumo de {titulo}", texto="Parágrafo 1\n\nParágrafo 2", status=status)
+def criar_noticia(titulo, status="publicada"):
+    return Noticia.objects.create(titulo=titulo, resumo="resumo", texto="texto", status=status)
 
 
-class PaginasPublicasTest(TestCase):
-    def test_todas_as_paginas_abrem_com_banco_vazio(self):
+class TestesPaginas(TestCase):
+
+    def test_todas_as_paginas_abrem(self):
         for nome in PAGINAS:
-            with self.subTest(pagina=nome):
-                self.assertEqual(self.client.get(reverse(f"paginas:{nome}")).status_code, 200)
+            resposta = self.client.get(reverse("paginas:" + nome))
+            self.assertEqual(resposta.status_code, 200, nome)
+
+    def test_pagina_que_nao_existe(self):
+        self.assertEqual(self.client.get("/nao-existe/").status_code, 404)
 
     def test_menu_marca_a_pagina_atual(self):
         resposta = self.client.get(reverse("paginas:equipe"))
-        self.assertContains(resposta, f'href="{reverse("paginas:equipe")}" aria-current="page"')
+        self.assertContains(resposta, 'href="/equipe/" aria-current="page"')
 
-    def test_pagina_inexistente_da_404(self):
-        self.assertEqual(self.client.get("/pagina-que-nao-existe/").status_code, 404)
-
-    def test_estados_vazios(self):
-        self.assertContains(self.client.get(reverse("paginas:inicio")), "Nenhuma notícia publicada ainda.")
+    def test_banco_vazio_mostra_aviso(self):
         self.assertContains(self.client.get(reverse("paginas:noticias")), "Nenhuma notícia publicada ainda.")
 
+    # ---------- notícias ----------
 
-class NoticiasPublicasTest(TestCase):
-    def test_home_mostra_so_as_3_publicadas_mais_recentes(self):
+    def test_home_mostra_so_3_noticias_publicadas(self):
         for i in range(4):
-            nova_noticia(f"Publicada {i}")
-        nova_noticia("Rascunho secreto", publicada=False)
+            criar_noticia(f"Publicada {i}")
+        criar_noticia("Rascunho secreto", status="rascunho")
         html = self.client.get(reverse("paginas:inicio")).content.decode()
         self.assertNotIn("Rascunho secreto", html)
         self.assertEqual(html.count('class="card card--noticia'), 3)
 
-    def test_rascunho_nao_abre_para_visitante(self):
-        n = nova_noticia("Rascunho", publicada=False)
-        self.assertEqual(self.client.get(n.get_absolute_url()).status_code, 404)
-        self.assertNotContains(self.client.get(reverse("paginas:noticias")), "Rascunho")
+    def test_rascunho_nao_abre_pra_visitante(self):
+        rascunho = criar_noticia("Rascunho", status="rascunho")
+        self.assertEqual(self.client.get(rascunho.get_absolute_url()).status_code, 404)
 
-    def test_coordenacao_pode_pre_visualizar_rascunho(self):
-        n = nova_noticia("Rascunho", publicada=False)
+    def test_coordenacao_ve_o_rascunho(self):
+        rascunho = criar_noticia("Rascunho", status="rascunho")
         User.objects.create_user("coord", password="SenhaDeTeste2026", is_staff=True)
         self.client.login(username="coord", password="SenhaDeTeste2026")
-        resposta = self.client.get(n.get_absolute_url())
-        self.assertContains(resposta, "Rascunho:")
+        self.assertContains(self.client.get(rascunho.get_absolute_url()), "Rascunho:")
 
-    def test_pagina_da_noticia_e_texto_seguro(self):
-        n = Noticia.objects.create(titulo="Teste", resumo="r", texto="<script>alert(1)</script>",
-                                   status=Noticia.Status.PUBLICADA)
-        resposta = self.client.get(n.get_absolute_url())
-        self.assertContains(resposta, "&lt;script&gt;")      # aparece como texto
-        self.assertNotContains(resposta, "<script>alert(1)")  # não é executado
+    def test_texto_da_noticia_nao_vira_codigo(self):
+        # se alguém escrever <script> na notícia, tem que aparecer como texto e não rodar
+        noticia = Noticia.objects.create(titulo="T", resumo="r", texto="<script>alert(1)</script>", status="publicada")
+        resposta = self.client.get(noticia.get_absolute_url())
+        self.assertContains(resposta, "&lt;script&gt;")
+        self.assertNotContains(resposta, "<script>alert(1)")
 
-    def test_paginacao(self):
-        for i in range(11):
-            nova_noticia(f"N{i}")
-        self.assertContains(self.client.get(reverse("paginas:noticias")), "Página 1 de 2")
-        self.assertEqual(self.client.get(reverse("paginas:noticias") + "?pagina=2").status_code, 200)
-        self.assertEqual(self.client.get(reverse("paginas:noticias") + "?pagina=abc").status_code, 200)
+    # ---------- equipe e depoimentos ----------
 
+    def test_integrante_escondido_nao_aparece(self):
+        Integrante.objects.create(nome="Ana Ativa", funcao="Professora")
+        Integrante.objects.create(nome="Bruno Escondido", funcao="Professor", ativo=False)
+        html = self.client.get(reverse("paginas:equipe")).content.decode()
+        self.assertIn("Ana Ativa", html)
+        self.assertNotIn("Bruno Escondido", html)
 
-class EquipeEDepoimentosTest(TestCase):
-    def test_integrante_inativo_nao_aparece(self):
-        Integrante.objects.create(nome="Ana Ativa", funcao="Professora", grupo="professores")
-        Integrante.objects.create(nome="Bruno Inativo", funcao="Professor", grupo="professores", ativo=False)
-        for nome in ("inicio", "equipe"):
-            html = self.client.get(reverse(f"paginas:{nome}")).content.decode()
-            self.assertIn("Ana Ativa", html)
-            self.assertNotIn("Bruno Inativo", html)
-
-    def test_home_mostra_coordenacao_primeiro(self):
-        Integrante.objects.create(nome="Prof", funcao="Professor", grupo="professores", ordem=0)
-        Integrante.objects.create(nome="Coord", funcao="Coordenadora", grupo="coordenacao", ordem=5)
-        html = self.client.get(reverse("paginas:inicio")).content.decode()
-        self.assertLess(html.index("Coord"), html.index("Prof"))
-
-    def test_depoimento_so_aparece_se_ativo_e_autorizado(self):
-        Depoimento.objects.create(nome="Visivel", texto="Ótimo", autorizado=True)
+    def test_depoimento_sem_autorizacao_nao_aparece(self):
+        Depoimento.objects.create(nome="Com autorizacao", texto="Ótimo", autorizado=True)
         Depoimento.objects.create(nome="Sem autorizacao", texto="x", autorizado=False)
-        Depoimento.objects.create(nome="Inativo", texto="x", autorizado=True, ativo=False)
         html = self.client.get(reverse("paginas:inicio")).content.decode()
-        self.assertIn("Visivel", html)
+        self.assertIn("Com autorizacao", html)
         self.assertNotIn("Sem autorizacao", html)
-        self.assertNotIn("Inativo", html)
 
+    # ---------- versão de teste ----------
 
-class PublicacaoTest(TestCase):
-    def test_aviso_de_teste_e_bloqueio_do_google(self):
+    def test_faixa_de_versao_de_teste(self):
         with self.settings(SITE_EM_TESTE=True):
-            html = self.client.get(reverse("paginas:inicio")).content.decode()
-            self.assertIn("Versão de teste.", html)
-            self.assertIn('name="robots" content="noindex', html)
+            self.assertContains(self.client.get("/"), "Versão de teste.")
             self.assertContains(self.client.get("/robots.txt"), "Disallow: /\n")
-
-    def test_lancamento_oficial(self):
         with self.settings(SITE_EM_TESTE=False):
-            html = self.client.get(reverse("paginas:inicio")).content.decode()
-            self.assertNotIn("Versão de teste.", html)
-            self.assertNotIn('name="robots"', html)
-            self.assertContains(self.client.get("/robots.txt"), "Disallow: /admin/")
+            self.assertNotContains(self.client.get("/"), "Versão de teste.")

@@ -1,81 +1,52 @@
-"""
-Configurações do projeto Django — Pré-Vestibular Social ONG Crias.
+# configurações do projeto django
+# as coisas secretas (chave, debug etc) ficam no arquivo .env, que não vai pro github
+# (copiar o .env.example pra .env e preencher)
 
-Valores secretos ou que mudam entre o seu computador e o servidor ficam no
-arquivo .env (copie .env.example para .env). O .env NUNCA vai para o GitHub.
-
-Documentação: https://docs.djangoproject.com/pt-br/5.2/ref/settings/
-"""
 import os
 from pathlib import Path
 
-from django.core.exceptions import ImproperlyConfigured
+from dotenv import load_dotenv
 
-# Pasta "code/" (onde está o manage.py)
+# pasta code/ (onde fica o manage.py)
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# ----------------------------------------------------------------------
-# Leitura do arquivo .env (sem bibliotecas extras)
-# Formato: uma linha por variável, CHAVE=valor. Linhas com # são comentários.
-# ----------------------------------------------------------------------
-def carregar_env(caminho):
-    if not caminho.exists():
-        return
-    for linha in caminho.read_text(encoding="utf-8").splitlines():
-        linha = linha.strip()
-        if not linha or linha.startswith("#") or "=" not in linha:
-            continue
-        chave, _, valor = linha.partition("=")
-        os.environ.setdefault(chave.strip(), valor.strip().strip('"').strip("'"))
+# lê o arquivo .env e joga os valores nas variáveis de ambiente
+load_dotenv(BASE_DIR / ".env")
 
 
-carregar_env(BASE_DIR / ".env")
+# ---------------- parte 1: segurança ----------------
 
+# DEBUG=1 só no meu pc, no servidor fica DEBUG=0
+DEBUG = os.getenv("DEBUG", "0") == "1"
 
-def env_bool(nome, padrao=False):
-    return os.environ.get(nome, str(padrao)).strip().lower() in ("1", "true", "sim", "yes")
-
-
-# ----------------------------------------------------------------------
-# Segurança
-# ----------------------------------------------------------------------
-# DEBUG=1 só no seu computador. No servidor (Etapa 11) será DEBUG=0.
-DEBUG = env_bool("DEBUG", False)
-
-# Chave usada pelo Django para assinar sessões e formulários. Precisa ser secreta.
-CHAVE_DE_DESENVOLVIMENTO = "chave-insegura-apenas-para-desenvolvimento-local"
-SECRET_KEY = os.environ.get("SECRET_KEY", "")
+# chave secreta do django. no pc pode ficar vazia, no servidor é obrigatória
+SECRET_KEY = os.getenv("SECRET_KEY", "")
 if not SECRET_KEY:
     if DEBUG:
-        SECRET_KEY = CHAVE_DE_DESENVOLVIMENTO
+        SECRET_KEY = "chave-so-pra-testar-no-pc"
     else:
-        raise ImproperlyConfigured("Defina SECRET_KEY no arquivo .env (veja .env.example).")
+        raise Exception("Faltou colocar a SECRET_KEY no arquivo .env")
 
-# Endereços que podem acessar o site. Ex.: "precrias.pythonanywhere.com"
-ALLOWED_HOSTS = [h.strip() for h in os.environ.get("ALLOWED_HOSTS", "").split(",") if h.strip()]
+# endereços que podem abrir o site (no servidor: prevestibularcrias.pythonanywhere.com)
+ALLOWED_HOSTS = [host.strip() for host in os.getenv("ALLOWED_HOSTS", "").split(",") if host.strip()]
 if DEBUG:
     ALLOWED_HOSTS += ["127.0.0.1", "localhost"]
 
-# Formulários (como o login do painel) enviados pelo endereço HTTPS do site
-CSRF_TRUSTED_ORIGINS = [f"https://{h}" for h in ALLOWED_HOSTS if h not in ("127.0.0.1", "localhost")]
+# sem isso o login do painel dá erro de CSRF quando o site está em https
+CSRF_TRUSTED_ORIGINS = ["https://" + host for host in ALLOWED_HOSTS if host not in ("127.0.0.1", "localhost")]
 
-# No servidor (DEBUG=0): cookies de login e de formulário só trafegam por HTTPS
+# no servidor os cookies de login só andam por https
 if not DEBUG:
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
-    # O redirecionamento para HTTPS é feito pelo próprio PythonAnywhere (opção "Force HTTPS"
-    # na aba Web). Por isso estes dois avisos do "check --deploy" podem ser ignorados.
-    SILENCED_SYSTEM_CHECKS = ["security.W004", "security.W008"]
 
-# Site em fase de testes: mostra o aviso "Versão de teste" e pede ao Google para não indexar.
-# Para lançar oficialmente: SITE_EM_TESTE=0 no .env do servidor (e clicar em Reload).
-SITE_EM_TESTE = env_bool("SITE_EM_TESTE", True)
+# enquanto o site está em teste aparece a faixa amarela e o google não indexa
+# pra lançar de verdade: SITE_EM_TESTE=0 no .env do servidor
+SITE_EM_TESTE = os.getenv("SITE_EM_TESTE", "1") == "1"
 
 
-# ----------------------------------------------------------------------
-# Aplicativos
-# ----------------------------------------------------------------------
+# ---------------- parte 2: apps ----------------
+
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -83,9 +54,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # Apps do projeto
-    "paginas",    # páginas públicas do site
-    "conteudo",   # notícias, equipe, galeria e depoimentos + painel /admin/
+    # apps que eu criei
+    "paginas",   # as páginas do site
+    "conteudo",  # notícias, equipe, galeria e depoimentos (+ painel /admin/)
 ]
 
 MIDDLEWARE = [
@@ -103,14 +74,14 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "templates"],   # templates/ na pasta code/
+        "DIRS": [BASE_DIR / "templates"],  # minha pasta templates/
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "paginas.context_processors.site",
+                "paginas.context_processors.site",  # manda o site_em_teste pra todos os templates
             ],
         },
     },
@@ -119,9 +90,9 @@ TEMPLATES = [
 WSGI_APPLICATION = "config.wsgi.application"
 
 
-# ----------------------------------------------------------------------
-# Banco de dados: SQLite (um arquivo, db.sqlite3, fora do GitHub)
-# ----------------------------------------------------------------------
+# ---------------- parte 3: banco de dados ----------------
+
+# sqlite = o banco é um arquivo só (db.sqlite3), não precisa instalar nada
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
@@ -129,10 +100,7 @@ DATABASES = {
     }
 }
 
-
-# ----------------------------------------------------------------------
-# Senhas (regras para a conta da coordenação no Admin)
-# ----------------------------------------------------------------------
+# regras pra senha das contas do painel
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator", "OPTIONS": {"min_length": 10}},
@@ -141,23 +109,23 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# ----------------------------------------------------------------------
-# Idioma e fuso horário
-# ----------------------------------------------------------------------
+# ---------------- parte 4: idioma e horário ----------------
+
 LANGUAGE_CODE = "pt-br"
 TIME_ZONE = "America/Sao_Paulo"
 USE_I18N = True
 USE_TZ = True
 
 
-# ----------------------------------------------------------------------
-# Arquivos estáticos (CSS, JS, imagens do site) e de mídia (fotos enviadas)
-# ----------------------------------------------------------------------
-STATIC_URL = "static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]   # onde você edita os arquivos
-STATIC_ROOT = BASE_DIR / "staticfiles"     # onde o "collectstatic" junta tudo no servidor
+# ---------------- parte 5: arquivos ----------------
 
+# static = css, js e imagens fixas do site
+STATIC_URL = "static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]  # onde eu edito
+STATIC_ROOT = BASE_DIR / "staticfiles"    # onde o collectstatic junta tudo no servidor
+
+# media = fotos que a coordenação manda pelo painel
 MEDIA_URL = "media/"
-MEDIA_ROOT = BASE_DIR / "media"            # fotos enviadas pelo painel /admin/
+MEDIA_ROOT = BASE_DIR / "media"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

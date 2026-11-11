@@ -1,9 +1,7 @@
-"""
-Endereços (URLs) do projeto.
+# endereços principais do site
+#   /        -> páginas do site (app paginas)
+#   /admin/  -> painel da coordenação
 
-    /            → páginas públicas (app "paginas")
-    /admin/      → painel da coordenação (Django Admin)
-"""
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -14,7 +12,7 @@ urlpatterns = [
     path("", include("paginas.urls")),
 ]
 
-# No seu computador (DEBUG=1), o próprio Django entrega as fotos enviadas.
-# No servidor, quem entrega é o PythonAnywhere (Etapa 11).
+# no meu pc o próprio django mostra as fotos enviadas
+# no servidor quem faz isso é o pythonanywhere (configurado na aba Web)
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

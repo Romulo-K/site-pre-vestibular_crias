@@ -1,111 +1,46 @@
-# Design system — Pré-Vestibular Social ONG Crias
+# Visual do site (design system)
 
-Guia rápido de como usar a identidade visual. Os arquivos citados ficam em `code/static/` (CSS, JS, dados) e `code/templates/` (HTML).
+Anotações de como o visual do site está organizado, pra eu não me perder.
 
-Toda a identidade está em **`css/style.css`, seção 2 (TOKENS)**. Para mudar uma cor, fonte ou espaçamento, altere a variável: todo o site acompanha.
+## Cores e fontes
 
-## Cores
+Tudo fica no começo do `static/css/style.css` (parte 2, as variáveis). Trocando uma variável lá, muda no site inteiro.
 
-As duas cores de identidade vêm da logo: verde `#069762` e amarelo `#FCC601`.
+- Verde da logo `#069762` → só em detalhes e textos grandes (em texto pequeno não tem contraste suficiente)
+- Verde dos botões `#057A4F`, verde dos títulos `#046A45`, verde escuro do rodapé `#034A31`
+- Amarelo `#FCC601` → destaques e botão principal
+- Lilás bem claro `#F0EAFA` → fundo de algumas seções
+- Texto `#1B2A22`, texto mais fraco `#4B5A52`
+- Fontes: **Outfit** nos títulos e **Inter** no resto (ficam em `static/assets/fonts/`)
 
-| Papel | Variável | Cor | Uso |
-|---|---|---|---|
-| Verde da logo | `--verde-500` | `#069762` | Decoração, formas e textos grandes. **Não use em texto pequeno** (contraste 3,7:1) |
-| Primária | `--verde-600` | `#057A4F` | Botões (texto branco 5,4:1) |
-| Títulos e links | `--verde-700` | `#046A45` | Títulos e links sobre fundo claro (6,7:1) |
-| Institucional | `--verde-800` | `#04523A` | Seções e cards verde escuro (9,2:1 com branco) |
-| Rodapé | `--verde-900` | `#034A31` | Rodapé (10,4:1 com branco) |
-| Verde claro | `--verde-50` / `--verde-100` | `#E8F7F0` / `#C9ECDA` | Ícones, selos, texto sobre verde escuro |
-| Amarelo da logo | `--amarelo-500` | `#FCC601` | Botão de destaque, etiquetas, card de destaque. Sempre com texto escuro (9,4:1) |
-| Amarelo suave | `--amarelo-50` | `#FFF7D6` | Avisos de conteúdo pendente |
-| Lilás | `--lilas-100` | `#F0EAFA` | Fundo de seções alternadas |
-| Lilás de apoio | `--lilas-700` | `#5A4A80` | Texto sobre lilás (6,8:1) |
-| Texto | `--texto` / `--texto-suave` | `#1B2A22` / `#4B5A52` | Texto principal (15:1) e secundário (7,3:1) |
+## Peças que se repetem
 
-**Regra de uso:** fundo branco e lilás se alternam; verde escuro marca as áreas institucionais (depoimentos, benefícios, rodapé); amarelo é para destaque pontual (no máximo um card ou botão amarelo por seção).
+- Botões: `.btn` + variações (`--destaque` amarelo, `--contorno`, `--claro`, `--sm`, `--lg`)
+- Cards: `.card` + tipos (`--noticia`, `--pessoa`, `--depoimento`, `--atividade`, `--plataforma`)
+- Seções: `.section` (branca), `.section--suave` (lilás), `.section--institucional` (verde escuro)
+- Grades: `.grid`, `.grid--2`, `.grid--5`, `.grid--pessoas`
+- Topo das páginas internas: `.page-header` com o caminho (`.breadcrumb`)
+- Texto provisório: `.placeholder` (amarelinho com borda, pra lembrar que falta o texto oficial)
+- Quando não tem conteúdo ainda: `.estado-vazio`
+- Paginação das notícias e da galeria: `.paginacao`
+- Faixa de versão de teste: `.aviso-teste`
 
-## Tipografia
+## Templates
 
-- **Títulos:** Outfit, pesos 700 e 800.
-- **Textos:** Inter, peso 400 (500/600 para ênfase).
-- Fontes hospedadas em `assets/fonts/` (não dependem do Google Fonts; licenças OFL incluídas).
+- `templates/base.html` → cabeçalho, menu, rodapé e scripts. Todas as páginas usam ele com `{% extends "base.html" %}`
+- `templates/includes/` → pedaços reaproveitados: ícones, cards, paginação e a chamada "Quer fazer parte?"
+- `templates/paginas/` → uma página por arquivo
+- Links internos: `{% url 'paginas:equipe' %}` e imagens/css/js: `{% static 'assets/...' %}`
 
-| Elemento | Variável | Tamanho (celular → desktop) |
-|---|---|---|
-| `h1` | `--titulo-1` | 36 → 64px |
-| `h2` | `--titulo-2` | 28 → 44px |
-| `h3` | `--titulo-3` | 20 → 26px |
-| `h4` (títulos de cards) | `--titulo-4` | 18 → 21px |
-| `.lead` (introdução) | `--texto-lg` | 17 → 20px |
-| Texto | `--texto-md` | 16px |
-| Apoio / rodapé | `--texto-sm` | 15px |
-| Rótulos | `--texto-xs` | 13px |
+## JavaScript
 
-## Espaçamento, bordas e sombras
+- `static/js/config.js` → links dos formulários, classroom, drive, meet e contatos
+- `static/js/main.js` → menu do celular, links do config, ano do rodapé, foto quebrada
+- `static/js/galeria.js` → foto grande da galeria
 
-- Espaçamento em escala de 4px: `--espaco-1` (4px) até `--espaco-9` (96px). Entre seções: `--espaco-secao` (56 a 104px).
-- Bordas: `--raio-sm` 10px, `--raio-md` 16px, `--raio-lg` 24px (cards), `--raio-xl` 36px (fotos), `--raio-pill` (botões e selos).
-- Sombras: `--sombra-sm` (cards), `--sombra-md` (hover e destaque), `--sombra-lg` (fotos de destaque).
+## Acessibilidade (o que eu tentei garantir)
 
-## Componentes prontos (classes)
-
-| Componente | Classes |
-|---|---|
-| Botões | `.btn` (primário), `.btn--destaque` (amarelo), `.btn--contorno`, `.btn--claro` e `.btn--contorno-claro` (fundo escuro), `.btn--sm`, `.btn--lg` |
-| Aviso de link externo | `<span class="btn__externo">` dentro do botão |
-| Link com seta | `.link-seta` |
-| Cards | `.card`, `.card--link` (hover), `.card--destaque` (amarelo), `.card--verde`, `.card--depoimento`, `.card--pessoa`, `.card--noticia` |
-| Ícone de card | `.icon-box` |
-| Selos | `.selo`, `.selo--verde`, `.selo--lilas` |
-| Rótulo de seção | `.eyebrow` (o "● SOBRE O PROJETO" acima do título) |
-| Seções | `.section`, `.section--suave` (lilás), `.section--institucional` (verde escuro), `.section-head` |
-| Grades | `.grid`, `.grid--2`, `.grid--4`, `.split` (texto + imagem) |
-| Foto de destaque | `.foto-destaque` + `.foto-destaque__etiqueta` |
-| Decoração | `.decor-circulo` |
-| Pendências | `.placeholder`, `.img-placeholder` (avisos de conteúdo que a ONG ainda vai fornecer) |
-| Cards de acesso (Home) | `.acesso-card` (card inteiro clicável, com `data-link` para o Google Forms) |
-| Painel verde de benefícios | `.card.card--verde.beneficios` |
-| Card clicável por um só link | `.card--link` + `<a class="link-card">` no título (o link cobre o card todo) |
-| Cards com foto | `.card--noticia`, `.card--atividade`, `.card--pessoa` (templates `includes/card_*.html`) |
-| Chamada final | `.cta-final` |
-| Ícones | `<svg class="icone"><use href="#i-nome"/></svg>` (lista no sprite no topo de cada página) |
-| Grades extras | `.grid--5` (atividades), `.grid--pessoas` (equipe; 2 colunas no celular) |
-
-## Acessibilidade já embutida
-
-- Contraste mínimo 4,5:1 em textos pequenos (conferido nos pares da tabela acima).
-- Foco visível em todos os links e botões; botões com no mínimo 48px de altura.
-- Âncoras não ficam escondidas sob o cabeçalho fixo (`scroll-padding-top`).
-- Animações são desativadas para quem pede menos movimento no sistema.
-
-## Componentes das páginas internas (Etapa 4)
-- `.page-header__acoes` — botões logo abaixo do título da página (Alunos, Voluntários).
-- `.indice-pagina` — chips de navegação por âncoras no topo da página.
-- `.missao` — bloco verde de destaque (O Projeto → Missão).
-- `.passos` / `.passo` — passos numerados (como se inscrever / como participar).
-- `.atividade` + `.atividade__card` — foto + card de texto, alternando os lados.
-- `.card--plataforma` — atalho para Google Classroom/Drive/Meet.
-- `.contato-card` e `.lista-links` — canais de contato.
-- `.noticia`, `.link-voltar` — leitura completa de notícia (`/noticias/?noticia=ID`).
-- `.mt-6` — utilitário de espaçamento.
-
-Links e contatos vêm de `js/config.js`. Notícias, equipe, galeria e depoimentos vêm do banco (painel /admin/).
-
-## JavaScript (Etapa 5)
-- `js/config.js` — todos os links e contatos (formulários, Classroom, Drive, Meet, WhatsApp, e-mail, redes). Único arquivo a editar para trocar links.
-- `js/main.js` — menu mobile (abre/fecha, Esc, clique fora), links do config, ano do rodapé.
-- `js/galeria.js` — foto ampliada da galeria (`<dialog>`): fechar com botão, Esc ou clique fora; setas para navegar.
-
-## Templates Django (Etapa 6)
-- `templates/base.html` — estrutura comum: `<head>`, cabeçalho, menu (o item ativo é marcado pelo Django), rodapé e scripts.
-- `templates/includes/icones.html` — os ícones SVG. `templates/includes/cta_participe.html` — chamada "Quer fazer parte?".
-- `templates/paginas/*.html` — uma página por arquivo. Cada uma começa com `{% extends "base.html" %}` e preenche os blocos
-  `titulo`, `descricao`, `conteudo` e `scripts` (ex.: galeria.js).
-- Links internos: `{% url 'paginas:equipe' %}`. Imagens/CSS/JS: `{% static 'assets/...' %}`.
-
-## Conteúdo do banco (Etapa 8)
-- Cards: `includes/card_noticia.html`, `card_pessoa.html`, `card_depoimento.html`, `card_atividade.html`, `foto_galeria.html`.
-- `includes/paginacao.html` — "Mais recentes / Mais antigas" (`.paginacao`).
-- `.estado-vazio` (e `.estado-vazio--claro` sobre fundo verde) — mensagem discreta quando não há conteúdo.
-- `.foto--sem-imagem` — integrante sem foto mostra um ícone.
-- Foto que não carrega é escondida por `main.js` (o card continua de pé).
+- Toda imagem tem `alt` (descrição)
+- Dá pra navegar só com o teclado e o foco aparece
+- Botões que levam pra fora do site avisam que abrem em nova aba
+- Contraste dos textos dentro do recomendado

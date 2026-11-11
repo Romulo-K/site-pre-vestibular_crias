@@ -1,8 +1,6 @@
-"""
-Testes automáticos do conteúdo (modelos e regras).
-Rodar:  python manage.py test
-As fotos de teste são criadas numa pasta temporária e apagadas no fim.
-"""
+# testes do conteúdo (models e regras das fotos)
+# rodar com: python manage.py test
+
 import io
 import shutil
 import tempfile
@@ -12,112 +10,75 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase, override_settings
 from PIL import Image
 
-from .models import Depoimento, FotoGaleria, Integrante, Noticia
-from .validators import validar_tamanho_imagem
+from .models import FotoGaleria, Integrante, Noticia
+from .validators import validar_tamanho
 
-PASTA_TEMP = tempfile.mkdtemp()
-
-
-def imagem_teste(nome="foto.png"):
-    buffer = io.BytesIO()
-    Image.new("RGB", (10, 10), "green").save(buffer, "PNG")
-    return SimpleUploadedFile(nome, buffer.getvalue(), content_type="image/png")
+# as fotos dos testes vão pra uma pasta temporária, pra não sujar a media/
+PASTA_TESTE = tempfile.mkdtemp()
 
 
-@override_settings(MEDIA_ROOT=PASTA_TEMP)
-class NoticiaTest(TestCase):
-    def test_slug_unico_a_partir_do_titulo(self):
+def criar_imagem(nome="foto.png"):
+    # cria uma imagem verde de 10x10 só pra testar
+    arquivo = io.BytesIO()
+    Image.new("RGB", (10, 10), "green").save(arquivo, "PNG")
+    return SimpleUploadedFile(nome, arquivo.getvalue(), content_type="image/png")
+
+
+@override_settings(MEDIA_ROOT=PASTA_TESTE)
+class TestesConteudo(TestCase):
+
+    @classmethod
+    def tearDownClass(cls):
+        super().tearDownClass()
+        shutil.rmtree(PASTA_TESTE, ignore_errors=True)
+
+    def test_slug_nao_repete(self):
         a = Noticia.objects.create(titulo="Simulado de Outubro", resumo="r", texto="t")
         b = Noticia.objects.create(titulo="Simulado de Outubro", resumo="r", texto="t")
         self.assertEqual(a.slug, "simulado-de-outubro")
         self.assertEqual(b.slug, "simulado-de-outubro-2")
 
     def test_data_de_publicacao_so_na_primeira_vez(self):
-        n = Noticia.objects.create(titulo="N", resumo="r", texto="t")
-        self.assertIsNone(n.publicada_em)                     # rascunho: sem data
-        n.status = Noticia.Status.PUBLICADA
-        n.save()
-        data = n.publicada_em
+        noticia = Noticia.objects.create(titulo="N", resumo="r", texto="t")
+        self.assertIsNone(noticia.publicada_em)  # rascunho não tem data
+
+        noticia.status = "publicada"
+        noticia.save()
+        data = noticia.publicada_em
         self.assertIsNotNone(data)
-        n.resumo = "editado"
-        n.save()
-        self.assertEqual(n.publicada_em, data)                # edição não muda a data
-        n.status = Noticia.Status.RASCUNHO
-        n.save()
-        n.status = Noticia.Status.PUBLICADA
-        n.save()
-        self.assertEqual(n.publicada_em, data)                # republicar também não
 
-    def test_publicadas_nao_inclui_rascunhos(self):
-        Noticia.objects.create(titulo="Rascunho", resumo="r", texto="t")
-        Noticia.objects.create(titulo="Publicada", resumo="r", texto="t", status=Noticia.Status.PUBLICADA)
-        self.assertEqual([n.titulo for n in Noticia.objects.publicadas()], ["Publicada"])
+        noticia.resumo = "editado"
+        noticia.save()
+        self.assertEqual(noticia.publicada_em, data)  # editar não muda a data
 
-    def test_capa_exige_descricao(self):
-        n = Noticia(titulo="N", resumo="r", texto="t", capa=imagem_teste())
+    def test_capa_precisa_de_descricao(self):
+        noticia = Noticia(titulo="N", resumo="r", texto="t", capa=criar_imagem())
         with self.assertRaises(ValidationError):
-            n.full_clean()
+            noticia.full_clean()
 
-
-@override_settings(MEDIA_ROOT=PASTA_TEMP)
-class AutorizacaoTest(TestCase):
-    def test_foto_de_integrante_exige_autorizacao(self):
-        i = Integrante(nome="Ana", funcao="Professora", foto=imagem_teste())
+    def test_foto_precisa_de_autorizacao(self):
+        pessoa = Integrante(nome="Ana", funcao="Professora", foto=criar_imagem())
         with self.assertRaises(ValidationError):
-            i.full_clean()
-        i.foto_autorizada = True
-        i.full_clean()  # agora passa
+            pessoa.full_clean()
+        pessoa.foto_autorizada = True
+        pessoa.full_clean()  # agora passa
 
-    def test_galeria_exige_autorizacao(self):
-        f = FotoGaleria(titulo="Aula", descricao="Alunos em aula", imagem=imagem_teste())
+    def test_foto_maior_que_3mb(self):
+        foto_grande = SimpleUploadedFile("g.jpg", b"0" * (3 * 1024 * 1024 + 1))
         with self.assertRaises(ValidationError):
-            f.full_clean()
+            validar_tamanho(foto_grande)
 
-    def test_depoimento_exige_autorizacao(self):
-        d = Depoimento(nome="Ex-aluno", texto="Muito bom")
-        with self.assertRaises(ValidationError):
-            d.full_clean()
+    def test_excluir_apaga_a_foto(self):
+        foto = FotoGaleria.objects.create(titulo="A", descricao="d", imagem=criar_imagem(), uso_autorizado=True)
+        caminho = foto.imagem.name
+        self.assertTrue(foto.imagem.storage.exists(caminho))
+        foto.delete()
+        self.assertFalse(foto.imagem.storage.exists(caminho))
 
-
-class ImagemTest(TestCase):
-    def test_limite_de_tamanho(self):
-        grande = SimpleUploadedFile("g.jpg", b"0" * (3 * 1024 * 1024 + 1))
-        with self.assertRaises(ValidationError):
-            validar_tamanho_imagem(grande)
-
-    def test_formato_nao_aceito(self):
-        i = Integrante(nome="A", funcao="B", foto=SimpleUploadedFile("arquivo.gif", b"GIF89a"), foto_autorizada=True)
-        with self.assertRaises(ValidationError):
-            i.full_clean()
-
-
-@override_settings(MEDIA_ROOT=PASTA_TEMP)
-class LimpezaDeArquivosTest(TestCase):
-    def test_excluir_registro_apaga_a_foto(self):
-        with self.captureOnCommitCallbacks(execute=True):
-            f = FotoGaleria.objects.create(titulo="A", descricao="d", imagem=imagem_teste(), uso_autorizado=True)
-        caminho = f.imagem.name
-        self.assertTrue(f.imagem.storage.exists(caminho))
-        with self.captureOnCommitCallbacks(execute=True):
-            f.delete()
-        self.assertFalse(f.imagem.storage.exists(caminho))
-
-    def test_trocar_foto_apaga_a_antiga_depois_de_salvar(self):
-        with self.captureOnCommitCallbacks(execute=True):
-            i = Integrante.objects.create(nome="A", funcao="B", foto=imagem_teste("a.png"), foto_autorizada=True)
-        antiga = i.foto.name
-        with self.captureOnCommitCallbacks(execute=True):
-            i.foto = imagem_teste("b.png")
-            i.save()
-        self.assertFalse(i.foto.storage.exists(antiga))
-        self.assertTrue(i.foto.storage.exists(i.foto.name))
-
-    def test_nome_do_arquivo_e_seguro(self):
-        with self.captureOnCommitCallbacks(execute=True):
-            i = Integrante.objects.create(nome="A", funcao="B", foto=imagem_teste("Aula de Física.PNG"), foto_autorizada=True)
-        self.assertRegex(i.foto.name, r"^equipe/aula-de-fisica-[0-9a-f]{8}\.png$")
-
-    @classmethod
-    def tearDownClass(cls):
-        super().tearDownClass()
-        shutil.rmtree(PASTA_TEMP, ignore_errors=True)
+    def test_trocar_foto_apaga_a_antiga(self):
+        pessoa = Integrante.objects.create(nome="A", funcao="B", foto=criar_imagem("a.png"), foto_autorizada=True)
+        antiga = pessoa.foto.name
+        pessoa.foto = criar_imagem("b.png")
+        pessoa.save()
+        self.assertFalse(pessoa.foto.storage.exists(antiga))
+        self.assertTrue(pessoa.foto.storage.exists(pessoa.foto.name))

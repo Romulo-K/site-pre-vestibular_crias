@@ -1,7 +1,5 @@
-"""
-Variáveis disponíveis em TODOS os templates.
-(Registrado em config/settings.py, TEMPLATES > context_processors.)
-"""
+# variáveis que ficam disponíveis em todos os templates (registrado no settings.py)
+
 from django.conf import settings
 
 

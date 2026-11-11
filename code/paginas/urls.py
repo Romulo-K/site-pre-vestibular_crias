@@ -1,10 +1,6 @@
-"""
-URLs das páginas públicas.
+# endereços das páginas do site
+# nos templates eu uso o nome da rota, tipo {% url 'paginas:equipe' %}, em vez de escrever o endereço
 
-Nos templates, use o nome da rota em vez do endereço escrito à mão:
-    <a href="{% url 'paginas:projeto' %}">O Projeto</a>
-Assim, se um endereço mudar, basta mudar aqui.
-"""
 from django.urls import path
 
 from . import views

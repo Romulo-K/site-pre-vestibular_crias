@@ -1,11 +1,8 @@
-/* =====================================================================
-   galeria.js — foto ampliada da galeria (página Atividades)
-   ---------------------------------------------------------------------
-   Clique (ou Enter) em uma foto da galeria: ela abre ampliada, com fundo escuro.
-   Fechar: botão "Fechar", tecla Esc ou clique fora da foto.
-   Com mais de uma foto: botões Anterior/Próxima e setas ← → do teclado.
-   Usa o elemento <dialog>, que já cuida do foco e do Esc. Sem bibliotecas.
-   ===================================================================== */
+// galeria.js - abre a foto da galeria em tamanho grande (página Atividades)
+// clicou na foto -> abre com o fundo escuro
+// fecha no botão "Fechar", na tecla Esc ou clicando fora da foto
+// se tiver mais de uma foto dá pra passar com os botões ou com as setas do teclado
+// usa a tag <dialog> do html, sem biblioteca nenhuma
 (function () {
     "use strict";
 

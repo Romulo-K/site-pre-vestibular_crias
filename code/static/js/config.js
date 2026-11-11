@@ -1,12 +1,7 @@
-/* =====================================================================
-   CONFIGURAÇÃO CENTRAL DE LINKS E CONTATOS
-   ---------------------------------------------------------------------
-   Troque os valores AQUI e todos os botões/links do site são atualizados.
-   - Deixe "" (vazio) enquanto o link oficial não existir: o botão fica
-     desativado e avisa que o link ainda não foi configurado.
-   - Para os formulários, use o link PÚBLICO de resposta do Google Forms
-     (termina em /viewform), nunca o link de edição.
-   ===================================================================== */
+// config.js - links e contatos do site num lugar só
+// trocando aqui, todos os botões do site mudam juntos
+// se deixar "" (vazio), o botão fica desativado avisando que o link ainda não foi configurado
+// formulário: usar o link de RESPOSTA do google forms (termina em /viewform), nunca o de edição
 const SITE_CONFIG = {
     // Inscrições (Google Forms)
     formularioAluno: "",        // ex.: "https://forms.gle/..."

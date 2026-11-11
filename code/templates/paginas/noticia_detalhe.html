@@ -21,7 +21,7 @@
     <section class="section">
       <div class="container">
         <article class="noticia">
-          {% if not noticia.publicada %}
+          {% if noticia.status == "rascunho" %}
           <p class="aviso-noticia" role="status"><strong>Rascunho:</strong> só a coordenação, logada no painel, vê esta página. Publique no painel para aparecer no site.</p>
           {% endif %}
           <p class="noticia__meta">

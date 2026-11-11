@@ -1,99 +1,77 @@
-#!/usr/bin/env python3
-"""
-bd.py — documentação do banco de dados do site (Python + SQL).
+# bd.py - script do banco de dados do site
+#
+# o banco é criado pelo django a partir do code/conteudo/models.py
+# esse script faz duas coisas:
+#   1) gera o bd/schema.sql com o SQL que o django usa pra criar as tabelas
+#   2) mostra quantos registros tem em cada tabela (usando SQL direto no sqlite)
+#
+# como usar (na pasta do projeto, com o .venv ativado):
+#   python bd/bd.py          -> gera o schema.sql
+#   python bd/bd.py contar   -> mostra quantos registros tem no banco
 
-O banco é criado pelo Django a partir dos modelos em code/conteudo/models.py.
-Este script mostra e registra o SQL que o Django usa:
-
-    python bd/bd.py            gera bd/schema.sql (o SQL das tabelas do site)
-    python bd/bd.py --resumo   mostra no terminal as tabelas e colunas
-    python bd/bd.py --contar   mostra quantos registros há em cada tabela (banco local)
-
-Rode na raiz do repositório, com o ambiente virtual ativo (source .venv/bin/activate).
-Sempre que mudar os modelos: makemigrations, migrate e depois  python bd/bd.py.
-"""
-import io
 import os
+import sqlite3
+import subprocess
 import sys
-from datetime import datetime
 from pathlib import Path
 
-RAIZ = Path(__file__).resolve().parent.parent
-PASTA_CODE = RAIZ / "code"
-ARQUIVO_SQL = Path(__file__).resolve().parent / "schema.sql"
-APP = "conteudo"
-
-# Prepara o Django (sem servidor): o script só lê os modelos e as migrations.
-sys.path.insert(0, str(PASTA_CODE))
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
-os.environ.setdefault("DEBUG", "1")
-try:
-    import django
-except ImportError:
-    sys.exit("Django não encontrado. Ative o ambiente virtual:  source .venv/bin/activate")
-django.setup()
-
-from django.apps import apps                                     # noqa: E402
-from django.core.management import call_command                  # noqa: E402
-from django.db import connection                                 # noqa: E402
-from django.db.migrations.loader import MigrationLoader          # noqa: E402
+PASTA_BD = Path(__file__).parent
+PASTA_CODE = PASTA_BD.parent / "code"
+ARQUIVO_BANCO = PASTA_CODE / "db.sqlite3"
+ARQUIVO_SQL = PASTA_BD / "schema.sql"
+TABELAS = ["noticias", "integrantes", "galeria", "depoimentos"]
 
 
-def migrations_do_app():
-    loader = MigrationLoader(connection, ignore_no_migrations=True)
-    nomes = [nome for (app, nome) in loader.graph.leaf_nodes() if app == APP]
-    if not nomes:
-        return []
-    plano = loader.graph.forwards_plan((APP, nomes[0]))
-    return [nome for (app, nome) in plano if app == APP]
+# ---------------- parte 1: gerar o schema.sql ----------------
+
+def gerar_schema():
+    # pega o nome de cada migration (0001_initial, 0002_..., etc)
+    pasta_migrations = PASTA_CODE / "conteudo" / "migrations"
+    migrations = sorted(arquivo.stem for arquivo in pasta_migrations.glob("0*.py"))
+
+    sql = "-- SQL das tabelas do site (gerado pelo bd/bd.py, não editar na mão)\n"
+    sql += "-- tabelas: noticias, integrantes, galeria, depoimentos\n\n"
+
+    for nome in migrations:
+        # pede pro django mostrar o SQL da migration (comando sqlmigrate)
+        resultado = subprocess.run(
+            [sys.executable, "manage.py", "sqlmigrate", "conteudo", nome],
+            cwd=PASTA_CODE, capture_output=True, text=True,
+            env={**os.environ, "DEBUG": "1"},  # pra funcionar mesmo sem o .env
+        )
+        if resultado.returncode != 0:
+            print("Deu erro ao gerar o SQL:")
+            print(resultado.stderr)
+            return
+        sql += f"-- migration {nome}\n{resultado.stdout}\n"
+
+    ARQUIVO_SQL.write_text(sql, encoding="utf-8")
+    print(f"bd/schema.sql gerado ({len(migrations)} migration(s))")
 
 
-def gerar_sql():
-    partes = []
-    for nome in migrations_do_app():
-        saida = io.StringIO()
-        call_command("sqlmigrate", APP, nome, stdout=saida)
-        partes.append(f"-- ---------------------------------------------------------------\n"
-                      f"-- Migration {APP}.{nome}\n"
-                      f"-- ---------------------------------------------------------------\n"
-                      + saida.getvalue().strip() + "\n")
-    cabecalho = (
-        "-- =================================================================\n"
-        "-- schema.sql — SQL das tabelas do site Pré-Vestibular Social ONG Crias\n"
-        f"-- Gerado por bd/bd.py em {datetime.now():%d/%m/%Y %H:%M} (Django {django.get_version()}, "
-        f"banco {connection.vendor}).\n"
-        "-- NÃO edite à mão: mude code/conteudo/models.py e gere de novo.\n"
-        "-- Tabelas: noticias, integrantes, galeria, depoimentos.\n"
-        "-- (As tabelas de login/usuários são do próprio Django: auth_*, django_*.)\n"
-        "-- =================================================================\n\n"
-    )
-    ARQUIVO_SQL.write_text(cabecalho + "\n".join(partes), encoding="utf-8")
-    print(f"OK: {ARQUIVO_SQL.relative_to(RAIZ)} gerado com {len(partes)} migration(s).")
-
-
-def resumo():
-    for modelo in apps.get_app_config(APP).get_models():
-        meta = modelo._meta
-        print(f"\nTabela {meta.db_table}  ({meta.verbose_name_plural})")
-        for campo in meta.concrete_fields:
-            tipo = campo.db_type(connection) or "?"
-            obrigatorio = "" if (campo.null or campo.blank) else "  obrigatório"
-            print(f"  {campo.column:<18} {tipo:<16} {campo.verbose_name}{obrigatorio}")
-
+# ---------------- parte 2: contar os registros ----------------
 
 def contar():
-    from django.db.utils import OperationalError
-    try:
-        for modelo in apps.get_app_config(APP).get_models():
-            print(f"  {modelo._meta.db_table:<12} {modelo.objects.count():>5} registro(s)")
-    except OperationalError:
-        sys.exit("Banco ainda não criado. Rode:  cd code && python manage.py migrate")
+    if not ARQUIVO_BANCO.exists():
+        print("Não achei o banco. Rode antes, dentro da pasta code: python manage.py migrate")
+        return
+
+    conexao = sqlite3.connect(ARQUIVO_BANCO)
+    cursor = conexao.cursor()
+
+    for tabela in TABELAS:
+        cursor.execute(f"SELECT COUNT(*) FROM {tabela}")
+        total = cursor.fetchone()[0]
+        print(f"{tabela}: {total} registro(s)")
+
+    cursor.execute("SELECT COUNT(*) FROM noticias WHERE status = 'publicada'")
+    print(f"(notícias publicadas: {cursor.fetchone()[0]})")
+
+    conexao.close()
 
 
 if __name__ == "__main__":
-    if "--resumo" in sys.argv:
-        resumo()
-    elif "--contar" in sys.argv:
+    if len(sys.argv) > 1 and sys.argv[1] == "contar":
         contar()
     else:
-        gerar_sql()
+        gerar_schema()

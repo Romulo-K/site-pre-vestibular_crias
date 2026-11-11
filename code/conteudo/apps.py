@@ -7,4 +7,5 @@ class ConteudoConfig(AppConfig):
     verbose_name = "Conteúdo do site"
 
     def ready(self):
-        from . import signals  # noqa: F401  (liga a limpeza automática de fotos)
+        # liga o arquivo signals.py (que apaga as fotos que não são mais usadas)
+        from . import signals  # noqa: F401

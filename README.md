@@ -1,128 +1,73 @@
-# Pré-Vestibular Social ONG Crias — Site institucional
+# Pré-Vestibular Social ONG Crias — Site
 
-Projeto de extensão universitária. Site feito em Django.
+Site feito para o Pré-Vestibular Social ONG Crias, como projeto de extensão da faculdade.
 
-## Tecnologias
+🔗 **Site no ar:** https://prevestibularcrias.pythonanywhere.com
 
-- **Django 5.2** (Python) — páginas montadas no servidor e painel da coordenação (Django Admin)
-- **SQLite** — banco de dados (um arquivo, `code/db.sqlite3`, fora do GitHub)
-- HTML, CSS e JavaScript — visual e interações (menu, galeria)
-- Google Forms, Classroom, Drive e Meet — serviços externos (links em `code/static/js/config.js`)
-- Hospedagem: PythonAnywhere — passo a passo em [`PUBLICACAO.md`](PUBLICACAO.md)
+## O que foi usado
 
-## Estrutura
+- **Python + Django 5.2** → o site e o painel da coordenação (`/admin/`)
+- **SQLite** → o banco de dados (um arquivo só, `code/db.sqlite3`)
+- **HTML, CSS e JavaScript** → visual, menu do celular e galeria de fotos
+- **PythonAnywhere** → onde o site fica hospedado
+- **Google Forms, Classroom, Drive e Meet** → inscrições e área do aluno (o site só leva até eles)
+
+## O que o site tem
+
+- 8 páginas: Início, O Projeto, Atividades, Equipe, Alunos, Voluntários, Notícias e Contato
+- Painel em `/admin/` onde a coordenação publica notícias, equipe, fotos da galeria e depoimentos sem mexer no código
+- Notícia em rascunho não aparece no site, só depois de publicada
+- Funciona no celular
+
+## Como está organizado
 
 ```
-site-pre-vestibular_crias/
-├── bd/                      Banco de dados: bd.py (Python), schema.sql (SQL) e dicionário de dados
-├── code/                    Projeto Django
-│   ├── manage.py            Comandos do Django (rodar, migrar, testar)
-│   ├── requirements.txt     Bibliotecas (Django e Pillow)
-│   ├── .env.example         Modelo das configurações locais/secretas
-│   ├── config/              Configurações do projeto (settings.py, urls.py)
-│   ├── paginas/             App das páginas públicas (urls.py, views.py, tests.py)
-│   ├── conteudo/            App do conteúdo: modelos (tabelas), painel /admin/, testes
-│   ├── templates/
-│   │   ├── base.html        Cabeçalho, menu, rodapé e scripts (comum a todas as páginas)
-│   │   ├── includes/        Pedaços reaproveitados (ícones, cards, paginação, chamada final)
-│   │   ├── admin/           Cores da ONG no painel /admin/
-│   │   └── paginas/         inicio, projeto, atividades, equipe, alunos, voluntarios, noticias,
-│   │                        noticia_detalhe, contato
-│   └── static/
-│       ├── css/style.css    Estilos + design system (variáveis no topo)
-│       ├── js/              config.js (links), main.js (menu), galeria.js (foto ampliada)
-│       └── assets/          logo, fontes, imagens
-├── PUBLICACAO.md            Como publicar e atualizar o site no PythonAnywhere
-└── evidences/
+bd/            banco de dados: bd.py (script em python) e schema.sql (o SQL das tabelas)
+code/          o projeto django
+  config/      configurações (settings.py) e endereços principais (urls.py)
+  paginas/     as páginas do site (views.py e urls.py)
+  conteudo/    as tabelas do banco (models.py) e o painel (admin.py)
+  templates/   o HTML das páginas (base.html tem o cabeçalho e o rodapé)
+  static/      css, javascript e imagens
+PUBLICACAO.md  passo a passo de como coloquei o site no PythonAnywhere
 ```
 
-## Como rodar no seu computador (Linux)
+## Como rodar no computador
 
-Na primeira vez:
+Primeira vez:
 
 ```bash
-cd ~/site-pre-vestibular_crias
-python3 -m venv .venv               # cria o ambiente virtual
-source .venv/bin/activate           # ativa (aparece "(.venv)" no terminal)
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r code/requirements.txt
 cd code
-cp .env.example .env                # configurações locais
-python manage.py migrate            # cria o banco SQLite
-python manage.py runserver          # abre o site em http://127.0.0.1:8000
+cp .env.example .env
+python manage.py migrate
+python manage.py createsuperuser   # cria o login do painel
+python manage.py runserver
 ```
 
-Nas próximas vezes:
+Depois é só abrir http://127.0.0.1:8000 (e o painel em http://127.0.0.1:8000/admin/).
+
+Nas outras vezes:
 
 ```bash
-cd ~/site-pre-vestibular_crias
 source .venv/bin/activate
 cd code
 python manage.py runserver
 ```
 
-Para parar o servidor: `Ctrl + C`. Para rodar os testes: `python manage.py test`.
+Testes: `python manage.py test` (dentro da pasta `code`).
 
-## Onde está o Python
+## Banco de dados
 
-| Arquivo | O que faz |
-|---|---|
-| `code/config/settings.py` | Configurações (banco, idioma, segurança, arquivos) |
-| `code/config/urls.py`, `code/paginas/urls.py` | Endereços do site |
-| `code/paginas/views.py` | Monta cada página buscando no banco o que é público (notícias publicadas, equipe ativa...) |
-| `code/conteudo/models.py` | Tabelas do banco (notícias, equipe, galeria, depoimentos) |
-| `code/conteudo/admin.py` | Painel da coordenação |
-| `code/conteudo/validators.py`, `uploads.py`, `signals.py` | Regras das fotos (formato, tamanho, nome, limpeza) |
-| `code/*/tests.py` | Testes automáticos (`python manage.py test`) |
-| `bd/bd.py` | Gera o SQL do banco em `bd/schema.sql` |
+As tabelas são criadas pelo Django a partir do `code/conteudo/models.py`.
+O SQL delas fica salvo em `bd/schema.sql`. Mais detalhes em [`bd/README.md`](bd/README.md).
 
-## Painel da coordenação (/admin/)
+## Conteúdo que falta a ONG mandar
 
-Criar a conta da coordenação (uma vez, dentro de `code/`):
-
-```bash
-python manage.py createsuperuser
-```
-
-Depois, com o servidor rodando, acesse `http://127.0.0.1:8000/admin/`. Pelo painel dá para criar,
-editar e excluir **notícias** (rascunho ou publicada), **equipe**, **galeria** e **depoimentos**, com fotos.
-A senha é guardada criptografada pelo Django e **nunca** vai para o código ou para o GitHub.
-
-O que é cadastrado no painel aparece no site na hora, sem mexer no código:
-
-| No painel | Onde aparece no site |
-|---|---|
-| Notícias **publicadas** | Home (as 3 mais recentes), página Notícias e a página de cada notícia |
-| Notícias em **rascunho** | Em lugar nenhum (a coordenação logada pode pré-visualizar pelo botão "Ver no site") |
-| Equipe marcada como "aparece no site" | Home (4 integrantes, coordenação primeiro) e página Equipe, por grupo |
-| Galeria | Página Atividades, seção Galeria (clique amplia a foto) |
-| Depoimentos ativos e autorizados | Home |
-
-## Endereços do site
-
-| Página | Endereço |
-|---|---|
-| Início | `/` |
-| O Projeto | `/projeto/` |
-| Atividades | `/atividades/` |
-| Equipe | `/equipe/` |
-| Alunos | `/alunos/` |
-| Voluntários | `/voluntarios/` |
-| Notícias | `/noticias/` |
-| Uma notícia | `/noticias/<endereço-da-notícia>/` |
-| Contato | `/contato/` |
-| Painel da coordenação | `/admin/` |
-
-## Conteúdo pendente da ONG
-
-- [ ] História da instituição
-- [ ] Missão
-- [ ] Texto oficial sobre a ONG CRIAS e a parceria
-- [ ] Texto oficial sobre o CPOP
-- [ ] Lista de professores, funções e fotos autorizadas
-- [ ] Fotos das atividades
-- [ ] Notícias e depoimentos reais autorizados
-- [ ] Link público do formulário de aluno
-- [ ] Link público do formulário de voluntário
+- [ ] Textos oficiais (história, missão, parceria com a ONG CRIAS, ENEM, atividades)
+- [ ] Links dos formulários de aluno e voluntário
 - [ ] Links do Google Classroom, Drive e Meet
-- [ ] Redes sociais e contatos oficiais
-- [ ] Banco de dados
+- [ ] Contatos e redes sociais oficiais
+- [ ] Fotos reais e autorizadas
