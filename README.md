@@ -10,7 +10,6 @@ Site feito para o Pré-Vestibular Social ONG Crias, como projeto de extensão da
 - **SQLite** → o banco de dados (um arquivo só, `code/db.sqlite3`)
 - **HTML, CSS e JavaScript** → visual, menu do celular e galeria de fotos
 - **PythonAnywhere** → onde o site fica hospedado
-- **Google Forms, Classroom, Drive e Meet** → inscrições e área do aluno (o site só leva até eles)
 
 ## O que o site tem
 
@@ -18,7 +17,7 @@ Site feito para o Pré-Vestibular Social ONG Crias, como projeto de extensão da
 - Painel em `/admin/` onde a coordenação publica notícias, equipe, fotos da galeria e depoimentos sem mexer no código
 - Os links dos formulários, do Classroom, Drive e Meet e os contatos também são trocados pelo painel ("Links e contatos do site")
 - Notícia em rascunho não aparece no site, só depois de publicada
-- Funciona no celular
+- Funciona em qualquer aparelho
 
 ## Como está organizado
 
