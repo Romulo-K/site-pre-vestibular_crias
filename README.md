@@ -63,11 +63,3 @@ Testes: `python manage.py test` (dentro da pasta `code`).
 
 As tabelas são criadas pelo Django a partir do `code/conteudo/models.py`.
 O SQL delas fica salvo em `bd/schema.sql`. Mais detalhes em [`bd/README.md`](bd/README.md).
-
-## Conteúdo que falta a ONG mandar
-
-- [ ] Textos oficiais (história, missão, parceria com a ONG CRIAS, ENEM, atividades)
-- [ ] Links dos formulários de aluno e voluntário
-- [ ] Links do Google Classroom, Drive e Meet
-- [ ] Contatos e redes sociais oficiais
-- [ ] Fotos reais e autorizadas
